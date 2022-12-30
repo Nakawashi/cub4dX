@@ -6,12 +6,11 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 16:19:40 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:51:37 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cub3d.h"
-#include "get_next_line/get_next_line.h"
+#include "cub3d.h"
 
 /*
 	Read the .ber map and saves it on map.map which is a 2 dimension table.

@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2022/12/30 16:17:42 by lgenevey         ###   ########.fr        #
+#    Updated: 2022/12/30 16:46:33 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,20 +35,25 @@ CC			= gcc
 rm			= rm -rf
 OBJS		= $(SRCS_FILES:.c=.o)
 
-
 DIR_OBJS	= objs/
-DIR_HEADER	= incs/cub3d.h
+DIR_HEADER	= incs/
 DIR_LIBFT	= libft/
 DIR_MLX		= minilibx/
 OPTIONS 	:= -I$(DIR_MLX)
+OPTIONS		+= -I$(DIR_LIBFT)
+OPTIONS		+= -I$(DIR_HEADER)
+CFLAGS		+= $(OPTIONS)
 
-LIBS		:= -L$(DIR_LIBFT) -lft
-LIBS		+= -L$(DIR_MLX) -lmlx
+# LIBS		:= -L$(DIR_LIBFT) -lft
+# LIBS		+= -L$(DIR_MLX) -lmlx
 INCLUDES	:= -framework OpenGL -framework AppKit
 INCLUDES	+= -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx
-
+# CFLAGS		+= -I ./incs
 
 all: $(NAME)
+
+# $(OBJS): %.o : %.c
+# 	$(CC) $(CFLAGS) -I $(OPTIONS) -o $@ -c $<
 
 $(NAME):	$(OBJS)
 	@echo "$(BLUE)Making libmlx... $(NONE)"
@@ -56,7 +61,7 @@ $(NAME):	$(OBJS)
 	@echo "$(BLUE)Making libft... $(NONE)"
 	@$(MAKE) -C $(DIR_LIBFT)
 	@echo "$(BLUE)Making so_long... $(NONE)"
-	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(DEBUG) $(LIBS) $(INCLUDES)
+	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(DEBUG) $(INCLUDES)
 	@echo "$(GREEN) so_long ready.\n$(NONE)"
 
 clean:
