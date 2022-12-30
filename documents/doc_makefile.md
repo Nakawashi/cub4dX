@@ -6,7 +6,7 @@ Les options `-L` et `-I` sont utilisées dans un Makefile pour indiquer au compi
 
 Voici un exemple de Makefile qui utilise les options -L et -I :
 
-`CC = gcc`
-`CFLAGS = -Wall -Wextra -Werror`
-`LDFLAGS = -L/usr/local/lib -lfoo`
-`INCLUDES = -I/usr`
+`CC = gcc`<br/>
+`CFLAGS = -Wall -Wextra -Werror`<br/>
+`LDFLAGS = -L/usr/local/lib -lfoo`<br/>
+`INCLUDES = -I/usr`<br/>
