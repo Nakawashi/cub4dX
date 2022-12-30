@@ -6,9 +6,11 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:09:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/04/09 12:36:48 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:11:17 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 /*
 ---- GET_NEXT_LINE ----
@@ -32,9 +34,6 @@ display
 c : continue
 
 */
-
-#include "get_next_line.h"
-#include <stdio.h>
 
 /*
  * cree une chaine de caracteres qui se termine soit par \n soit par \0
@@ -63,7 +62,7 @@ char	*ft_fill_line(char *statiq)
 	}
 	if (statiq[i] == '\0')
 	{
-		s2 = ft_strdup(statiq);
+		s2 = ft_strdup_safe(statiq);
 		return (s2);
 	}
 	return (0);

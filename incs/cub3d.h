@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 15:09:56 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:00:42 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 # define CUB3D_H
 
 # include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-
-// open
 # include <fcntl.h>
 
-# include "../minilibx/mlx.h"
-# include "../libft/libft.h"
+# include "mlx.h"
+# include "libft.h"
 
 // Quit game
 # define EVENT_KEY_ESC 53
@@ -61,6 +60,13 @@ typedef struct s_img
 	int		img_height;
 }	t_img;
 
+typedef struct s_map
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+}	t_map;
+
 typedef struct s_player
 {
 	int	pos_x;
@@ -76,5 +82,6 @@ typedef struct s_ray
 
 void	init_window(t_window *window);
 void	quit_program(t_window *window);
+char	**read_map(const char *path_to_file);
 
 #endif

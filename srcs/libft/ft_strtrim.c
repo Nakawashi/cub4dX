@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 14:41:28 by lgenevey          #+#    #+#             */
-/*   Updated: 2021/11/05 12:28:41 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:14:57 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include "libft.h"
 
 char	*ft_my_strchr(char *s, char *c)

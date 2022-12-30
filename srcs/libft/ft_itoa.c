@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 13:50:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2021/11/07 13:05:05 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:13:11 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include "libft.h"
-#include <stdlib.h>
 
 static	int	ft_count_digits_in_number(int n)
 {

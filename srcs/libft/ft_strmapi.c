@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 15:30:14 by lgenevey          #+#    #+#             */
-/*   Updated: 2021/11/05 21:04:41 by lgenevey         ###   ########.fr       */
+/*   Created: 2021/11/04 17:31:39 by lgenevey          #+#    #+#             */
+/*   Updated: 2022/12/30 18:14:51 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
-	size_t	i;
+	int		i;
 
-	if (!s)
+	if (!s || !f)
 		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (!str)
+	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (str == NULL)
 		return (NULL);
 	i = 0;
-	while (i < len)
-		str[i++] = s[start++];
+	while (s[i])
+	{
+		str[i] = (*f)(i, s[i]);
+		i++;
+	}
 	str[i] = 0;
 	return (str);
 }

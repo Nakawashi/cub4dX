@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 16:51:37 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:27:31 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@ char	**read_map(const char *path_to_file)
 
 	map = NULL;
 	fd = open(path_to_file, O_RDONLY);
+	printf("path to file : %s\n", path_to_file);
 	if (fd == -1)
+	{
+		// printf("fd == -1");
+		perror("imposible d'ouvrir le fichier");
 		return (NULL);
+	}
 	if (fd >= 0)
 	{
-		saved = ft_strdup("");
+		printf("fichier ouvert OK");
+		saved = ft_strdup_safe("");
 		while (1)
 		{
 			line = get_next_line(fd);
@@ -38,6 +44,7 @@ char	**read_map(const char *path_to_file)
 			free(line);
 		}
 		map = ft_split(saved, '\n');
+		printf("%s", map[0]);
 		free(saved);
 	}
 	close(fd);

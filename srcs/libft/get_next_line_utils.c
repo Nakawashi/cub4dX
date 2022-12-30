@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 13:38:30 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/05/17 15:23:08 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:18:57 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	int		j;
 
 	if (!s1)
-		s1 = ft_strdup("");
+		s1 = ft_strdup_safe("");
 	if (!s1 || !s2)
 		return (NULL);
 	s3 = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
@@ -80,7 +80,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
  * permet de pouvoir retourner une chaine de caracteres vide
  * au lieu de NULL on a un tableau avec juste un \0 return ft_strdup("");
  */
-char	*ft_strdup(const char *s1)
+char	*ft_strdup_safe(const char *s1)
 {
 	char	*copy;
 	int		i;

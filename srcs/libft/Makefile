@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/13 14:02:05 by lgenevey          #+#    #+#              #
-#    Updated: 2022/12/20 13:40:29 by lgenevey         ###   ########.fr        #
+#    Updated: 2022/12/30 18:10:22 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ SRCS =	ft_bzero.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
 		ft_free_ppointer.c \
+		get_next_line.c \
+		get_next_line_utils.c \
 
 SRCS_BONUS =	ft_lstnew.c \
 				ft_lstadd_front.c \
@@ -72,6 +74,8 @@ NONE	= \033[0m
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
+
+both: $(NAME) bonus
 
 $(NAME):
 	@$(CC) $(CFLAGS) -c $(SRCS)
