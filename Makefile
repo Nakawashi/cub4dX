@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2022/12/30 16:13:36 by lgenevey         ###   ########.fr        #
+#    Updated: 2022/12/30 16:17:42 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ OPTIONS 	:= -I$(DIR_MLX)
 LIBS		:= -L$(DIR_LIBFT) -lft
 LIBS		+= -L$(DIR_MLX) -lmlx
 INCLUDES	:= -framework OpenGL -framework AppKit
+INCLUDES	+= -L $(DIR_LIBFT) -lft -L $(DIR_MLX) -lmlx
 
 
 all: $(NAME)
