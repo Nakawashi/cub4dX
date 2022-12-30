@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2022/12/30 14:26:18 by lgenevey         ###   ########.fr        #
+#    Updated: 2022/12/30 16:13:36 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ NONE	= \033[0m
 
 
 SRCS_FILES	=	srcs/main.c \
-				srcs/window_init.c \
-				srcs/quit.c\
+				srcs/general/init_window.c \
+				srcs/general/quit.c \
 
 
 CFLAGS		= -Wall -Wextra -Werror

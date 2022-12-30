@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_init.c                                      :+:      :+:    :+:   */
+/*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 14:50:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:12:37 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/cub3d.h"
+#include "../../incs/cub3d.h"
 
 static void	init_window_size(t_window *window)
 {
-	window->win_width = 1920;
-	window->win_height = 1080;
+	// window->win_width = 1920;
+	// window->win_height = 1080;
+	window->win_width = 1024;
+	window->win_height = 512;
 }
 
 /*

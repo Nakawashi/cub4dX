@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 14:45:41 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:09:56 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,16 @@ typedef struct s_img
 
 typedef struct s_player
 {
-
+	int	pos_x;
+	int	pos_y;
 }	t_player;
+
+typedef struct s_ray
+{
+	char		*direction;
+	t_player	player;
+}	t_ray;
+
 
 void	init_window(t_window *window);
 void	quit_program(t_window *window);

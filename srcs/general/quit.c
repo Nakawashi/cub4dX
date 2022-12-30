@@ -6,11 +6,11 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:20:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 14:52:47 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:12:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/cub3d.h"
+#include "../../incs/cub3d.h"
 
 static int	clean(t_window *window)
 {
