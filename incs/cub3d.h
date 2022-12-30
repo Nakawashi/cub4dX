@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 14:24:20 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:45:41 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # include "../libft/libft.h"
 
 // Quit game
-# define ESC 53
+# define EVENT_KEY_ESC 53
+# define EVENT_KEY_EXIT 17
 
 // size of img in pixel
 # define IMG_SIZE 64

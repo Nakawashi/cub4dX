@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:20:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 14:23:36 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:52:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	clean(t_window *window)
 */
 static int	key_hook(int keycode, t_window *window)
 {
-	if (keycode == ESC)
+	if (keycode == EVENT_KEY_ESC)
 		clean(window);
 	return (0);
 }
@@ -36,5 +36,5 @@ static int	key_hook(int keycode, t_window *window)
 void	quit_program(t_window *window)
 {
 	mlx_key_hook(window->win_id, key_hook, window);
-	mlx_hook(window->win_id, 17, 0, clean, window);
+	mlx_hook(window->win_id, EVENT_KEY_EXIT, 0, clean, window);
 }
