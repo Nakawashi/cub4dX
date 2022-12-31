@@ -6,44 +6,48 @@
 /*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 14:08:48 by nakawashi        ###   ########.fr       */
+/*   Updated: 2022/12/31 15:50:18 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+typedef struct s_readmap
+{
+	int		fd;
+	char	*line;
+	char	*saved;
+	char	**map;
+}	t_readmap;
 
 /*
 	Read the .ber map and saves it on map.map which is a 2 dimension table.
 */
 char	**read_map(const char *path_to_file)
 {
-	int		fd;
-	char	*line;
-	char	*saved;
-	char	**map;
+	t_readmap	readmap;
 
-	map = NULL;
-	fd = open(path_to_file, O_RDONLY);
-	printf("path to file : %s\n", path_to_file);
-	if (fd == -1)
+	readmap.map = NULL;
+	readmap.fd = open(path_to_file, O_RDONLY);
+	if (readmap.fd == -1)
 	{
 		perror("read_map: imposible d'ouvrir le fichier");
 		return (NULL);
 	}
-	if (fd >= 0)
+	if (readmap.fd >= 0)
 	{
-		saved = ft_strdup_safe("");
+		readmap.saved = ft_strdup_safe("");
 		while (1)
 		{
-			line = get_next_line(fd);
-			if (!line)
+			readmap.line = get_next_line(readmap.fd);
+			if (!readmap.line)
 				break ;
-			saved = ft_strjoin_free(saved, line);
-			free(line);
+			readmap.saved = ft_strjoin_free(readmap.saved, readmap.line);
+			free(readmap.line);
 		}
-		map = ft_split(saved, '\n');
-		free(saved);
+		readmap.map = ft_split(readmap.saved, '\n');
+		free(readmap.saved);
 	}
-	close(fd);
-	return (map);
+	close(readmap.fd);
+	return (readmap.map);
 }
