@@ -14,27 +14,28 @@
 
 /*
 	Read the .ber map and saves it on map.map which is a 2 dimension table.
-	- Read the .cub until the end and return it as the map
 */
-char	**read_map(int fd)
+char	**read_file(const char *path_to_file)
 {
-	char	*line;
-	char	*saved;
+	int		fd;
 	char	**map;
 
-	printf("fichier ouvert OK\n");
-	saved = ft_strdup_safe("");
-	while (1)
+	map = NULL;
+	fd = 789;
+	printf("fd : %d\n", fd);
+	fd = open(path_to_file, O_RDONLY);
+	printf("fd : %d\n", fd);
+	printf("path to file : %s\n", path_to_file);
+	if (fd == -1)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		saved = ft_strjoin_free(saved, line);
-		free(line);
+		perror("read_map: imposible d'ouvrir le fichier");
+		return (NULL);
 	}
-	map = ft_split(saved, '\n');
-	printf("%s", map[0]);
-	free(saved);
-
+	if (fd >= 0)
+	{
+		
+		map = read_map(fd);
+	}
+	close(fd);
 	return (map);
 }
