@@ -6,7 +6,7 @@
 /*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 13:46:45 by nakawashi        ###   ########.fr       */
+/*   Updated: 2022/12/31 14:00:41 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ typedef struct s_window
 
 }	t_window;
 
+/*
+	on aura 4 variables de type t_img
+*/
 typedef struct s_img
 {
 	void	*img;
-	char	*no_texture_path;
-	char	*so_texture_path;
-	char	*we_texture_path;
-	char	*ea_texture_path;
+	char	*texture_path;
 	int		img_width;
 	int		img_height;
 	int		*pxs;
