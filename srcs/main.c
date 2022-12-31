@@ -6,7 +6,7 @@
 /*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 13:34:47 by nakawashi        ###   ########.fr       */
+/*   Updated: 2022/12/31 14:12:10 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	init_window(&window);
 	quit_program(&window);
-	map.map = read_file("./assets/map1.cub");
+	map.map = read_map("assets/map1.cub");
 	if (!map.map)
 		return (0);
 	for (int i = 0; i < 5; ++i)

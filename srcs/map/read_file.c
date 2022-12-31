@@ -21,11 +21,7 @@ char	**read_file(const char *path_to_file)
 	char	**map;
 
 	map = NULL;
-	fd = 789;
-	printf("fd : %d\n", fd);
 	fd = open(path_to_file, O_RDONLY);
-	printf("fd : %d\n", fd);
-	printf("path to file : %s\n", path_to_file);
 	if (fd == -1)
 	{
 		perror("read_map: imposible d'ouvrir le fichier");
@@ -33,7 +29,7 @@ char	**read_file(const char *path_to_file)
 	}
 	if (fd >= 0)
 	{
-		
+		read_args(fd);
 		map = read_map(fd);
 	}
 	close(fd);

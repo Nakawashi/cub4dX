@@ -22,7 +22,6 @@ char	**read_map(int fd)
 	char	*saved;
 	char	**map;
 
-	printf("fichier ouvert OK\n");
 	saved = ft_strdup_safe("");
 	while (1)
 	{
@@ -33,7 +32,6 @@ char	**read_map(int fd)
 		free(line);
 	}
 	map = ft_split(saved, '\n');
-	printf("%s", map[0]);
 	free(saved);
 
 	return (map);

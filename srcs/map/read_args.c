@@ -91,7 +91,7 @@ int	get_args(const char *line, int *nbr_args)
 		ft_free_ppointer(line_args);
 		return (-1);
 	}
-	else if (is_img(line_args, nbr_args) < 0 || is_color(line_args, nbr_args) < 0)
+	if (is_img(line_args, nbr_args) < 0 || is_color(line_args, nbr_args) < 0)
 	{
 		printf("ERROR\n Error parsing : duplicate arg : %s\n", line_args[0]);
 		ft_free_ppointer(line_args);
