@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 18:00:42 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:46:45 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+#include <sys/stat.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -52,12 +53,17 @@ typedef struct s_window
 
 typedef struct s_img
 {
+	void	*img;
 	char	*no_texture_path;
 	char	*so_texture_path;
 	char	*we_texture_path;
 	char	*ea_texture_path;
 	int		img_width;
 	int		img_height;
+	int		*pxs;
+	int		bits;
+	int		line;
+	int		end;
 }	t_img;
 
 typedef struct s_map

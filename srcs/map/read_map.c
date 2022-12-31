@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 18:27:31 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:35:38 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ char	**read_map(const char *path_to_file)
 	char	**map;
 
 	map = NULL;
+	fd = 789;
+	printf("fd : %d\n", fd);
 	fd = open(path_to_file, O_RDONLY);
+	printf("fd : %d\n", fd);
 	printf("path to file : %s\n", path_to_file);
 	if (fd == -1)
 	{
-		// printf("fd == -1");
-		perror("imposible d'ouvrir le fichier");
+		perror("read_map: imposible d'ouvrir le fichier");
 		return (NULL);
 	}
 	if (fd >= 0)
