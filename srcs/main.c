@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 20:41:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/02 22:43:23 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ int	main(int argc, char **argv)
 		return (0);
 	for (int i = 0; i < 5; ++i)
 		printf("%s\n", map.map[i]);
-	// build_bg_img(&global.window, &global.img);
-	// my_mlx_pixel_put(&global.img, 3, 1, 0x00FF0000);
-	// mlx_put_image_to_window(
-	// 	global.window.mlx_id,
-	// 	global.window.win_id,
-	// 	global.img.img,
-	// 	0,
-	// 	0);
+/* 	build_bg_img(&global.window, &global.bg_img);
+	for (int i = 0; i < 500; ++i)
+		my_mlx_pixel_put(&global.bg_img, i, 100, 0x00FF0000);
+	mlx_put_image_to_window(
+		global.window.mlx_id,
+		global.window.win_id,
+		global.bg_img.img,
+		0,
+		0); */
 	my_mlx_put_rectangle(&global);
 	mlx_loop(&global.window.mlx_id);
 	return (0);
