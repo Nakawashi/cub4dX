@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 14:00:41 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/02 17:05:36 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ typedef struct s_window
 typedef struct s_img
 {
 	void	*img;
+	char	*addr;
 	char	*texture_path;
 	int		img_width;
 	int		img_height;
-	int		*pxs;
-	int		bits;
-	int		line;
-	int		end;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_img;
 
 typedef struct s_map
@@ -85,9 +85,17 @@ typedef struct s_ray
 	t_player	player;
 }	t_ray;
 
+typedef struct s_global
+{
+	t_window	window;
+	t_img		img;
+}	t_global;
 
 void	init_window(t_window *window);
 void	quit_program(t_window *window);
 char	**read_map(const char *path_to_file);
+
+void	create_bg_img(t_window	*window, t_img *img);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/30 16:26:34 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:10:12 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ void	init_window(t_window *window)
 		window->mlx_id,
 		window->win_width,
 		window->win_height,
-		"WolfenStein4dX"
+		"Half Life 3.2"
 	);
-}
-
-void	display_ground_and_ceiling(char *ground, char *ceiling)
-{
-	ground = "grey";
-	ceiling = "blue";
 }

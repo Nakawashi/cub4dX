@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 14:12:10 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/02 19:44:59 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 int	main(int argc, char **argv)
 {
-	t_window	window;
+	t_global	global;
 	t_map		map;
 	(void)argc;
 	(void)argv;
 
-	init_window(&window);
-	quit_program(&window);
+	init_window(&global.window);
+	quit_program(&global.window);
 	map.map = read_map("assets/map1.cub");
 	if (!map.map)
 		return (0);
 	for (int i = 0; i < 5; ++i)
-	{
 		printf("%s\n", map.map[i]);
-	}
-	mlx_loop(window.mlx_id);
+	create_bg_img(&global.window, &global.img);
+	my_mlx_pixel_put(&global.img, 5, 5, 0x00FF0000);
+	mlx_put_image_to_window(
+		&global.window.mlx_id,
+		&global.window.win_id,
+		&global.img.img,
+		0,
+		0);
+	mlx_loop(&global.window.mlx_id);
 	return (0);
 }
