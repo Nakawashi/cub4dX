@@ -6,7 +6,7 @@
 /*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 22:44:35 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/02 23:15:52 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,46 @@ void	build_bg_img(t_window *window, t_img *img)
 }
 
 /*
-	Creates a rectangle, store it in gene
+	Creates a rectangle, store it in t_global
 */
-void	my_mlx_put_rectangle(t_global *global, int i, int j)
+/* void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
 {
 	int	i;
 	int	j;
 
 	build_bg_img(&global->window, &global->bg_img);
-	i = 0;
+	i = x;
 	while(i < global->window.win_height)
 	{
-		j = 0;
+		j = y;
 		while (j < global->window.win_width)
 		{
-			my_mlx_pixel_put(&global->bg_img, i, j, 0x00FF0000);
+			my_mlx_pixel_put(&global->bg_img, i, j, color);
+			++j;
+		}
+		++i;
+	}
+	mlx_put_image_to_window(
+		global->window.mlx_id,
+		global->window.win_id,
+		global->bg_img.img,
+		0,
+		0);
+} */
+
+void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
+{
+	int	i;
+	int	j;
+
+	build_bg_img(&global->window, &global->bg_img);
+	i = x;
+	while(i < 512/2)
+	{
+		j = y;
+		while (j < 1024)
+		{
+			my_mlx_pixel_put(&global->bg_img, i, j, color);
 			++j;
 		}
 		++i;
@@ -66,6 +91,8 @@ void	my_mlx_put_rectangle(t_global *global, int i, int j)
 		0,
 		0);
 }
+
+
 /*
 	Une fonction par truc dans les fichiers et je les rassemble dans le main
 	generate environment

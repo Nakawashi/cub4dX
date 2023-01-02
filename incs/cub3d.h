@@ -6,7 +6,7 @@
 /*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 22:45:44 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/02 22:49:51 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ void	init_window(t_window *window);
 void	quit_program(t_window *window);
 char	**read_map(const char *path_to_file);
 void	build_bg_img(t_window	*window, t_img *img);
-void	my_mlx_put_rectangle(t_global *global);
-
+void	my_mlx_put_rectangle(t_global *global, int x, int y, int color);
 // handle images
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
