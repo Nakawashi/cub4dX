@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2022/12/30 18:18:16 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/02 16:54:34 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ NONE	= \033[0m
 SRCS_FILES	=	srcs/main.c \
 				srcs/general/init_window.c \
 				srcs/general/quit.c \
+				srcs/general/display_background.c \
 				srcs/map/read_map.c \
 
 
