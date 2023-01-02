@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 17:05:36 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:14:35 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,14 @@ typedef struct s_global
 	t_img		img;
 }	t_global;
 
+// general
 void	init_window(t_window *window);
 void	quit_program(t_window *window);
 char	**read_map(const char *path_to_file);
+void	build_bg_img(t_window	*window, t_img *img);
+void	my_mlx_put_rectangle(t_global *global);
 
-void	create_bg_img(t_window	*window, t_img *img);
+// handle images
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 #endif
