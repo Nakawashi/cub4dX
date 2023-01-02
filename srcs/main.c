@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 19:44:59 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:01:38 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ int	main(int argc, char **argv)
 		printf("%s\n", map.map[i]);
 	create_bg_img(&global.window, &global.img);
 	my_mlx_pixel_put(&global.img, 5, 5, 0x00FF0000);
+	printf("\n");
 	mlx_put_image_to_window(
-		&global.window.mlx_id,
-		&global.window.win_id,
-		&global.img.img,
+		global.window.mlx_id,
+		global.window.win_id,
+		global.img.img,
 		0,
 		0);
 	mlx_loop(&global.window.mlx_id);
