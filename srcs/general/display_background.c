@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 19:40:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:43:55 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_img(t_img *img)
 	img->endian = 0;
 }
 
-void	create_bg_img(t_window	*window, t_img *img)
+void	build_bg_img(t_window *window, t_img *img)
 {
 	init_img(img);
 	img->line_length = window->win_width;
@@ -39,18 +39,30 @@ void	create_bg_img(t_window	*window, t_img *img)
 		&img->endian);
 }
 
-/*
-
-*/
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void	my_mlx_put_rectangle(t_global *global)
 {
-	char	*dst;
+	int	i;
+	int	j;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-
+	i = 0;
+	while(i < global->window.win_height)
+	{
+		j = 0;
+		build_bg_img(&global->window, &global->img);
+		my_mlx_pixel_put(&global->img, i, j, 0x00FF0000);
+		while (j < global->window.win_width)
+		{
+			mlx_put_image_to_window(
+				global->window.mlx_id,
+				global->window.win_id,
+				global->img.img,
+				i,
+				i);
+				++j;
+		}
+		++i;
+	}
 }
-
 /*
 	Une fonction par truc dans les fichiers et je les rassemble dans le main
 	generate environment
