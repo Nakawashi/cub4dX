@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/01/02 20:09:41 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/06 00:10:00 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,27 +75,27 @@ all: $(NAME)
 # 	$(CC) $(CFLAGS) -I $(OPTIONS) -o $@ -c $<
 
 $(NAME):	$(OBJS)
-	@echo "$(BLUE)Making libmlx... $(NONE)"
+	@printf "$(BLUE)Making libmlx... $(NONE)"
 	@$(MAKE) -C $(DIR_MLX)
-	@echo "$(BLUE)Making libft... $(NONE)"
+	@printf "$(BLUE)Making libft... $(NONE)"
 	@$(MAKE) both -C $(DIR_LIBFT)
-	@echo "$(BLUE)Making so_long... $(NONE)"
+	@printf "$(BLUE)Making so_long... $(NONE)"
 	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(INCLUDES)
-	@echo "$(GREEN) so_long ready.\n$(NONE)"
+	@printf "$(GREEN) so_long ready.\n$(NONE)"
 
 clean:
 	@$(RM) $(OBJS)
 	@$(MAKE) -C $(DIR_LIBFT) clean
 	@$(MAKE) -C $(DIR_MLX) clean
-	@echo "$(GREEN) OBJS removed in cub3D, libft and libmlx.\n$(NONE)"
+	@printf "$(GREEN) OBJS removed in cub3D, libft and libmlx.\n$(NONE)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(GREEN) $(NAME) removed.\n$(NONE)"
+	@printf "$(GREEN) $(NAME) removed.\n$(NONE)"
 	@$(MAKE) -C $(DIR_LIBFT) fclean
-	@echo "$(GREEN) libft.a removed.\n$(NONE)"
+	@printf "$(GREEN) libft.a removed.\n$(NONE)"
 	@$(MAKE) -C $(DIR_MLX) clean
-	@echo "$(GREEN) libmlx.a removed.\n$(NONE)"
+	@printf "$(GREEN) libmlx.a removed.\n$(NONE)"
 
 re: fclean all
 

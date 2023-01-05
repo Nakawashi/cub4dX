@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_background.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 23:15:52 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/06 00:43:31 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,18 @@ void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
 
 	build_bg_img(&global->window, &global->bg_img);
 	i = x;
-	while(i < 512/2)
+	while(i < 512)
 	{
 		j = y;
 		while (j < 1024)
 		{
-			my_mlx_pixel_put(&global->bg_img, i, j, color);
+			my_mlx_pixel_put(&global->bg_img, j, i, color);
 			++j;
 		}
 		++i;
 	}
-	mlx_put_image_to_window(
-		global->window.mlx_id,
-		global->window.win_id,
-		global->bg_img.img,
-		0,
-		0);
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->bg_img.img, 0, 0);
 }
 
 
