@@ -33,5 +33,6 @@ char	**read_file(const char *path_to_file)
 		map = read_map(fd);
 	}
 	close(fd);
+	exit(0);
 	return (map);
 }

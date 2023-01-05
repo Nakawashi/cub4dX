@@ -33,6 +33,8 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/general/init_window.c \
 				srcs/general/quit.c \
 				srcs/map/read_map.c \
+				srcs/map/read_file.c \
+				srcs/map/read_args.c \
 
 
 #####################################
@@ -44,6 +46,7 @@ CC			= gcc
 rm			= rm -rf
 OBJS		= $(SRCS_FILES:.c=.o)
 CFLAGS		= -Wall -Wextra -Werror
+
 ifeq ($(DEBUG), 1)
 	CFLAGS += -fsanitize=address -g3
 endif

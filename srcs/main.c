@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	init_window(&window);
 	quit_program(&window);
-	map.map = read_map("assets/map1.cub");
+	map.map = read_file("assets/arx.cub");
 	if (!map.map)
 		return (0);
 	for (int i = 0; i < 5; ++i)

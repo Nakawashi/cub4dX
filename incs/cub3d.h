@@ -66,18 +66,21 @@ typedef struct s_img
 	int		end;
 }	t_img;
 
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+	int	rot;
+}	t_player;
+
 typedef struct s_map
 {
 	char	**map;
 	int		map_width;
 	int		map_height;
-}	t_map;
 
-typedef struct s_player
-{
-	int	pos_x;
-	int	pos_y;
-}	t_player;
+	t_player	pl;
+}	t_map;
 
 typedef struct s_ray
 {
@@ -88,6 +91,9 @@ typedef struct s_ray
 
 void	init_window(t_window *window);
 void	quit_program(t_window *window);
-char	**read_map(const char *path_to_file);
+
+char	**read_file(const char *path_to_file);
+int		read_args(int fd);
+char    **read_map(int fd);
 
 #endif
