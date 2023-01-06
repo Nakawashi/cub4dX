@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 00:43:31 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:07:24 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	build_bg_img(t_window *window, t_img *img)
 	img->line_length = window->win_width;
 	img->img = mlx_new_image(
 		window->mlx_id,
-		window->win_height,
-		window->win_width);
+		window->win_width,
+		window->win_height);
 	img->addr = mlx_get_data_addr(
 		img->img,
 		&img->bits_per_pixel,
@@ -73,10 +73,10 @@ void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
 	int	j;
 
 	build_bg_img(&global->window, &global->bg_img);
-	i = x;
+	i = y;
 	while(i < 512)
 	{
-		j = y;
+		j = x;
 		while (j < 1024)
 		{
 			my_mlx_pixel_put(&global->bg_img, j, i, color);
@@ -87,6 +87,27 @@ void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->bg_img.img, 0, 0);
 }
+
+// void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	build_bg_img(&global->window, &global->bg_img);
+// 	j = y;
+// 	while(j < 1024)
+// 	{
+// 		i = x;
+// 		while (i < 512)
+// 		{
+// 			my_mlx_pixel_put(&global->bg_img, j, i, color);
+// 			++i;
+// 		}
+// 		++j;
+// 	}
+// 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+// 		global->bg_img.img, 0, 0);
+// }
 
 
 /*
