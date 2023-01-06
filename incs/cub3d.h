@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 18:16:33 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:32:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ typedef struct s_ray
 typedef struct s_global
 {
 	t_window	window;
-	t_img		*floor_img;
-	t_img		*ceiling_img;
+	t_img		floor_img;
+	t_img		ceiling_img;
 }	t_global;
 
 //###############################
