@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 19:41:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:13:57 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	my_mlx_put_floor(t_global *global, int x, int y, int color)
 		++i;
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->floor_img.img, 0, 0);
+		global->floor_img.img, x, y);
 }
 
 void	my_mlx_put_ceiling(t_global *global, int x, int y, int color)
@@ -55,7 +55,7 @@ void	my_mlx_put_ceiling(t_global *global, int x, int y, int color)
 
 	create_image(&global->ceiling_img, global->window.mlx_id);
 	i = x;
-	while(i < WIN_HEIGTH/2)
+	while(i < WIN_HEIGTH)
 	{
 		j = y;
 		while (j < WIN_WIDTH)
@@ -66,5 +66,5 @@ void	my_mlx_put_ceiling(t_global *global, int x, int y, int color)
 		++i;
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->ceiling_img.img, 0, 0);
+		global->ceiling_img.img, x, y);
 }

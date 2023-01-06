@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 19:40:40 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:09:06 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@
 //								#
 //###############################
 
-// Window size
+// Window
 # define WIN_WIDTH 1024
 # define WIN_HEIGTH 512
+# define JAUNE 0x00FFCE6D
+# define BLEU 0x0081D5FF
 
 // Quit game
 # define EVENT_KEY_ESC 53
@@ -47,6 +49,12 @@
 # define KEY_LEFT 123
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
+
+//minimap
+# define GROUND_PATH
+# define WALLS
+# define DOORS
+# define PLAYER
 
 typedef struct s_window
 {
@@ -129,6 +137,6 @@ void	init_img_struct(t_img *img);
 //###############################
 
 char	**read_map(const char *path_to_file);
-void	init_map(t_map *map);
+void	get_map_height(t_map *map);
 
 #endif
