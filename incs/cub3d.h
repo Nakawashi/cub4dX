@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 18:32:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/06 19:40:40 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_ray
 typedef struct s_global
 {
 	t_window	window;
+	t_map		map;
 	t_img		floor_img;
 	t_img		ceiling_img;
 }	t_global;
@@ -104,8 +105,9 @@ typedef struct s_global
 //###############################
 
 // display ground
-void	create_image(t_global *global);
+void	create_image(t_img *img, t_window *mlx_id);
 void	my_mlx_put_floor(t_global *global, int x, int y, int color);
+void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
 // display window
 void	init_window(t_window *window);
 // handle exit
@@ -127,5 +129,6 @@ void	init_img_struct(t_img *img);
 //###############################
 
 char	**read_map(const char *path_to_file);
+void	init_map(t_map *map);
 
 #endif
