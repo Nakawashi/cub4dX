@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/02 22:49:51 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/06 18:16:33 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,20 @@
 # include "mlx.h"
 # include "libft.h"
 
+
+//###############################
+//								#
+//			DEFINES				#
+//								#
+//###############################
+
+// Window size
+# define WIN_WIDTH 1024
+# define WIN_HEIGTH 512
+
 // Quit game
 # define EVENT_KEY_ESC 53
 # define EVENT_KEY_EXIT 17
-
-// size of img in pixel
-# define IMG_SIZE 64
 
 // ascii code for each lowercase letter and arrow
 # define KEY_W 13
@@ -46,9 +54,6 @@ typedef struct s_window
 	void	*win_id;
 	char	*color_ground;
 	char	*color_ceiling;
-	int		win_width;
-	int		win_height;
-
 }	t_window;
 
 /*
@@ -88,17 +93,39 @@ typedef struct s_ray
 typedef struct s_global
 {
 	t_window	window;
-	t_img		bg_img;
-	t_img		*images;
+	t_img		*floor_img;
+	t_img		*ceiling_img;
 }	t_global;
 
-// general
+//###############################
+//								#
+//			GENERAL				#
+//								#
+//###############################
+
+// display ground
+void	create_image(t_global *global);
+void	my_mlx_put_floor(t_global *global, int x, int y, int color);
+// display window
 void	init_window(t_window *window);
+// handle exit
 void	quit_program(t_window *window);
-char	**read_map(const char *path_to_file);
-void	build_bg_img(t_window	*window, t_img *img);
-void	my_mlx_put_rectangle(t_global *global, int x, int y, int color);
-// handle images
+
+//###############################
+//								#
+//			IMAGES				#
+//								#
+//###############################
+
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	init_img_struct(t_img *img);
+
+//###############################
+//								#
+//			THE MAP				#
+//								#
+//###############################
+
+char	**read_map(const char *path_to_file);
 
 #endif
