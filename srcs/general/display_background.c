@@ -6,109 +6,50 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 16:07:24 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:33:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_img_struct(t_img *img)
+void	create_image(t_global *global)
 {
-	img->img = NULL;
-	img->addr = NULL;
-	img->texture_path = NULL;
-	img->img_width = 0;
-	img->img_height = 0;
-	img->bits_per_pixel = 0;
-	img->line_length = 0;
-	img->endian = 0;
-}
-
-void	build_bg_img(t_window *window, t_img *img)
-{
-	init_img_struct(img);
-	img->line_length = window->win_width;
-	img->img = mlx_new_image(
-		window->mlx_id,
-		window->win_width,
-		window->win_height);
-	img->addr = mlx_get_data_addr(
-		img->img,
-		&img->bits_per_pixel,
-		&img->line_length,
-		&img->endian);
+	init_img_struct(&global->floor_img);
+	global->floor_img.line_length = WIN_WIDTH;
+	global->floor_img.img = mlx_new_image(
+		global->window.mlx_id,
+		WIN_WIDTH,
+		WIN_HEIGTH);
+	global->floor_img.addr = mlx_get_data_addr(
+		global->floor_img.img,
+		&global->floor_img.bits_per_pixel,
+		&global->floor_img.line_length,
+		&global->floor_img.endian);
 }
 
 /*
-	Creates a rectangle, store it in t_global
+	draw colored pixel (floor)
 */
-/* void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
+void	my_mlx_put_floor(t_global *global, int x, int y, int color)
 {
 	int	i;
 	int	j;
 
-	build_bg_img(&global->window, &global->bg_img);
+	create_image(global);
 	i = x;
-	while(i < global->window.win_height)
+	while(i < WIN_HEIGTH)
 	{
 		j = y;
-		while (j < global->window.win_width)
+		while (j < WIN_WIDTH)
 		{
-			my_mlx_pixel_put(&global->bg_img, i, j, color);
-			++j;
-		}
-		++i;
-	}
-	mlx_put_image_to_window(
-		global->window.mlx_id,
-		global->window.win_id,
-		global->bg_img.img,
-		0,
-		0);
-} */
-
-void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
-{
-	int	i;
-	int	j;
-
-	build_bg_img(&global->window, &global->bg_img);
-	i = y;
-	while(i < 512)
-	{
-		j = x;
-		while (j < 1024)
-		{
-			my_mlx_pixel_put(&global->bg_img, j, i, color);
+			my_mlx_pixel_put(&global->floor_img, j, i, color);
 			++j;
 		}
 		++i;
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->bg_img.img, 0, 0);
+		global->floor_img.img, 0, 0);
 }
-
-// void	my_mlx_put_rectangle(t_global *global, int x, int y, int color)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	build_bg_img(&global->window, &global->bg_img);
-// 	j = y;
-// 	while(j < 1024)
-// 	{
-// 		i = x;
-// 		while (i < 512)
-// 		{
-// 			my_mlx_pixel_put(&global->bg_img, j, i, color);
-// 			++i;
-// 		}
-// 		++j;
-// 	}
-// 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-// 		global->bg_img.img, 0, 0);
-// }
-
 
 /*
 	Une fonction par truc dans les fichiers et je les rassemble dans le main
