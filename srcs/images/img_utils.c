@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
+/*   img_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 18:05:56 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:49:49 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,16 @@ void	init_img_struct(t_img *img)
 	img->bits_per_pixel = 0;
 	img->line_length = 0;
 	img->endian = 0;
+}
+
+void	create_image(t_img *img, t_window *mlx_id, int width, int height)
+{
+	init_img_struct(img);
+	img->line_length = width;
+	img->img = mlx_new_image(mlx_id, width, height);
+	img->addr = mlx_get_data_addr(
+		img->img,
+		&img->bits_per_pixel,
+		&img->line_length,
+		&img->endian);
 }

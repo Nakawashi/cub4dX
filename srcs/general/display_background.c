@@ -6,30 +6,15 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 13:15:27 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:01:54 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	create_bg_image(t_img *img, t_window *mlx_id)
-{
-	init_img_struct(img);
-	img->line_length = WIN_WIDTH;
-	img->img = mlx_new_image(mlx_id, WIN_WIDTH, WIN_HEIGTH/2);
-	img->addr = mlx_get_data_addr(
-		img->img,
-		&img->bits_per_pixel,
-		&img->line_length,
-		&img->endian);
-
-	// printf("img->bits_per_pixel: %d\n", img->bits_per_pixel);
-	// printf("img->line_length: %d\n", img->line_length);
-	// printf("img->endian: %d\n", img->endian);
-}
-
 /*
-	draw colored pixel (floor)
+	draw the floor and the ceiling. Identical but keep for now for better understanding
+	
 	careful: i and j build the image (line per line)
 	x and y are position where to start to prin, in the window
 */
@@ -38,7 +23,8 @@ void	my_mlx_put_floor(t_global *global, int x, int y, int color)
 	int	i;
 	int	j;
 
-	create_bg_image(&global->floor_img, global->window.mlx_id);
+	create_image(&global->floor_img, global->window.mlx_id,
+		WIN_WIDTH, WIN_HEIGTH/2);
 	i = 0;
 	while(i < WIN_HEIGTH/2)
 	{
@@ -59,7 +45,8 @@ void	my_mlx_put_ceiling(t_global *global, int x, int y, int color)
 	int	i;
 	int	j;
 
-	create_bg_image(&global->ceiling_img, global->window.mlx_id);
+	create_image(&global->ceiling_img, global->window.mlx_id,
+		WIN_WIDTH, WIN_HEIGTH/2);
 	i = x;
 	while(i < WIN_HEIGTH/2)
 	{

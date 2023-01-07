@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 13:19:36 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:55:13 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define BLEU 0x0081D5FF
 
 // Minimap
-# define MINI_WIDTH 100
-# define MINI_HEIGHT 50
-# define BLACK = 0x00000000
-# define WHITE = 0x00FFFFFF
+# define MINI_WIDTH 256
+# define MINI_HEIGHT 128
+# define BLACK 0x00000000
+# define WHITE 0x00FFFFFF
 
 // Quit game
 # define EVENT_KEY_ESC 53
@@ -110,6 +110,7 @@ typedef struct s_global
 	t_map		map;
 	t_img		floor_img;
 	t_img		ceiling_img;
+	t_img		minimap;
 }	t_global;
 
 //###############################
@@ -119,7 +120,6 @@ typedef struct s_global
 //###############################
 
 // display ground
-void	create_bg_image(t_img *img, t_window *mlx_id);
 void	my_mlx_put_floor(t_global *global, int x, int y, int color);
 void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
 // display window
@@ -135,6 +135,7 @@ void	quit_program(t_window *window);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	init_img_struct(t_img *img);
+void	create_image(t_img *img, t_window *mlx_id, int width, int height);
 
 //###############################
 //								#
@@ -150,6 +151,8 @@ void	get_map_height(t_map *map);
 //			MINIMAP				#
 //								#
 //###############################
+
+void	my_mlx_put_sqare(t_global *global, int x, int y, int color);
 
 
 #endif

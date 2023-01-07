@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 11:31:14 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:50:17 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ for (int i = 0; i < global.map.map_height; ++i)
 
 	my_mlx_put_ceiling(&global, 0, 0, BLEU);
 	my_mlx_put_floor(&global, 0, WIN_HEIGTH/2, JAUNE);
+	my_mlx_put_sqare(&global, 10, 10, BLACK);
 
 	mlx_loop(&global.window.mlx_id);
 	return (0);
