@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 20:11:03 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:12:29 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ for (int i = 0; i < global.map.map_height; ++i)
 
 	//pourquoi je peux pas afficher les deux en meme temps omg
 	my_mlx_put_ceiling(&global, 0, 0, BLEU);
-	my_mlx_put_floor(&global, WIN_HEIGTH/2, 0, JAUNE);
+	my_mlx_put_floor(&global, 0, WIN_HEIGTH/2, JAUNE);
 
 	mlx_loop(&global.window.mlx_id);
 	return (0);
