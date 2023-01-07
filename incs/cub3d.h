@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 20:09:06 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 13:19:36 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@
 # define WIN_HEIGTH 512
 # define JAUNE 0x00FFCE6D
 # define BLEU 0x0081D5FF
+
+// Minimap
+# define MINI_WIDTH 100
+# define MINI_HEIGHT 50
+# define BLACK = 0x00000000
+# define WHITE = 0x00FFFFFF
 
 // Quit game
 # define EVENT_KEY_ESC 53
@@ -113,7 +119,7 @@ typedef struct s_global
 //###############################
 
 // display ground
-void	create_image(t_img *img, t_window *mlx_id);
+void	create_bg_image(t_img *img, t_window *mlx_id);
 void	my_mlx_put_floor(t_global *global, int x, int y, int color);
 void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
 // display window
@@ -138,5 +144,12 @@ void	init_img_struct(t_img *img);
 
 char	**read_map(const char *path_to_file);
 void	get_map_height(t_map *map);
+
+//###############################
+//								#
+//			MINIMAP				#
+//								#
+//###############################
+
 
 #endif

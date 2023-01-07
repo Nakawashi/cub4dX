@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/01/06 19:38:25 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/07 13:14:35 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/images/img_utils.c \
 				srcs/map/read_map.c \
 				srcs/map/map_utils.c \
+				srcs/minimap/create_sqare.c \
 
 #####################################
 #									#

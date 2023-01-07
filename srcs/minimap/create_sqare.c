@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_background.c                               :+:      :+:    :+:   */
+/*   create_sqare.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 13:15:27 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/07 13:08:37 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/07 13:21:02 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	create_bg_image(t_img *img, t_window *mlx_id)
+enum e_minimap
+{
+	MINI_FLOOR = 0,
+	MINI_WALL,
+	MINI_DOOR,
+	MINI_PLAYER,
+};
+
+typedef struct s_minimap
+{
+	t_img	*floor;
+	t_img	*wall;
+	int		mini_height;
+	int		mini_width;
+}	t_minimap;
+
+void	create_sq_image(t_img *img, t_window *mlx_id)
 {
 	init_img_struct(img);
 	img->line_length = WIN_WIDTH;
@@ -22,10 +38,6 @@ void	create_bg_image(t_img *img, t_window *mlx_id)
 		&img->bits_per_pixel,
 		&img->line_length,
 		&img->endian);
-
-	// printf("img->bits_per_pixel: %d\n", img->bits_per_pixel);
-	// printf("img->line_length: %d\n", img->line_length);
-	// printf("img->endian: %d\n", img->endian);
 }
 
 /*
@@ -33,7 +45,7 @@ void	create_bg_image(t_img *img, t_window *mlx_id)
 	careful: i and j build the image (line per line)
 	x and y are position where to start to prin, in the window
 */
-void	my_mlx_put_floor(t_global *global, int x, int y, int color)
+void	my_mlx_put_sqare(t_global *global, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -52,25 +64,4 @@ void	my_mlx_put_floor(t_global *global, int x, int y, int color)
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->floor_img.img, x, y);
-}
-
-void	my_mlx_put_ceiling(t_global *global, int x, int y, int color)
-{
-	int	i;
-	int	j;
-
-	create_bg_image(&global->ceiling_img, global->window.mlx_id);
-	i = x;
-	while(i < WIN_HEIGTH/2)
-	{
-		j = y;
-		while (j < WIN_WIDTH)
-		{
-			my_mlx_pixel_put(&global->ceiling_img, j, i, color);
-			++j;
-		}
-		++i;
-	}
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->ceiling_img.img, x, y);
 }
