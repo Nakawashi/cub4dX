@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_sqare.c                                     :+:      :+:    :+:   */
+/*   create_square.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 13:08:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 14:51:24 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:10:05 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// enum e_minimap
-// {
-// 	MINI_FLOOR = 0,
-// 	MINI_WALL,
-// 	MINI_DOOR,
-// 	MINI_PLAYER,
-// };
-
-// typedef struct s_minimap
-// {
-// 	t_img	*floor;
-// 	t_img	*wall;
-// 	int		mini_height;
-// 	int		mini_width;
-// }	t_minimap;
-
 /*
-	draw colored pixel (floor)
+	draw colored square for the minimap
 	careful: i and j build the image (line per line)
 	x and y are position where to start to prin, in the window
 */

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 14:55:13 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/07 16:16:22 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@
 # define BLEU 0x0081D5FF
 
 // Minimap
-# define MINI_WIDTH 256
-# define MINI_HEIGHT 128
+# define MINI_WIDTH 8
+# define MINI_HEIGHT 8
 # define BLACK 0x00000000
 # define WHITE 0x00FFFFFF
+# define COLOR 0x00EE5983
 
 // Quit game
 # define EVENT_KEY_ESC 53
@@ -107,7 +108,7 @@ typedef struct s_ray
 typedef struct s_global
 {
 	t_window	window;
-	t_map		map;
+	t_map		map_datas;
 	t_img		floor_img;
 	t_img		ceiling_img;
 	t_img		minimap;
@@ -153,6 +154,7 @@ void	get_map_height(t_map *map);
 //###############################
 
 void	my_mlx_put_sqare(t_global *global, int x, int y, int color);
+void	init_minimap(t_global *global);
 
 
 #endif
