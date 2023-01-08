@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 14:01:54 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:31:49 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 	draw the floor and the ceiling. Identical but keep for now for better understanding
-	
+
 	careful: i and j build the image (line per line)
 	x and y are position where to start to prin, in the window
 */
@@ -31,7 +31,7 @@ void	my_mlx_put_floor(t_global *global, int x, int y, int color)
 		j = 0;
 		while (j < WIN_WIDTH)
 		{
-			my_mlx_pixel_put(&global->floor_img, j, i, color);
+			his_mlx_pixel_put(&global->floor_img, j, i, color);
 			++j;
 		}
 		++i;
@@ -53,7 +53,7 @@ void	my_mlx_put_ceiling(t_global *global, int x, int y, int color)
 		j = y;
 		while (j < WIN_WIDTH)
 		{
-			my_mlx_pixel_put(&global->ceiling_img, j, i, color);
+			his_mlx_pixel_put(&global->ceiling_img, j, i, color);
 			++j;
 		}
 		++i;
