@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 13:08:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 15:10:05 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:31:49 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	careful: i and j build the image (line per line)
 	x and y are position where to start to prin, in the window
 */
-void	my_mlx_put_sqare(t_global *global, int x, int y, int color)
+void	my_mlx_put_square(t_global *global, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -30,7 +30,7 @@ void	my_mlx_put_sqare(t_global *global, int x, int y, int color)
 		j = 0;
 		while (j < MINI_WIDTH)
 		{
-			my_mlx_pixel_put(&global->minimap, j, i, color);
+			his_mlx_pixel_put(&global->minimap, j, i, color);
 			++j;
 		}
 		++i;
