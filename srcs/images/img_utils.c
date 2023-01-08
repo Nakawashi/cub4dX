@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 14:49:49 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:31:49 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 	x and y sont les coordonnees de la fenetre.
 	0, 0 est tout en haut a gauche.
 */
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
