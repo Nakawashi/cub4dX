@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 14:57:16 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:12:25 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_global
 	t_img		floor_img;
 	t_img		ceiling_img;
 	t_img		minimap;
+	t_player	player;
 }	t_global;
 
 //------------------------------//
@@ -131,7 +132,7 @@ void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
 // display window
 void	init_window(t_window *window);
 // handle exit
-void	quit_program(t_window *window);
+void	quit_program(t_global *global);
 
 //------------------------------//
 //								//
@@ -175,7 +176,7 @@ int		render_next_frame(void);
 //								//
 //------------------------------//
 
-int	coordinates_to_pixels(t_map *map_datas, int i, int j);
+int	coordinate_to_pixels(int n);
 
 
 #endif
