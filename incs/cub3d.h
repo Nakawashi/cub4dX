@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 17:12:25 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:37:23 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define BLEU 0x0081D5FF
 
 // Minimap
-# define MINI_WIDTH 7
-# define MINI_HEIGHT 7
+# define MINI_WIDTH 8 // si je veux afficher le player avec 4 pixels == pair, si je veux 1 pixel alors impair
+# define MINI_HEIGHT 8
 # define BLACK 0x00000000
 # define WHITE 0x00FFFFFF
 # define COLOR 0x00EE5983

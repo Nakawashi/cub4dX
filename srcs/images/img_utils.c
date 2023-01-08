@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 14:31:49 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:22:53 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 	https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
-
 
 	description : remplace pixel_put qui affiche un pixel et refresh l'affichage
 	ici on cree un buffer qui va stocker les pixels et les afficher en meme tps
