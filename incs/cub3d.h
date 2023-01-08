@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 17:37:23 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:29:39 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@
 # define BLEU 0x0081D5FF
 
 // Minimap
-# define MINI_WIDTH 8 // si je veux afficher le player avec 4 pixels == pair, si je veux 1 pixel alors impair
+// Careful could have to update init_position file if this value is changed
+// Si valeur paire : afficher 4 pixels. Si valeur impair : afficher 1 pixel
+# define MINI_WIDTH 8
 # define MINI_HEIGHT 8
 # define BLACK 0x00000000
 # define WHITE 0x00FFFFFF
@@ -91,8 +93,6 @@ typedef struct s_map
 	char	**map;
 	int		map_width;
 	int		map_height;
-	int		player_coordinate_x;
-	int		player_coordinate_y;
 }	t_map;
 
 // player position in pixels, not coordinate
@@ -133,6 +133,7 @@ void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
 void	init_window(t_window *window);
 // handle exit
 void	quit_program(t_global *global);
+int		clean(t_global *global);
 
 //------------------------------//
 //								//
@@ -168,7 +169,8 @@ void	init_minimap(t_global *global);
 //								//
 //------------------------------//
 
-int		render_next_frame(void);
+//int		render_next_frame(void);
+int		key_hook(int keycode, t_global *global);
 
 //------------------------------//
 //								//
@@ -176,7 +178,7 @@ int		render_next_frame(void);
 //								//
 //------------------------------//
 
-int	coordinate_to_pixels(int n);
+int		coordinate_to_pixels(int n);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 17:28:39 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:27:58 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ for (int i = 0; i < global.map_datas.map_height; ++i)
 	printf("player vertical : %d\n", global.player.y);
 
 	//mlx_loop_hook(&global.window.mlx_id, render_next_frame, &global);
+	mlx_key_hook(global.window.win_id, key_hook, &global);
 
 	mlx_loop(&global.window.mlx_id);
 	return (0);
