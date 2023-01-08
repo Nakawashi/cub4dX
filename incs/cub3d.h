@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 14:40:47 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:57:16 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,22 @@ typedef struct s_map
 	char	**map;
 	int		map_width;
 	int		map_height;
+	int		player_coordinate_x;
+	int		player_coordinate_y;
 }	t_map;
 
 // player position in pixels, not coordinate
 typedef struct s_player
 {
-	int	pxl_x;
-	int	pxl_y;
+	char	direction;
+	int		x;
+	int		y;
+
 }	t_player;
 
 typedef struct s_ray
 {
-	char		*direction;
+	char		direction;
 	t_player	player;
 }	t_ray;
 
@@ -171,7 +175,7 @@ int		render_next_frame(void);
 //								//
 //------------------------------//
 
-int	get_player_position(t_global *global);
+int	coordinates_to_pixels(t_map *map_datas, int i, int j);
 
 
 #endif
