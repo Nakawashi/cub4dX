@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/07 16:16:22 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:40:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define BLEU 0x0081D5FF
 
 // Minimap
-# define MINI_WIDTH 8
-# define MINI_HEIGHT 8
+# define MINI_WIDTH 7
+# define MINI_HEIGHT 7
 # define BLACK 0x00000000
 # define WHITE 0x00FFFFFF
 # define COLOR 0x00EE5983
@@ -93,10 +93,11 @@ typedef struct s_map
 	int		map_height;
 }	t_map;
 
+// player position in pixels, not coordinate
 typedef struct s_player
 {
-	int	pos_x;
-	int	pos_y;
+	int	pxl_x;
+	int	pxl_y;
 }	t_player;
 
 typedef struct s_ray
@@ -114,11 +115,11 @@ typedef struct s_global
 	t_img		minimap;
 }	t_global;
 
-//###############################
-//								#
-//			GENERAL				#
-//								#
-//###############################
+//------------------------------//
+//								//
+//			GENERAL				//
+//								//
+//------------------------------//
 
 // display ground
 void	my_mlx_put_floor(t_global *global, int x, int y, int color);
@@ -128,33 +129,49 @@ void	init_window(t_window *window);
 // handle exit
 void	quit_program(t_window *window);
 
-//###############################
-//								#
-//			IMAGES				#
-//								#
-//###############################
+//------------------------------//
+//								//
+//			IMAGES				//
+//								//
+//------------------------------//
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	his_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	init_img_struct(t_img *img);
 void	create_image(t_img *img, t_window *mlx_id, int width, int height);
 
-//###############################
-//								#
-//			THE MAP				#
-//								#
-//###############################
+//------------------------------//
+//								//
+//			THE MAP				//
+//								//
+//------------------------------//
 
 char	**read_map(const char *path_to_file);
 void	get_map_height(t_map *map);
 
-//###############################
-//								#
-//			MINIMAP				#
-//								#
-//###############################
+//------------------------------//
+//								//
+//			MINIMAP				//
+//								//
+//------------------------------//
 
-void	my_mlx_put_sqare(t_global *global, int x, int y, int color);
+void	my_mlx_put_square(t_global *global, int x, int y, int color);
 void	init_minimap(t_global *global);
+
+//------------------------------//
+//								//
+//			EVENTS				//
+//								//
+//------------------------------//
+
+int		render_next_frame(void);
+
+//------------------------------//
+//								//
+//			PLAYER				//
+//								//
+//------------------------------//
+
+int	get_player_position(t_global *global);
 
 
 #endif
