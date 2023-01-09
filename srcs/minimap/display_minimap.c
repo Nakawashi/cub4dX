@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:05:48 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 19:26:29 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:26:14 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ enum e_minimap
 	MINI_FLOOR = '0',
 	MINI_WALL = '1',
 };
-
-
 
 /*
 	Run through the map and display *img where its letter is placed
@@ -66,28 +64,29 @@ void	init_minimap(t_global *global)
 	}
 }
 
-void	display_minimap(t_global *global)
-{
-	int		i;
-	int		j;
+// soit cette fonction soit la variable de ma struct player
+// void	display_minimap(t_global *global)
+// {
+// 	int		i;
+// 	int		j;
 
-	i = -1;
-	while (global->map_datas.map[++i])
-	{
-		j = -1;
-		while (global->map_datas.map[i][++j])
-		{
-			if (global->map_datas.map[i][j] == MINI_WALL)
-			{
-				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
-			}
-			else
-			{
-				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-			}
-		}
-	}
-}
+// 	i = -1;
+// 	while (global->map_datas.map[++i])
+// 	{
+// 		j = -1;
+// 		while (global->map_datas.map[i][++j])
+// 		{
+// 			if (global->map_datas.map[i][j] == MINI_WALL)
+// 			{
+// 				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
+// 			}
+// 			else
+// 			{
+// 				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
+// 			}
+// 		}
+// 	}
+// }
 
 // void	init_minimap(t_global *global)
 // {
@@ -119,7 +118,7 @@ void	display_minimap(t_global *global)
 // 				//global->player.direction = global->map_datas.map[i][j];
 // 				global->player.x = coordinate_to_pixels(j);
 // 				global->player.y = coordinate_to_pixels(i);
-// 				//my_mlx_put_player(global, global->player.x, global->player.y, COLOR);
+// 				//init_player(global, global->player.x, global->player.y, COLOR);
 // 			}
 // 			else
 // 				my_mlx_put_square(&global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);

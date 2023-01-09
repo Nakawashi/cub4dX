@@ -6,11 +6,12 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 19:50:58 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:41:56 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 static void	move_north(t_player *player)
 {
@@ -40,7 +41,6 @@ static void	move_west(t_player *player)
 
 int	key_hook(int keycode, t_global *global)
 {
-	//mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0);
 	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)
@@ -63,6 +63,16 @@ int	key_hook(int keycode, t_global *global)
 		move_east(&global->player);
 		printf("you pressed d\n\n");
 	}
-	my_mlx_put_player(global, global->player.x, global->player.y, COLOR);
+	//display_player(global, global->player.x, global->player.y, COLOR);
 	return (0);
+}
+
+/*
+	mlx_key_hook : handle ESC, W, A, S, D
+	mlx_hook : handle quit by closing window
+*/
+void	handle_events(t_global *global)
+{
+	mlx_hook(global->window.win_id, KEY_DOWN, 0, key_hook, &global);
+	mlx_hook(global->window.win_id, ON_DESTROY, 0, clean, global);
 }
