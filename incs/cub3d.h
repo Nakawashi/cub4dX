@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 18:31:31 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:02:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ typedef struct s_window
 {
 	void	*mlx_id;
 	void	*win_id;
-	char	*color_ground;
-	char	*color_ceiling;
+	char	*color_floor_hexa;
+	char	*color_ceiling_hexa;
+	int		color_floor_int;
+	int		color_ceiling_int;
 }	t_window;
 
 /*
