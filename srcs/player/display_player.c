@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_position.c                                    :+:      :+:    :+:   */
+/*   display_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 14:14:03 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 20:24:18 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/09 18:30:51 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,25 @@
 int	coordinate_to_pixels(int n)
 {
 	return (n * MINI_WIDTH + (MINI_WIDTH/2) - 2);
-	//return (n * MINI_WIDTH);
 }
 
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// OK
+void	my_mlx_put_player(t_global *global, int x, int y, int color)
+{
+	int	i;
+	int	j;
+
+	create_image(&global->minimap, global->window.mlx_id, 4, 4);
+	i = 0;
+	while(i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			his_mlx_pixel_put(&global->minimap, j, i, color);
+			++j;
+		}
+		++i;
+	}
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->minimap.img, x, y);
+}
