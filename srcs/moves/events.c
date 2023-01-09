@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 18:07:30 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/08 20:29:07 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-	init t_window datas
-*/
-void	init_window(t_window *window)
+// int	render_next_frame(t_global *global)
+// {
+
+// 	return (0);
+// }
+
+int	key_hook(int keycode, t_global *global)
 {
-	window->mlx_id = mlx_init();
-	window->win_id = mlx_new_window(window->mlx_id, WIN_WIDTH, WIN_HEIGTH,
-		"Half Life 3.2");
+	if (keycode == EVENT_KEY_ESC)
+		clean(global);
+	if (keycode == KEY_W)
+		printf("you pressed w\n");
+	if (keycode == KEY_A)
+	printf("you pressed a\n");
+	if (keycode == KEY_S)
+		printf("you pressed s\n");
+	if (keycode == KEY_D)
+		printf("you pressed d\n");
+	return (0);
 }

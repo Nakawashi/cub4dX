@@ -83,7 +83,7 @@ static int	is_color(char **line_args, struct s_window *winstruct, int *nbr_args)
 }
 
 
-static int	get_args(const char *line, struct s_tmpstruct *imgs, struct	s_window *winstruct, int *nbr_args)
+static int	get_args(const char *line, struct s_tmpstruct *imgs, t_window *winstruct, int *nbr_args)
 {
 	char	**line_args;
 	int		tab_len;
@@ -121,15 +121,14 @@ void	init_tmpstruct(struct s_tmpstruct *imgs)
 	ft_bzero(&imgs->ea, sizeof(t_img));
 }
 
-int		read_args(int fd)
+int		read_args(t_global *global, int fd)
 {
 	char	*line;
 	int		nbr_args;
 	struct	s_tmpstruct imgs;
-	struct	s_window 	winstruct;
 
-	winstruct.color_ceiling = NULL;
-	winstruct.color_ground = NULL;
+	global->window.color_ceiling = NULL;
+	global->window.color_ground = NULL;
 	init_tmpstruct(&imgs);
 
 	nbr_args = 0;
@@ -143,7 +142,7 @@ int		read_args(int fd)
 			*(ft_strchr(line, '\n')) = '\0';
 
 		// printf("gnl %s\n", line);
-		if (get_args(line, &imgs, &winstruct, &nbr_args) < 0)
+		if (get_args(line, &imgs, &global->window, &nbr_args) < 0)
 		{
 			free(line);
 			return (-2);
@@ -163,7 +162,7 @@ int		read_args(int fd)
 	printf("path so %s\n", imgs.so.texture_path);
 	printf("path we %s\n", imgs.we.texture_path);
 	printf("path ea %s\n", imgs.ea.texture_path);
-	printf("color ceil %s\n", winstruct.color_ceiling);
-	printf("color floor %s\n", winstruct.color_ground);
+	printf("color ceil %s\n", global->window.color_ceiling);
+	printf("color floor %s\n", global->window.color_ground);
 	return (0);
 }

@@ -3,31 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 14:12:10 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/08 20:27:58 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// jaune:	0x00FFCE6D
+// bleu:	0x0081D5FF
+
 int	main(int argc, char **argv)
 {
-	t_window	window;
-	t_map		map;
+	t_global	global;
 	(void)argc;
 	(void)argv;
 
-	init_window(&window);
-	quit_program(&window);
-	map.map = read_file("assets/arx.cub");
-	if (!map.map)
-		return (0);
-	for (int i = 0; i < 5; ++i)
-	{
-		printf("%s\n", map.map[i]);
-	}
-	mlx_loop(window.mlx_id);
+
+	init_window(&global.window); // init basics, winodw, quit, display bckg...
+	quit_program(&global);
+
+	read_file(&global, "assets/gen.cub");
+
+
+	get_map_height(&global.map_datas);
+	for (int i = 0; i < global.map_datas.map_height; ++i)
+		printf("%s\n", global.map_datas.map[i]);
+
+	my_mlx_put_ceiling(&global, 0, 0, BLEU);
+	my_mlx_put_floor(&global, 0, WIN_HEIGTH/2, JAUNE);
+	init_minimap(&global);
+	printf("player horizontal : %d\n", global.player.x);
+	printf("player vertical : %d\n", global.player.y);
+
+	//mlx_loop_hook(&global.window.mlx_id, render_next_frame, &global);
+	mlx_key_hook(global.window.win_id, key_hook, &global);
+
+	mlx_loop(&global.window.mlx_id);
+
+
 	return (0);
 }
+
+/*
+	put background (floor)
+	ceiling sera calculé par rapport a la taille des pixels a afficher en vertical
+*/

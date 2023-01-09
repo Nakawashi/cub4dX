@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 13:35:38 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/01/08 14:42:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_player(t_map *mapinfo, int x, int y)
+
+int check_player(t_map *mapinfo, t_player *pl, int x, int y)
 {
-	if (ft_strchr("NSWE", mapinfo->map[y][x]) != NULL && mapinfo->pl.pos_x == -1)
+	if (ft_strchr("NSWE", mapinfo->map[y][x]) != NULL && pl->x == -1)
 	{
-		mapinfo->pl.pos_x = x;
-		mapinfo->pl.pos_y = y;
+		pl->x = x;
+		pl->y = y;
 
 		if (mapinfo->map[y][x] == 'N')
-			mapinfo->pl.rot = 0;
+			pl->direction = 'N';
 		else if (mapinfo->map[y][x] == 'S')
-			mapinfo->pl.rot = 180;
+			pl->direction = 'S';
 		else if (mapinfo->map[y][x] == 'W')
-			mapinfo->pl.rot = 90;
+			pl->direction = 'W';
 		else if (mapinfo->map[y][x] == 'E')
-			mapinfo->pl.rot = 270;
+			pl->direction = 'W';
 
 		mapinfo->map[y][x] = '0';
 	}
@@ -59,7 +60,7 @@ int	check_case(t_map *mapinfo, int x, int y)
 }
 
 
-int	check_map(t_map *mapinfo)
+int	check_map(t_map *mapinfo, t_player *pl)
 {
 	int	x;
 	int	y;
@@ -70,13 +71,13 @@ int	check_map(t_map *mapinfo)
 		x = 0;
 		while (x < (int)ft_strlen(mapinfo->map[y]))
 		{
-			if (check_player(mapinfo, x, y) < 0)
+			if (check_player(mapinfo, pl, x, y) < 0)
 				return (-2);
 			x++;
 		}
 		y++;
 	}
-	if (mapinfo->pl.pos_x == -1)
+	if (pl->x == -1)
 	{
 		printf("ERROR\n Error player not found\n");
 		return (-1);
@@ -150,16 +151,16 @@ int	square_map(t_map *mapinfo)
 	Read the .ber map and saves it on map.map which is a 2 dimension table.
 	- Read the .cub until the end and return it as the map
 */
-char	**read_map(int fd)
+char	**read_map(t_global *global, int fd)
 {
 	char	*line;
 	char	*saved;
-	t_map	mapinfo;
+	// t_map	mapinfo;
 
-	mapinfo.map = NULL;
-	mapinfo.map_width = 0;
-	mapinfo.map_height = 0;
-	mapinfo.pl.pos_x = -1;
+	global->map_datas.map = NULL;
+	global->map_datas.map_width = 0;
+	global->map_datas.map_height = 0;
+	global->player.x = -1;
 
 	saved = ft_strdup_safe("");
 	while (1)
@@ -175,27 +176,29 @@ char	**read_map(int fd)
 				line = ft_strdup_safe(" \n");
 			}
 			saved = ft_strjoin_free(saved, line);
-			mapinfo.map_height++;
-			if (ft_strchr(line, '\n') != NULL && (int)ft_strlen(line) - 1 > mapinfo.map_width)
-				mapinfo.map_width = ft_strlen(line) - 1;
-			else if ((int)ft_strlen(line) > mapinfo.map_width)
-				mapinfo.map_width = ft_strlen(line);
+			global->map_datas.map_height++;
+
+			if (ft_strchr(line, '\n') != NULL && (int)ft_strlen(line) - 1 > global->map_datas.map_width)
+				global->map_datas.map_width = ft_strlen(line) - 1;
+
+			else if ((int)ft_strlen(line) > global->map_datas.map_width)
+				global->map_datas.map_width = ft_strlen(line);
 		}
 		free(line);
 	}
 	// printf("%s\n", saved);
-	mapinfo.map = ft_split(saved, '\n');
+	global->map_datas.map = ft_split(saved, '\n');
 	free(saved);
-	printf("%d %d\n", mapinfo.map_width, mapinfo.map_height);
+	printf("%d %d\n", global->map_datas.map_width, global->map_datas.map_height);
 
 	// mapinfo.map_height--;
 	
 
 
 
-	check_map(&mapinfo);
+	check_map(&global->map_datas, &global->player);
 
-	square_map(&mapinfo);
+	square_map(&global->map_datas);
 	// for (int i = 0; i < mapinfo.map_height; i++)
 	// {
 	// 	for (int j = 0; j < (int)ft_strlen(mapinfo.map[i]); j++)
@@ -207,5 +210,5 @@ char	**read_map(int fd)
 
 	// }
 	// return (NULL);
-	return (mapinfo.map);
+	return (global->map_datas.map);
 }

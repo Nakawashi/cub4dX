@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2022/12/30 18:18:16 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/09 13:15:16 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,18 @@ NONE	= \033[0m
 #								#
 #################################
 SRCS_FILES	=	srcs/main.c \
+				srcs/general/display_background.c \
 				srcs/general/init_window.c \
 				srcs/general/quit.c \
+				srcs/images/img_utils.c \
 				srcs/map/read_map.c \
 				srcs/map/read_file.c \
 				srcs/map/read_args.c \
+				srcs/map/map_utils.c \
+				srcs/minimap/create_square.c \
+				srcs/minimap/init_minimap.c \
+				srcs/moves/events.c \
+				srcs/player/init_position.c \
 
 
 #####################################
@@ -76,27 +83,27 @@ all: $(NAME)
 # 	$(CC) $(CFLAGS) -I $(OPTIONS) -o $@ -c $<
 
 $(NAME):	$(OBJS)
-	@echo "$(BLUE)Making libmlx... $(NONE)"
+	@printf "$(BLUE)Making libmlx... $(NONE)"
 	@$(MAKE) -C $(DIR_MLX)
-	@echo "$(BLUE)Making libft... $(NONE)"
+	@printf "$(BLUE)Making libft... $(NONE)"
 	@$(MAKE) both -C $(DIR_LIBFT)
-	@echo "$(BLUE)Making so_long... $(NONE)"
+	@printf "$(BLUE)Making CUB3D... $(NONE)"
 	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(INCLUDES)
-	@echo "$(GREEN) so_long ready.\n$(NONE)"
+	@printf "$(GREEN) CUB3D ready.\n$(NONE)"
 
 clean:
 	@$(RM) $(OBJS)
 	@$(MAKE) -C $(DIR_LIBFT) clean
 	@$(MAKE) -C $(DIR_MLX) clean
-	@echo "$(GREEN) OBJS removed in cub3D, libft and libmlx.\n$(NONE)"
+	@printf "$(GREEN) OBJS removed in cub3D, libft and libmlx.\n$(NONE)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(GREEN) $(NAME) removed.\n$(NONE)"
+	@printf "$(GREEN) $(NAME) removed.\n$(NONE)"
 	@$(MAKE) -C $(DIR_LIBFT) fclean
-	@echo "$(GREEN) libft.a removed.\n$(NONE)"
+	@printf "$(GREEN) libft.a removed.\n$(NONE)"
 	@$(MAKE) -C $(DIR_MLX) clean
-	@echo "$(GREEN) libmlx.a removed.\n$(NONE)"
+	@printf "$(GREEN) libmlx.a removed.\n$(NONE)"
 
 re: fclean all
 

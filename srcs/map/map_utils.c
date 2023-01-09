@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/06 18:07:30 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/06 19:25:34 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/06 19:52:42 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-	init t_window datas
+	map_width:
+		line length, we have to count after, for each line bc not rectangle
+	map_height:
+		nb of rows, counted here
 */
-void	init_window(t_window *window)
+void	get_map_height(t_map *map)
 {
-	window->mlx_id = mlx_init();
-	window->win_id = mlx_new_window(window->mlx_id, WIN_WIDTH, WIN_HEIGTH,
-		"Half Life 3.2");
+	int	i;
+
+	map->map_width = 0;
+	i = 0;
+	while (map->map[i])
+		++i;
+	map->map_height = i;
 }
+
+/*
+	
+*/
