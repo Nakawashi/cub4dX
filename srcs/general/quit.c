@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:20:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 20:29:29 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:22:19 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,14 @@ static void	free_map(char **map)
 	free(map);
 }
 
+/*
+	penser a delete toutes les images (voir la struct au besoin)
+	free la map
+	la window
+*/
 int	clean(t_global *global)
 {
+	//free img minimap
 	free_map(global->map_datas.map);
 	mlx_destroy_window(global->window.mlx_id, global->window.win_id);
 	exit(0);
