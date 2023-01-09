@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 20:27:58 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:13:18 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,11 @@ int	main(int argc, char **argv)
 for (int i = 0; i < global.map_datas.map_height; ++i)
 	printf("%s\n", global.map_datas.map[i]);
 
+	mlx_key_hook(global.window.win_id, key_hook, &global);
 	my_mlx_put_ceiling(&global, 0, 0, BLEU);
 	my_mlx_put_floor(&global, 0, WIN_HEIGTH/2, JAUNE);
 	init_minimap(&global);
-	printf("player horizontal : %d\n", global.player.x);
-	printf("player vertical : %d\n", global.player.y);
 
-	//mlx_loop_hook(&global.window.mlx_id, render_next_frame, &global);
-	mlx_key_hook(global.window.win_id, key_hook, &global);
 
 	mlx_loop(&global.window.mlx_id);
 	return (0);
