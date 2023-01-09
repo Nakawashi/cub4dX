@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 14:43:38 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:00:37 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_map
 // player position in pixels, not coordinate
 typedef struct s_player
 {
+	t_img	player;
 	char	direction;
 	int		x;
 	int		y;
@@ -160,7 +161,7 @@ void	get_map_height(t_map *map);
 //								//
 //------------------------------//
 
-void	my_mlx_put_square(t_global *global, int x, int y, int color);
+void	my_mlx_put_square(t_global *global, t_img *img, int x, int y, int color);
 void	init_minimap(t_global *global);
 
 //------------------------------//
