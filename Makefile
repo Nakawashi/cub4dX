@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/01/09 12:43:39 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/09 13:15:16 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ $(NAME):	$(OBJS)
 	@$(MAKE) both -C $(DIR_LIBFT)
 	@printf "$(BLUE)Making CUB3D... $(NONE)"
 	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(INCLUDES)
-	@printf "$(GREEN) so_long ready.\n$(NONE)"
+	@printf "$(GREEN) CUB3D ready.\n$(NONE)"
 
 clean:
 	@$(RM) $(OBJS)
