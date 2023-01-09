@@ -75,8 +75,8 @@ INCLUDES	+= -L $(DIR_MLX) -lmlx
 
 all: $(NAME)
 
-# $(OBJS): %.o : %.c
-# 	$(CC) $(CFLAGS) -I $(OPTIONS) -o $@ -c $<
+$(OBJS): %.o : %.c incs/cub3d.h
+	$(CC) $(CFLAGS) -I $(OPTIONS) -o $@ -c $<
 
 $(NAME):	$(OBJS)
 	@printf "$(BLUE)Making libmlx... $(NONE)"

@@ -35,7 +35,7 @@ for (int i = 0; i < global.map_datas.map_height; ++i)
 	my_mlx_put_floor(&global, 0, WIN_HEIGTH/2, JAUNE);
 	init_minimap(&global);
 	my_mlx_put_player(&global, global.player.x, global.player.y, COLOR); // position initiale du player
-	mlx_key_hook(global.window.win_id, key_hook, &global);
+	mlx_hook(global.window.win_id, 2, 0, key_hook, &global);
 
 	mlx_loop(&global.window.mlx_id);
 	return (0);
