@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 19:13:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:55:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 
 	init_window(&global.window); // init basics, winodw, quit, display bckg...
-	quit_program(&global);
+	handle_exit(&global);
 
 	global.map_datas.map = read_map("assets/map1.cub");
 	if (!global.map_datas.map)
@@ -36,7 +36,6 @@ for (int i = 0; i < global.map_datas.map_height; ++i)
 	init_minimap(&global);
 	my_mlx_put_player(&global, global.player.x, global.player.y, COLOR); // position initiale du player
 	mlx_key_hook(global.window.win_id, key_hook, &global);
-
 
 	mlx_loop(&global.window.mlx_id);
 	return (0);

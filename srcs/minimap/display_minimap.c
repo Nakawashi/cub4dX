@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:05:48 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 18:36:21 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:26:29 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,29 @@ void	init_minimap(t_global *global)
 					global->player.x = coordinate_to_pixels(j);
 					global->player.y = coordinate_to_pixels(i);
 				}
+			else
+			{
+				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
+			}
+		}
+	}
+}
+
+void	display_minimap(t_global *global)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (global->map_datas.map[++i])
+	{
+		j = -1;
+		while (global->map_datas.map[i][++j])
+		{
+			if (global->map_datas.map[i][j] == MINI_WALL)
+			{
+				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
+			}
 			else
 			{
 				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);

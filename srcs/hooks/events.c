@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 19:14:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:50:58 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,28 @@ static void	move_west(t_player *player)
 
 int	key_hook(int keycode, t_global *global)
 {
-	//init_minimap(global);
-	if (keycode == EVENT_KEY_ESC)
+	//mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0);
+	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)
 	{
 		move_north(&global->player);
-		printf("you pressed w\n");
+		printf("you pressed w\n\n");
 	}
 	if (keycode == KEY_A)
 	{
 		move_west(&global->player);
-		printf("you pressed a\n");
+		printf("you pressed a\n\n");
 	}
 	if (keycode == KEY_S)
 	{
 		move_south(&global->player);
-		printf("you pressed s\n");
+		printf("you pressed s\n\n");
 	}
 	if (keycode == KEY_D)
 	{
 		move_east(&global->player);
-		printf("you pressed d\n");
+		printf("you pressed d\n\n");
 	}
 	my_mlx_put_player(global, global->player.x, global->player.y, COLOR);
 	return (0);

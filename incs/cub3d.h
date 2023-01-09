@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 19:02:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:55:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@
 # define WHITE 0x00FFFFFF
 # define COLOR 0x00EE5983
 
-// Quit game
-# define EVENT_KEY_ESC 53
-# define EVENT_KEY_EXIT 17
-
 // ascii code for each lowercase letter and arrow
 # define KEY_W 13
 # define KEY_A 0
@@ -64,6 +60,16 @@
 # define WALLS
 # define DOORS
 # define PLAYER
+
+enum e_events
+{
+	KEY_DOWN = 2,
+	KEY_UP = 3,
+	MOUSE_DOWN = 4,
+	MOUSE_UP = 5,
+	KEY_ESC = 53,
+	KEY_EXIT = 17
+};
 
 typedef struct s_window
 {
@@ -135,7 +141,7 @@ void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
 // display window
 void	init_window(t_window *window);
 // handle exit
-void	quit_program(t_global *global);
+void	handle_exit(t_global *global);
 int		clean(t_global *global);
 
 //------------------------------//
@@ -165,6 +171,7 @@ void	get_map_height(t_map *map);
 
 void	my_mlx_put_square(t_global *global, t_img *img, int x, int y, int color);
 void	init_minimap(t_global *global);
+void	display_minimap(t_global *global);
 
 //------------------------------//
 //								//

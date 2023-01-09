@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:20:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 16:22:19 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:55:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	clean(t_global *global)
 	mlx_key_hook : handle ESC, W, A, S, D
 	mlx_hook : handle quit by closing window
 */
-void	quit_program(t_global *global)
+void	handle_exit(t_global *global)
 {
 	mlx_key_hook(global->window.win_id, key_hook, global);
-	mlx_hook(global->window.win_id, EVENT_KEY_EXIT, 0, clean, global);
+	mlx_hook(global->window.win_id, KEY_EXIT, 0, clean, global);
 }
