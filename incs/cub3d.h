@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 17:00:37 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:31:31 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ int		key_hook(int keycode, t_global *global);
 //------------------------------//
 
 int		coordinate_to_pixels(int n);
+void	my_mlx_put_player(t_global *global, int x, int y, int color);
 
 
 #endif
