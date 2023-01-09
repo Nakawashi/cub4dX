@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/01/08 14:41:09 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/09 12:43:39 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/map/map_utils.c \
 				srcs/minimap/create_square.c \
 				srcs/minimap/init_minimap.c \
-				srcs/moves/events.c \
+				srcs/hooks/events.c \
 				srcs/player/init_position.c \
 
 #####################################
@@ -83,7 +83,7 @@ $(NAME):	$(OBJS)
 	@$(MAKE) -C $(DIR_MLX)
 	@printf "$(BLUE)Making libft... $(NONE)"
 	@$(MAKE) both -C $(DIR_LIBFT)
-	@printf "$(BLUE)Making so_long... $(NONE)"
+	@printf "$(BLUE)Making CUB3D... $(NONE)"
 	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(INCLUDES)
 	@printf "$(GREEN) so_long ready.\n$(NONE)"
 
