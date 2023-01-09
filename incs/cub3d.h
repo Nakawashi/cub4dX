@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 19:55:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:57:59 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
-# define KEY_UP 126
-# define KEY_LEFT 123
-# define KEY_DOWN 125
-# define KEY_RIGHT 124
+# define ARROW_UP 126
+# define ARROW_LEFT 123
+# define ARROW_DOWN 125
+# define ARROW_RIGHT 124
 
 //minimap
 # define GROUND_PATH
