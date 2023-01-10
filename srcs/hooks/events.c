@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 20:41:56 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:55:01 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	key_hook(int keycode, t_global *global)
 		move_east(&global->player);
 		printf("you pressed d\n\n");
 	}
-	//display_player(global, global->player.x, global->player.y, COLOR);
+	display_player(global, global->player.x, global->player.y, COLOR);
 	return (0);
 }
 
@@ -73,6 +73,6 @@ int	key_hook(int keycode, t_global *global)
 */
 void	handle_events(t_global *global)
 {
-	mlx_hook(global->window.win_id, KEY_DOWN, 0, key_hook, &global);
+	mlx_hook(global->window.win_id, KEY_DOWN, 0, key_hook, global);
 	mlx_hook(global->window.win_id, ON_DESTROY, 0, clean, global);
 }

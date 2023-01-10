@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 20:31:19 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:15:38 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	handle_events(t_global *global);
 
 int		coordinate_to_pixels(int n);
 void	init_player(t_global *global, int x, int y, int color);
-void	display_player(t_global *global, int i, int j, int color);
+void	display_player(t_global *global, int x, int y, int color);
 
 
 #endif

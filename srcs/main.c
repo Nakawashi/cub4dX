@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 20:41:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:07:09 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ for (int i = 0; i < global.map_datas.map_height; ++i)
 	my_mlx_put_ceiling(&global, 0, 0, BLEU);
 	my_mlx_put_floor(&global, 0, WIN_HEIGTH/2, JAUNE);
 	init_minimap(&global);
-	init_player(&global, global.player.x, global.player.y, COLOR); // position initiale du player
 	printf("global.player.x : %d\n", global.player.x);
 	printf("global.player.y : %d\n", global.player.y);
 
+	init_player(&global, global.player.x, global.player.y, COLOR); // position initiale du player
 	handle_events(&global);
 	mlx_loop(&global.window.mlx_id);
 	return (0);
