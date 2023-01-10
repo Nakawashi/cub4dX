@@ -6,37 +6,44 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 14:55:01 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:46:03 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// position = speed *  x
+// position = speed *  y
 
-static void	move_north(t_player *player)
+static void	move_north(t_global *global)
 {
-	player->y  -= 1; // on check pas ici les limites de la map mais si on est contre un mur on va pas
-	printf("player horizontal :	[%d]\n", player->x);
-	printf("player vertical : 	[%d]\n", player->y);
+	display_player(global, global->player.x, global->player.y, WHITE);
+
+	global->player.y  -= 1; // on check pas ici les limites de la map mais si on est contre un mur on va pas
+	display_player(global, global->player.x, global->player.y, COLOR);
+
+	printf("player horizontal :	[%d]\n", global->player.x);
+	printf("player vertical : 	[%d]\n", global->player.y);
 }
 
-static void	move_south(t_player *player)
+static void	move_south(t_global *global)
 {
-	player->y += 1;
-	printf("player horizontal :	[%d]\n", player->x);
-	printf("player vertical :	[%d]\n", player->y);
+
+	global->player.y += 1;
+	printf("player horizontal :	[%d]\n", global->player.x);
+	printf("player vertical :	[%d]\n", global->player.y);
 }
-static void	move_east(t_player *player)
+static void	move_east(t_global *global)
 {
-	player->x += 1;
-	printf("player horizontal :	[%d]\n", player->x);
-	printf("player vertical :	[%d]\n", player->y);
+	global->player.x += 1;
+	printf("player horizontal :	[%d]\n", global->player.x);
+	printf("player vertical :	[%d]\n", global->player.y);
 }
-static void	move_west(t_player *player)
+static void	move_west(t_global *global)
 {
-	player->x -= 1;
-	printf("player horizontal :	[%d]\n", player->x);
-	printf("player vertical :	[%d]\n", player->y);
+	global->player.x -= 1;
+	printf("player horizontal :	[%d]\n", global->player.x);
+	printf("player vertical :	[%d]\n", global->player.y);
 }
 
 int	key_hook(int keycode, t_global *global)
@@ -45,25 +52,24 @@ int	key_hook(int keycode, t_global *global)
 		clean(global);
 	if (keycode == KEY_W)
 	{
-		move_north(&global->player);
+		move_north(global);
 		printf("you pressed w\n\n");
 	}
 	if (keycode == KEY_A)
 	{
-		move_west(&global->player);
+		move_west(global);
 		printf("you pressed a\n\n");
 	}
 	if (keycode == KEY_S)
 	{
-		move_south(&global->player);
+		move_south(global);
 		printf("you pressed s\n\n");
 	}
 	if (keycode == KEY_D)
 	{
-		move_east(&global->player);
+		move_east(global);
 		printf("you pressed d\n\n");
 	}
-	display_player(global, global->player.x, global->player.y, COLOR);
 	return (0);
 }
 
