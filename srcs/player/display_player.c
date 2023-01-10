@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 15:22:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:27:28 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	init_player(t_global *global, int x, int y, int color)
 */
 void	display_player(t_global *global, int x, int y, int color)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 
 	i = 0;
 	while(i < 4)

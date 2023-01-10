@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 15:15:38 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:01:58 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@
 # define ARROW_RIGHT 124
 # define KEY_ESC 53
 
-//minimap
-# define GROUND_PATH
-# define WALLS
-# define DOORS
-# define PLAYER
-
 // events a ne pas confondre avec les "evenements du clavier"
 enum e_events
 {
@@ -104,13 +98,18 @@ typedef struct s_map
 	int		map_height;
 }	t_map;
 
-// player position in pixels, not coordinate
+/*
+	player position in pixels, not coordinate
+	x and y are for initial position in map
+*/
 typedef struct s_player
 {
 	t_img	player_img;
 	char	direction;
-	int		x;
-	int		y;
+	float	angle;
+	float	speed;
+	float	x;
+	float	y;
 
 }	t_player;
 
@@ -192,6 +191,15 @@ void	handle_events(t_global *global);
 int		coordinate_to_pixels(int n);
 void	init_player(t_global *global, int x, int y, int color);
 void	display_player(t_global *global, int x, int y, int color);
+
+//------------------------------//
+//								//
+//			MATHS				//
+//								//
+//------------------------------//
+
+float	degree_to_radians(float degree);
+float	radians_to_degrees(float radian);
 
 
 #endif
