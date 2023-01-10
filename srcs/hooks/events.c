@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 18:38:00 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:57:57 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 static void	move_forward(t_global *global)
 {
 	display_player(global, global->player.x, global->player.y, WHITE);
-
-	global->player.x += cos(global->player.angle) * global->player.speed;
-	global->player.y += sin(global->player.angle) * global->player.speed;
-
+	global->player.x += cos(global->player.angle - degree_to_radians(90)) * global->player.speed;
+	global->player.y += sin(global->player.angle - degree_to_radians(90)) * global->player.speed;
 	display_player(global, global->player.x, global->player.y, COLOR);
 
 	printf("player horizontal :	[%f]\n", global->player.x);
@@ -28,32 +26,23 @@ static void	move_forward(t_global *global)
 static void	move_backward(t_global *global)
 {
 	display_player(global, global->player.x, global->player.y, WHITE);
-
-	global->player.y += 1;
+	global->player.x += cos(global->player.angle + degree_to_radians(90)) * global->player.speed;
+	global->player.y += sin(global->player.angle + degree_to_radians(90)) * global->player.speed;
 	display_player(global, global->player.x, global->player.y, COLOR);
-
-	printf("player horizontal :	[%f]\n", global->player.x);
-	printf("player vertical :	[%f]\n", global->player.y);
 }
 static void	move_right(t_global *global)
 {
 	display_player(global, global->player.x, global->player.y, WHITE);
-
-	global->player.x += 1;
+	global->player.x += cos(global->player.angle) * global->player.speed;
+	global->player.y += sin(global->player.angle) * global->player.speed;
 	display_player(global, global->player.x, global->player.y, COLOR);
-
-	printf("player horizontal :	[%f]\n", global->player.x);
-	printf("player vertical :	[%f]\n", global->player.y);
 }
 static void	move_left(t_global *global)
 {
 	display_player(global, global->player.x, global->player.y, WHITE);
-
-	global->player.x -= 1;
+	global->player.x -= cos(global->player.angle) * global->player.speed;
+	global->player.y -= sin(global->player.angle) * global->player.speed;
 	display_player(global, global->player.x, global->player.y, COLOR);
-
-	printf("player horizontal :	[%f]\n", global->player.x);
-	printf("player vertical :	[%f]\n", global->player.y);
 }
 
 int	key_hook(int keycode, t_global *global)
