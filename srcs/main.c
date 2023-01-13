@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 14:43:35 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:20:28 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ for (int i = 0; i < global.map_datas.map_height; ++i)
 
 	init_player(&global, global.player.position, COLOR); // position initiale du player
 	player_direction(global.player.direction, global.player.angle);
-	global.player.speed = 0.4;
+	global.player.speed = 1;
 
 	handle_events(&global);
 	mlx_loop(&global.window.mlx_id);

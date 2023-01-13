@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/01/13 12:10:10 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/13 17:30:12 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/utils/img_utils.c \
 				srcs/utils/map_utils.c \
 				srcs/utils/maths.c \
+				srcs/utils/bresenham.c \
 				srcs/minimap/create_square.c \
 				srcs/minimap/display_minimap.c \
 				srcs/hooks/events.c \
