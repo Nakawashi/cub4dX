@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 19:25:34 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 15:41:16 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:22:49 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,3 @@ void	get_map_height(t_map *map)
 		++i;
 	map->map_height = i;
 }
-
-/*
-
-*/

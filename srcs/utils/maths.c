@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 17:54:52 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 12:23:08 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/13 14:38:05 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,15 @@ float	radians_to_degrees(float radian)
 	return (radian / (M_PI / 180.0));
 }
 
-void	dda(t_global *global)
+// void	dda(t_global *global, t_ray *ray)
+// {
+// 	t_vector2_f	origin;
+// 	t_vector2_f	map;
+// 	t_vector2_f	direction;
+// 	t_vector2_f	side_distance;
+// 	t_vector2_f	delta_distance;
+
+// 	origin = {WIN_WIDTH/2, WIN_HEIGTH/2};
+// 	map = origin;
+// 	direction = {global}
+// }

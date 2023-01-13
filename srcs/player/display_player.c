@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 12:04:11 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:44:38 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	coordinate_to_pixels(int n)
 	@description
 	Creation of the player's image, where to print and in wich color
 */
-void	init_player(t_global *global, int x, int y, int color)
+void	init_player(t_global *global, t_vector2_f pos, int color)
 {
 	int	i;
 	int	j;
@@ -53,14 +53,14 @@ void	init_player(t_global *global, int x, int y, int color)
 		++i;
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.player_img.img, x, y);
+		global->player.player_img.img, pos.x, pos.y);
 }
 
 /*
 	Raison de 4: 1 pixel c'etait trop petit voila. Ne fonctionne que si
 	la taille des cotes des carres de la minimap est paire
 */
-void	display_player(t_global *global, int x, int y, int color)
+void	display_player(t_global *global, t_vector2_f *pos, int color)
 {
 	int			i;
 	int			j;
@@ -77,5 +77,5 @@ void	display_player(t_global *global, int x, int y, int color)
 		++i;
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.player_img.img, x, y);
+		global->player.player_img.img, pos->x, pos->y);
 }

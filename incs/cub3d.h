@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 12:06:05 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:43:21 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
-#include <sys/stat.h>
+# include <sys/stat.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -66,6 +66,12 @@ enum e_events
 	ON_DESTROY = 17
 };
 
+typedef struct s_vector2_f
+{
+	float	x;
+	float	y;
+}	t_vector2_f;
+
 typedef struct s_window
 {
 	void	*mlx_id;
@@ -99,24 +105,30 @@ typedef struct s_map
 }	t_map;
 
 /*
-	player position in pixels, not coordinate
 	x and y are for initial position in map
 */
 typedef struct s_player
 {
-	t_img	player_img;
-	char	direction;
-	float	angle;
-	float	speed;
-	float	x;
-	float	y;
+	t_img		player_img;
+	t_vector2_f	position;
+	char		direction;
+	float		angle;
+	float		speed;
 
 }	t_player;
 
+/*
+	t_vector2_f : from math.h. struct with 2 float coordinates.
+	better performances, less precision than double.
+	https://b-bischoff.github.io/web/cube3d.html
+*/
 typedef struct s_ray
 {
-	char		direction;
-	t_player	player;
+	t_vector2_f	direction;
+	t_vector2_f	cell_position;
+	float		ray_length;
+	int			wall_side_hit;
+	float		angle;
 }	t_ray;
 
 typedef struct s_global
@@ -127,6 +139,7 @@ typedef struct s_global
 	t_img		ceiling_img;
 	t_img		minimap;
 	t_player	player;
+	t_ray		ray;
 }	t_global;
 
 //------------------------------//
@@ -189,8 +202,8 @@ void	handle_events(t_global *global);
 //------------------------------//
 
 int		coordinate_to_pixels(int n);
-void	init_player(t_global *global, int x, int y, int color);
-void	display_player(t_global *global, int x, int y, int color);
+void	init_player(t_global *global, t_vector2_f pos, int color);
+void	display_player(t_global *global, t_vector2_f *pos, int color);
 void	player_direction(char direction, float angle);
 
 //------------------------------//
@@ -201,6 +214,7 @@ void	player_direction(char direction, float angle);
 
 float	degree_to_radians(float degree);
 float	radians_to_degrees(float radian);
+void	dda(t_global *global, t_ray *ray);
 
 
 #endif

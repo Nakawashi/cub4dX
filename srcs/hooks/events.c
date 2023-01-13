@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 18:57:57 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:45:55 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,39 @@
 
 static void	move_forward(t_global *global)
 {
-	display_player(global, global->player.x, global->player.y, WHITE);
-	global->player.x += cos(global->player.angle - degree_to_radians(90)) * global->player.speed;
-	global->player.y += sin(global->player.angle - degree_to_radians(90)) * global->player.speed;
-	display_player(global, global->player.x, global->player.y, COLOR);
+	display_player(global, &global->player.position, WHITE);
+	global->player.position.x += cos(global->player.angle - degree_to_radians(90)) * global->player.speed;
+	global->player.position.y += sin(global->player.angle - degree_to_radians(90)) * global->player.speed;
+	display_player(global, &global->player.position, COLOR);
 
-	printf("player horizontal :	[%f]\n", global->player.x);
-	printf("player vertical : 	[%f]\n", global->player.y);
+	printf("player horizontal :	[%f]\n", global->player.position.x);
+	printf("player vertical : 	[%f]\n", global->player.position.y);
 }
 
 static void	move_backward(t_global *global)
 {
-	display_player(global, global->player.x, global->player.y, WHITE);
-	global->player.x += cos(global->player.angle + degree_to_radians(90)) * global->player.speed;
-	global->player.y += sin(global->player.angle + degree_to_radians(90)) * global->player.speed;
-	display_player(global, global->player.x, global->player.y, COLOR);
+	display_player(global, &global->player.position, WHITE);
+	global->player.position.x += cos(global->player.angle + degree_to_radians(90)) * global->player.speed;
+	global->player.position.y += sin(global->player.angle + degree_to_radians(90)) * global->player.speed;
+	display_player(global, &global->player.position, COLOR);
 }
 static void	move_right(t_global *global)
 {
-	display_player(global, global->player.x, global->player.y, WHITE);
-	global->player.x += cos(global->player.angle) * global->player.speed;
-	global->player.y += sin(global->player.angle) * global->player.speed;
-	display_player(global, global->player.x, global->player.y, COLOR);
+	display_player(global, &global->player.position, WHITE);
+	global->player.position.x += cos(global->player.angle) * global->player.speed;
+	global->player.position.y += sin(global->player.angle) * global->player.speed;
+	display_player(global, &global->player.position, COLOR);
 }
 static void	move_left(t_global *global)
 {
-	display_player(global, global->player.x, global->player.y, WHITE);
-	global->player.x -= cos(global->player.angle) * global->player.speed;
-	global->player.y -= sin(global->player.angle) * global->player.speed;
-	display_player(global, global->player.x, global->player.y, COLOR);
+	display_player(global, &global->player.position, WHITE);
+	global->player.position.x -= cos(global->player.angle) * global->player.speed;
+	global->player.position.y -= sin(global->player.angle) * global->player.speed;
+	display_player(global, &global->player.position, COLOR);
 }
 
 int	key_hook(int keycode, t_global *global)
 {
-	// float	step;
-
-	// step = global->player.speed;
-	// while (global->player.x > MINI_WIDTH && global->player.x < MINI_WIDTH * global->map_datas.map_width)
 	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)
