@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 18:27:28 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:04:11 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ int	coordinate_to_pixels(int n)
 }
 
 /*
-	Image creation
-	First time we display the player on screen
+	@arguments
+	t_global *global : can access to many datas
+	int x and int y : coordinates where the image is printed
+	int color : color of the image
+	@description
+	Creation of the player's image, where to print and in wich color
 */
 void	init_player(t_global *global, int x, int y, int color)
 {

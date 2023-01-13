@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 18:52:23 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:12:53 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,8 @@ for (int i = 0; i < global.map_datas.map_height; ++i)
 	printf("global.player.y : %f\n", global.player.y);
 
 	init_player(&global, global.player.x, global.player.y, COLOR); // position initiale du player
-	if (global.player.direction == 'N')
-		global.player.angle = degree_to_radians(-90);
-	if (global.player.direction == 'W')
-		global.player.angle = degree_to_radians(180);
-	if (global.player.direction == 'E')
-		global.player.angle = degree_to_radians(0);
-	if (global.player.direction == 'S')
-		global.player.angle = degree_to_radians(90);
-	global.player.speed = 0.5;
+	player_direction(global.player.direction, global.player.angle);
+	global.player.speed = 0.4;
 
 	handle_events(&global);
 	mlx_loop(&global.window.mlx_id);

@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 17:54:52 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/10 17:54:55 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/13 11:56:28 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/13 12:09:28 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	degree_to_radians(float degree)
+/*
+	@arguments
+	char direction and float angle: init t_player
+	@description
+	Indique dans quelle direction le joueur avancera sur la minimap
+*/
+void	player_direction(char direction, float angle)
 {
-	return (degree * M_PI / 180.0);
-}
-
-float	radians_to_degrees(float radian)
-{
-	return (radian / (M_PI / 180.0));
+	if (direction == 'N')
+		angle = degree_to_radians(-90);
+	if (direction == 'W')
+		angle = degree_to_radians(180);
+	if (direction == 'E')
+		angle = degree_to_radians(0);
+	if (direction == 'S')
+		angle = degree_to_radians(90);
 }
