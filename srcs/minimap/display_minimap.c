@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:05:48 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 14:39:58 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:45:33 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@ void	init_minimap(t_global *global)
 	int		i;
 	int		j;
 
-		create_image(&global->minimap,
+		// create_image(&global->minimap,
+		// global->window.mlx_id,
+		// MINI_WIDTH,
+		// MINI_HEIGHT);
+	create_image(&global->minimap,
 		global->window.mlx_id,
-		MINI_WIDTH,
-		MINI_HEIGHT);
+		global->map_datas.map_width,
+		global->map_datas.map_height);
 
 	i = -1;
 	while (global->map_datas.map[++i])
