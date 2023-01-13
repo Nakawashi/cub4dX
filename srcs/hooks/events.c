@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 20:01:13 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:32:24 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,34 @@ void	draw_player(t_global *global, t_vector2_f pos)
 
 static void	move_forward(t_global *global)
 {
-	global->player.position.x += cos(global->player.angle - degree_to_radians(90)) * global->player.speed;
-	global->player.position.y += sin(global->player.angle - degree_to_radians(90)) * global->player.speed;
-	draw_player(global, global->player.position);
+	global->player.position.x += cos(global->player.angle) * global->player.speed;
+	global->player.position.y += sin(global->player.angle) * global->player.speed;
 }
 
 static void	move_backward(t_global *global)
 {
-	global->player.position.x += cos(global->player.angle + degree_to_radians(90)) * global->player.speed;
-	global->player.position.y += sin(global->player.angle + degree_to_radians(90)) * global->player.speed;
-	draw_player(global, global->player.position);
+	global->player.position.x -= cos(global->player.angle) * global->player.speed;
+	global->player.position.y -= sin(global->player.angle) * global->player.speed;
 }
 static void	move_right(t_global *global)
 {
-	global->player.position.x += cos(global->player.angle) * global->player.speed;
-	global->player.position.y += sin(global->player.angle) * global->player.speed;
-	draw_player(global, global->player.position);
+	global->player.position.x += cos(global->player.angle + degree_to_radians(90)) * global->player.speed;
+	global->player.position.y += sin(global->player.angle + degree_to_radians(90)) * global->player.speed;
 }
 static void	move_left(t_global *global)
 {
-	global->player.position.x -= cos(global->player.angle) * global->player.speed;
-	global->player.position.y -= sin(global->player.angle) * global->player.speed;
-	draw_player(global, global->player.position);
+	global->player.position.x += cos(global->player.angle + degree_to_radians(-90)) * global->player.speed;
+	global->player.position.y += sin(global->player.angle + degree_to_radians(-90)) * global->player.speed;
 }
 
 int	key_hook(int keycode, t_global *global)
 {
+	draw_minimap(global); // clear minimap
 	dda(global, &global->ray);
-	draw_minimap(global);
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->minimap.img, 0, 0);
+		global->minimap.img, 0, 0); // display minimap PLUS dda
+
+	draw_player(global, global->player.position);
 	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)
@@ -77,7 +75,7 @@ int	key_hook(int keycode, t_global *global)
 	}
 	if (keycode == ARROW_LEFT)
 	{
-		move_left(global);
+		// move_left(global);
 		global->player.angle -= 0.04;
 	}
 	printf("player horizontal :	[%f]\n", global->player.position.x);
@@ -85,6 +83,15 @@ int	key_hook(int keycode, t_global *global)
 	return (0);
 }
 
+/*
+	mlx loop hook
+	faire fonction qui regroupe ca
+		draw_minimap(global);
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->minimap.img, 0, 0);
+	draw_player(global, global->player.position);
+	dda(global, &global->ray);
+*/
 void	handle_events(t_global *global)
 {
 	mlx_hook(global->window.win_id, KEY_DOWN, 0, key_hook, global);

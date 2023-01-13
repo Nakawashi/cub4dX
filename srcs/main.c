@@ -6,14 +6,18 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 19:35:44 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:09:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// jaune:	0x00FFCE6D
-// bleu:	0x0081D5FF
+/*
+	0 : x positif
+	180 : x negatif
+	90 : y positif
+	270 : y negatif
+*/
 
 int	main(int argc, char **argv)
 {
@@ -29,6 +33,8 @@ int	main(int argc, char **argv)
 	get_map_height(&global.map_datas);
 	global.player.position.x = coordinate_to_pixels(10);
 	global.player.position.y = coordinate_to_pixels(4);
+	global.player.angle = degree_to_radians(-90);
+
 
 for (int i = 0; i < global.map_datas.map_height; ++i)
 	printf("%s\n", global.map_datas.map[i]);

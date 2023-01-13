@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 19:18:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:28:42 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 	destination.y = (int)player.y;
 	// direction.x = ray->direction.x - player.x; // distance trait
 	// direction.y = ray->direction.y - player.y;
-	direction.x = 0; // distance trait
-	direction.y = -1;
+	direction.x = cos(global->player.angle);
+	direction.y = sin(global->player.angle);
 
 	delta_distance.x = (direction.x == 0) ? 1e30 : fabs(1.0f / direction.x); // 1e30 is a large value
 	delta_distance.y = (direction.y == 0) ? 1e30 : fabs(1.0f / direction.y);
@@ -101,7 +101,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 	}
 
 
-// gestion des erreurs
+// gestion des erreurs ci dessous
 // // Using squared values is faster than using square root function
 // float ray_length = get_vector_d_length_squared(origin, destination);
 

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 19:54:03 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:29:51 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,11 +219,11 @@ void	player_direction(char direction, float angle);
 //								//
 //------------------------------//
 
-float	degree_to_radians(float degree);
-float	radians_to_degrees(float radian);
+float		degree_to_radians(float degree);
+float		radians_to_degrees(float radian);
 t_vector2_f	dda(t_global *global, t_ray *ray);
 
-void	bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
+void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
 
 
 #endif
