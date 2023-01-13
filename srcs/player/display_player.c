@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 14:44:38 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:33:27 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ void	init_player(t_global *global, t_vector2_f pos, int color)
 	int	i;
 	int	j;
 
-	create_image(&global->player.player_img, global->window.mlx_id, 4, 4);
+	create_image(&global->player.img, global->window.mlx_id, 4, 4);
 	i = 0;
 	while(i < 4)
 	{
 		j = 0;
 		while (j < 4)
 		{
-			his_mlx_pixel_put(&global->player.player_img, j, i, color);
+			his_mlx_pixel_put(&global->player.img, j, i, color);
 			++j;
 		}
 		++i;
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.player_img.img, pos.x, pos.y);
+		global->player.img.img, pos.x, pos.y);
 }
 
 /*
@@ -71,11 +71,11 @@ void	display_player(t_global *global, t_vector2_f *pos, int color)
 		j = 0;
 		while (j < 4)
 		{
-			his_mlx_pixel_put(&global->player.player_img, j, i, color);
+			his_mlx_pixel_put(&global->player.img, j, i, color);
 			++j;
 		}
 		++i;
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.player_img.img, pos->x, pos->y);
+		global->player.img.img, pos->x, pos->y);
 }

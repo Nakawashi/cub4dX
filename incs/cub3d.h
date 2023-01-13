@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 14:43:21 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:18:53 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define WIN_HEIGTH 512
 # define JAUNE 0x00FFCE6D
 # define BLEU 0x0081D5FF
+# define YELLOW 0x00FFFF00
 
 // Minimap
 // Careful could have to update init_position file if this value is changed
@@ -71,6 +72,12 @@ typedef struct s_vector2_f
 	float	x;
 	float	y;
 }	t_vector2_f;
+
+typedef struct s_vector2_d
+{
+	int	x;
+	int	y;
+}	t_vector2_d;
 
 typedef struct s_window
 {
@@ -109,7 +116,7 @@ typedef struct s_map
 */
 typedef struct s_player
 {
-	t_img		player_img;
+	t_img		img;
 	t_vector2_f	position;
 	char		direction;
 	float		angle;
@@ -214,7 +221,9 @@ void	player_direction(char direction, float angle);
 
 float	degree_to_radians(float degree);
 float	radians_to_degrees(float radian);
-void	dda(t_global *global, t_ray *ray);
+t_vector2_f	dda(t_global *global, t_ray *ray);
+
+void	bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
 
 
 #endif
