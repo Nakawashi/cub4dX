@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 17:33:27 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:20:52 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,4 @@ void	init_player(t_global *global, t_vector2_f pos, int color)
 	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->player.img.img, pos.x, pos.y);
-}
-
-/*
-	Raison de 4: 1 pixel c'etait trop petit voila. Ne fonctionne que si
-	la taille des cotes des carres de la minimap est paire
-*/
-void	display_player(t_global *global, t_vector2_f *pos, int color)
-{
-	int			i;
-	int			j;
-
-	i = 0;
-	while(i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			his_mlx_pixel_put(&global->player.img, j, i, color);
-			++j;
-		}
-		++i;
-	}
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.img.img, pos->x, pos->y);
 }

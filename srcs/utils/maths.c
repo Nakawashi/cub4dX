@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 18:28:39 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:18:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ float	radians_to_degrees(float radian)
 
 t_vector2_f	dda(t_global *global, t_ray *ray)
 {
+	(void)ray;
 	t_vector2_f	player; // player
 	t_vector2_f	destination; // corrdinate of where we touch the wall
 	t_vector2_f	direction; // x et y big triangle, complete, son hypotenuse est entre le player et le mur vise par le rayon
@@ -31,15 +32,18 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 	t_vector2_f	side_distance;
 	t_vector2_f	delta_distance;
 
-	ray->direction.x = 0;
-	ray->direction.y = -1;
+
+	// ray->direction.x = 0;
+	// ray->direction.y = -1;
 
 	player.x = global->player.position.x;
 	player.y = global->player.position.y;
 	destination.x = (int)player.x; // faire une fonction qui converti un vecteur de floats en vecteur de int
 	destination.y = (int)player.y;
-	direction.x = ray->direction.x - player.x; // distance trait
-	direction.y = ray->direction.y - player.y;
+	// direction.x = ray->direction.x - player.x; // distance trait
+	// direction.y = ray->direction.y - player.y;
+	direction.x = 0; // distance trait
+	direction.y = -1;
 
 	delta_distance.x = (direction.x == 0) ? 1e30 : fabs(1.0f / direction.x); // 1e30 is a large value
 	delta_distance.y = (direction.y == 0) ? 1e30 : fabs(1.0f / direction.y);
@@ -91,7 +95,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 		{
 			printf("dest x: %f\n", destination.x);
 			printf("dest y: %f\n", destination.y);
-			bresenham(global, player, destination, YELLOW);
+			bresenham(global, player, destination, PLUM);
 			return (destination);
 		}
 	}

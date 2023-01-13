@@ -6,46 +6,53 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 18:27:39 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:01:13 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	mlx_put_image_to_window boring to write
+*/
+void	draw_player(t_global *global, t_vector2_f pos)
+{
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->player.img.img, pos.x, pos.y);
+}
+
 static void	move_forward(t_global *global)
 {
-	display_player(global, &global->player.position, WHITE);
 	global->player.position.x += cos(global->player.angle - degree_to_radians(90)) * global->player.speed;
 	global->player.position.y += sin(global->player.angle - degree_to_radians(90)) * global->player.speed;
-	display_player(global, &global->player.position, COLOR);
+	draw_player(global, global->player.position);
 }
 
 static void	move_backward(t_global *global)
 {
-	display_player(global, &global->player.position, WHITE);
 	global->player.position.x += cos(global->player.angle + degree_to_radians(90)) * global->player.speed;
 	global->player.position.y += sin(global->player.angle + degree_to_radians(90)) * global->player.speed;
-	display_player(global, &global->player.position, COLOR);
+	draw_player(global, global->player.position);
 }
 static void	move_right(t_global *global)
 {
-	display_player(global, &global->player.position, WHITE);
 	global->player.position.x += cos(global->player.angle) * global->player.speed;
 	global->player.position.y += sin(global->player.angle) * global->player.speed;
-	display_player(global, &global->player.position, COLOR);
+	draw_player(global, global->player.position);
 }
 static void	move_left(t_global *global)
 {
-	display_player(global, &global->player.position, WHITE);
 	global->player.position.x -= cos(global->player.angle) * global->player.speed;
 	global->player.position.y -= sin(global->player.angle) * global->player.speed;
-	display_player(global, &global->player.position, COLOR);
+	draw_player(global, global->player.position);
 }
 
 int	key_hook(int keycode, t_global *global)
 {
 	dda(global, &global->ray);
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0);
+	draw_minimap(global);
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->minimap.img, 0, 0);
 	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)

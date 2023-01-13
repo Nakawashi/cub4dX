@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 17:20:28 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:35:44 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int argc, char **argv)
 	if (!global.map_datas.map)
 		return (1);
 	get_map_height(&global.map_datas);
+	global.player.position.x = coordinate_to_pixels(10);
+	global.player.position.y = coordinate_to_pixels(4);
 
 for (int i = 0; i < global.map_datas.map_height; ++i)
 	printf("%s\n", global.map_datas.map[i]);
@@ -38,7 +40,7 @@ for (int i = 0; i < global.map_datas.map_height; ++i)
 	printf("global.player.x : %f\n", global.player.position.x);
 	printf("global.player.y : %f\n", global.player.position.y);
 
-	init_player(&global, global.player.position, COLOR); // position initiale du player
+	init_player(&global, global.player.position, PINK); // position initiale du player
 	player_direction(global.player.direction, global.player.angle);
 	global.player.speed = 1;
 

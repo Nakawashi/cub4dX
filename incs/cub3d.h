@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 18:18:53 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:54:03 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define WIN_HEIGTH 512
 # define JAUNE 0x00FFCE6D
 # define BLEU 0x0081D5FF
-# define YELLOW 0x00FFFF00
+# define PLUM 0x00DDA0DD
 
 // Minimap
 // Careful could have to update init_position file if this value is changed
@@ -44,7 +44,7 @@
 # define MINI_HEIGHT 8
 # define BLACK 0x00000000
 # define WHITE 0x00FFFFFF
-# define COLOR 0x00EE5983
+# define PINK 0x00EE5983
 
 // "evenements du clavier mais en fait non"
 # define KEY_W 13
@@ -188,9 +188,9 @@ void	get_map_height(t_map *map);
 //								//
 //------------------------------//
 
-void	my_mlx_put_square(t_global *global, t_img *img, int x, int y, int color);
+void	my_mlx_put_square(t_img *img, t_vector2_d pos, int size, int color);
 void	init_minimap(t_global *global);
-// void	display_minimap(t_global *global);
+void	draw_minimap(t_global *global);
 
 //------------------------------//
 //								//
@@ -210,7 +210,7 @@ void	handle_events(t_global *global);
 
 int		coordinate_to_pixels(int n);
 void	init_player(t_global *global, t_vector2_f pos, int color);
-void	display_player(t_global *global, t_vector2_f *pos, int color);
+void	draw_player(t_global *global, t_vector2_f pos);
 void	player_direction(char direction, float angle);
 
 //------------------------------//

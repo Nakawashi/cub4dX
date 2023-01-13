@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_minimap.c                                  :+:      :+:    :+:   */
+/*   draw_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:05:48 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 18:45:33 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:23:07 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,85 +23,19 @@ enum e_minimap
 	Get player coordinate and direction
 	Try to read less times as possible
 */
-void	init_minimap(t_global *global)
-{
-	int		i;
-	int		j;
-
-		// create_image(&global->minimap,
-		// global->window.mlx_id,
-		// MINI_WIDTH,
-		// MINI_HEIGHT);
-	create_image(&global->minimap,
-		global->window.mlx_id,
-		global->map_datas.map_width,
-		global->map_datas.map_height);
-
-	i = -1;
-	while (global->map_datas.map[++i])
-	{
-		j = -1;
-		while (global->map_datas.map[i][++j])
-		{
-			if (global->map_datas.map[i][j] == MINI_WALL)
-			{
-				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
-			}
-			else if (global->map_datas.map[i][j] == 'N'
-				|| global->map_datas.map[i][j] == 'S'
-				|| global->map_datas.map[i][j] == 'E'
-				|| global->map_datas.map[i][j] == 'W')
-				{
-					my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-					global->player.position.x = coordinate_to_pixels(j);
-					global->player.position.y = coordinate_to_pixels(i);
-				}
-			else
-			{
-				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-			}
-		}
-	}
-}
-
-/*
-	Displays the minimap in real time when the player moves
-*/
-void	display_minimap(t_global *global)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (global->map_datas.map[++i])
-	{
-		j = -1;
-		while (global->map_datas.map[i][++j])
-		{
-			if (global->map_datas.map[i][j] == MINI_WALL)
-			{
-				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
-			}
-			else
-			{
-				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-			}
-		}
-	}
-}
-
 // void	init_minimap(t_global *global)
 // {
 // 	int		i;
 // 	int		j;
 
+// 		// create_image(&global->minimap,
+// 		// global->window.mlx_id,
+// 		// MINI_WIDTH,
+// 		// MINI_HEIGHT);
 // 	create_image(&global->minimap,
 // 		global->window.mlx_id,
-// 		MINI_WIDTH * global->map_datas.map_width,
-// 		MINI_HEIGHT * global->map_datas.map_height);
-
-// printf("wid:	[%d] -- map wid:	[%d] -- produit:	[%d]\n", MINI_WIDTH, global->map_datas.map_width, MINI_WIDTH * global->map_datas.map_width);
-// printf("hei:	[%d] -- map hei:	[%d] -- produit:	[%d]\n", MINI_HEIGHT, global->map_datas.map_height, MINI_HEIGHT * global->map_datas.map_height);
+// 		global->map_datas.map_width,
+// 		global->map_datas.map_height);
 
 // 	i = -1;
 // 	while (global->map_datas.map[++i])
@@ -110,22 +44,61 @@ void	display_minimap(t_global *global)
 // 		while (global->map_datas.map[i][++j])
 // 		{
 // 			if (global->map_datas.map[i][j] == MINI_WALL)
-// 				my_mlx_put_square(&global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
+// 			{
+// 				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
+// 			}
 // 			else if (global->map_datas.map[i][j] == 'N'
 // 				|| global->map_datas.map[i][j] == 'S'
 // 				|| global->map_datas.map[i][j] == 'E'
 // 				|| global->map_datas.map[i][j] == 'W')
-// 			{
-// 				my_mlx_put_square(&global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-// 				//global->player.direction = global->map_datas.map[i][j];
-// 				global->player.x = coordinate_to_pixels(j);
-// 				global->player.y = coordinate_to_pixels(i);
-// 				//init_player(global, global->player.x, global->player.y, COLOR);
-// 			}
+// 				{
+// 					my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
+// 					global->player.position.x = coordinate_to_pixels(j);
+// 					global->player.position.y = coordinate_to_pixels(i);
+// 				}
 // 			else
-// 				my_mlx_put_square(&global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
+// 			{
+// 				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
+// 			}
 // 		}
 // 	}
-// 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-// 		global->minimap.img, 0, 0);
 // }
+
+/*
+	Displays the minimap in real time when the player moves
+*/
+void	draw_minimap(t_global *global)
+{
+	t_vector2_d pos;
+
+	pos.y = -1;
+	while (global->map_datas.map[++pos.y])
+	{
+		pos.x = -1;
+		while (global->map_datas.map[pos.y][++pos.x])
+		{
+			if (global->map_datas.map[pos.y][pos.x] == MINI_WALL)
+			{
+				my_mlx_put_square(&global->minimap, pos, MINI_WIDTH, BLACK);
+			}
+			else
+			{
+				my_mlx_put_square(&global->minimap, pos, MINI_WIDTH, WHITE);
+			}
+		}
+	}
+}
+
+/*
+	let mlx_put_image_to_window here
+*/
+void	init_minimap(t_global *global)
+{
+	create_image(&global->minimap,
+		global->window.mlx_id,
+		MINI_WIDTH * global->map_datas.map_width,
+		MINI_HEIGHT * global->map_datas.map_height);
+	draw_minimap(global);
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->minimap.img, 0, 0);
+}
