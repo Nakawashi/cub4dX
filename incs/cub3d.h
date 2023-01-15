@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/15 11:55:04 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:55:17 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 # include "mlx.h"
 # include "libft.h"
-
 
 //###############################
 //								#
@@ -155,11 +154,12 @@ typedef struct s_global
 //								//
 //------------------------------//
 
+// init interface
+void		init_window(t_window *window);
+void		init_interface(t_global *global);
 // display ground
 void		my_mlx_put_floor(t_global *global, int x, int y, int color);
 void		my_mlx_put_ceiling(t_global *global, int x, int y, int color);
-// display window
-void		init_window(t_window *window);
 // handle exit
 int			clean(t_global *global);
 
@@ -212,6 +212,7 @@ int			coordinate_to_pixels(int n);
 void		init_player(t_global *global, t_vector2_f pos, int color);
 void		draw_player(t_global *global, t_vector2_f pos);
 void		player_direction(char direction, float angle);
+void		get_player_coordinates(char **map, t_vector2_f position);
 
 //------------------------------//
 //								//
@@ -224,6 +225,5 @@ float		radians_to_degrees(float radian);
 t_vector2_f	dda(t_global *global, t_ray *ray);
 
 void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
-
 
 #endif

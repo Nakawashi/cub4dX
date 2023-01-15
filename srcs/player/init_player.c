@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_player.c                                   :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 19:20:52 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:37:25 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	coordinate_to_pixels(int n)
 	int x and int y : coordinates where the image is printed
 	int color : color of the image
 	@description
-	Creation of the player's image, where to print and in wich color
+	get player's coordinates
+	Creation of the player's image
+	Print it on the screen at those coordinates
+	get player's watching direction (angle)
 */
 void	init_player(t_global *global, t_vector2_f pos, int color)
 {

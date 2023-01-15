@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.c                                  :+:      :+:    :+:   */
+/*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 15:05:48 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 19:23:07 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/15 19:59:03 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/15 20:02:15 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ enum e_minimap
 // 	}
 // }
 
-/*
-	Displays the minimap in real time when the player moves
-*/
 void	draw_minimap(t_global *global)
 {
 	t_vector2_d pos;
@@ -78,13 +75,9 @@ void	draw_minimap(t_global *global)
 		while (global->map_datas.map[pos.y][++pos.x])
 		{
 			if (global->map_datas.map[pos.y][pos.x] == MINI_WALL)
-			{
 				my_mlx_put_square(&global->minimap, pos, MINI_WIDTH, BLACK);
-			}
 			else
-			{
 				my_mlx_put_square(&global->minimap, pos, MINI_WIDTH, WHITE);
-			}
 		}
 	}
 }

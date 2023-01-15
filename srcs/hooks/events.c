@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 20:32:24 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/15 20:05:30 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	key_hook(int keycode, t_global *global)
 	dda(global, &global->ray);
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->minimap.img, 0, 0); // display minimap PLUS dda
-
 	draw_player(global, global->player.position);
 	if (keycode == KEY_ESC)
 		clean(global);
@@ -75,8 +74,11 @@ int	key_hook(int keycode, t_global *global)
 	}
 	if (keycode == ARROW_LEFT)
 	{
-		// move_left(global);
 		global->player.angle -= 0.04;
+	}
+	if (keycode == ARROW_RIGHT)
+	{
+		global->player.angle += 0.04;
 	}
 	printf("player horizontal :	[%f]\n", global->player.position.x);
 	printf("player vertical : 	[%f]\n", global->player.position.y);
