@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 
 	init_window(&global.window); // init basics, winodw, quit, display bckg...
 
-	global.map_datas.map = read_map("assets/map1.cub");
+	global.map_datas.map = read_map("assets/map2.cub");
 	if (!global.map_datas.map)
 		return (1);
 	get_map_height(&global.map_datas);

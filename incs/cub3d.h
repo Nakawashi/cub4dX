@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 20:29:51 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/15 11:55:04 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_player
 }	t_player;
 
 /*
-	t_vector2_f : from math.h. struct with 2 float coordinates.
+	float coordinates.
 	better performances, less precision than double.
 	https://b-bischoff.github.io/web/cube3d.html
 */
@@ -156,12 +156,12 @@ typedef struct s_global
 //------------------------------//
 
 // display ground
-void	my_mlx_put_floor(t_global *global, int x, int y, int color);
-void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
+void		my_mlx_put_floor(t_global *global, int x, int y, int color);
+void		my_mlx_put_ceiling(t_global *global, int x, int y, int color);
 // display window
-void	init_window(t_window *window);
+void		init_window(t_window *window);
 // handle exit
-int		clean(t_global *global);
+int			clean(t_global *global);
 
 //------------------------------//
 //								//
@@ -169,9 +169,9 @@ int		clean(t_global *global);
 //								//
 //------------------------------//
 
-void	his_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	init_img_struct(t_img *img);
-void	create_image(t_img *img, t_window *mlx_id, int width, int height);
+void		his_mlx_pixel_put(t_img *img, int x, int y, int color);
+void		init_img_struct(t_img *img);
+void		create_image(t_img *img, t_window *mlx_id, int width, int height);
 
 //------------------------------//
 //								//
@@ -179,8 +179,8 @@ void	create_image(t_img *img, t_window *mlx_id, int width, int height);
 //								//
 //------------------------------//
 
-char	**read_map(const char *path_to_file);
-void	get_map_height(t_map *map);
+char		**read_map(const char *path_to_file);
+void		get_map_height(t_map *map);
 
 //------------------------------//
 //								//
@@ -188,9 +188,9 @@ void	get_map_height(t_map *map);
 //								//
 //------------------------------//
 
-void	my_mlx_put_square(t_img *img, t_vector2_d pos, int size, int color);
-void	init_minimap(t_global *global);
-void	draw_minimap(t_global *global);
+void		my_mlx_put_square(t_img *img, t_vector2_d pos, int size, int color);
+void		init_minimap(t_global *global);
+void		draw_minimap(t_global *global);
 
 //------------------------------//
 //								//
@@ -199,8 +199,8 @@ void	draw_minimap(t_global *global);
 //------------------------------//
 
 //int		render_next_frame(void);
-int		key_hook(int keycode, t_global *global);
-void	handle_events(t_global *global);
+int			key_hook(int keycode, t_global *global);
+void		handle_events(t_global *global);
 
 //------------------------------//
 //								//
@@ -208,10 +208,10 @@ void	handle_events(t_global *global);
 //								//
 //------------------------------//
 
-int		coordinate_to_pixels(int n);
-void	init_player(t_global *global, t_vector2_f pos, int color);
-void	draw_player(t_global *global, t_vector2_f pos);
-void	player_direction(char direction, float angle);
+int			coordinate_to_pixels(int n);
+void		init_player(t_global *global, t_vector2_f pos, int color);
+void		draw_player(t_global *global, t_vector2_f pos);
+void		player_direction(char direction, float angle);
 
 //------------------------------//
 //								//

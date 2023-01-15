@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 20:28:42 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:00:46 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,24 @@ float	radians_to_degrees(float radian)
 	return (radian / (M_PI / 180.0));
 }
 
+t_vector2_d	ftoi(t_vector2_f positions)
+{
+	t_vector2_d	destination;
+
+	destination.x = (int)positions.x;
+	destination.y = (int)positions.y;
+	return (destination);
+}
+
+/*
+	Digital Differential Analysis is a fast algorithm
+	typically used on square grids to find which squares a line hits
+	https://lodev.org/cgtutor/raycasting.html
+*/
 t_vector2_f	dda(t_global *global, t_ray *ray)
 {
 	(void)ray;
-	t_vector2_f	player; // player
+	// t_vector2_f	player;
 	t_vector2_f	destination; // corrdinate of where we touch the wall
 	t_vector2_f	direction; // x et y big triangle, complete, son hypotenuse est entre le player et le mur vise par le rayon
 	t_vector2_f step; // either 1 or -1
@@ -36,10 +50,11 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 	// ray->direction.x = 0;
 	// ray->direction.y = -1;
 
-	player.x = global->player.position.x;
-	player.y = global->player.position.y;
-	destination.x = (int)player.x; // faire une fonction qui converti un vecteur de floats en vecteur de int
-	destination.y = (int)player.y;
+	// player.x = global->player.position.x;
+	// player.y = global->player.position.y;
+	destination = global->player.position;
+	// destination.x = (int)player.x;
+	// destination.y = (int)player.y;
 	// direction.x = ray->direction.x - player.x; // distance trait
 	// direction.y = ray->direction.y - player.y;
 	direction.x = cos(global->player.angle);
@@ -51,23 +66,23 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 	if (direction.x < 0)
 	{
 		step.x = -1; // Calculating X step (depending on the direction)
-		side_distance.x = (player.x - destination.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
+		side_distance.x = (global->player.position.x - destination.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
 	}
 	else
 	{
 		step.x = 1;
-		side_distance.x = (destination.x + 1.0f - player.x) * delta_distance.x;
+		side_distance.x = (destination.x + 1.0f - global->player.position.x) * delta_distance.x;
 	}
 
 	if (direction.y < 0)
 	{
 		step.y = -1; // Calculating Y step (depending on the direction)
-		side_distance.y = (player.y - destination.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
+		side_distance.y = (global->player.position.y - destination.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
 	}
 	else
 	{
 		step.y = 1;
-		side_distance.y = (destination.y + 1.0f - player.y) * delta_distance.y;
+		side_distance.y = (destination.y + 1.0f - global->player.position.y) * delta_distance.y;
 	}
 
 
@@ -95,7 +110,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 		{
 			printf("dest x: %f\n", destination.x);
 			printf("dest y: %f\n", destination.y);
-			bresenham(global, player, destination, PLUM);
+			bresenham(global, global->player.position, destination, PLUM);
 			return (destination);
 		}
 	}
