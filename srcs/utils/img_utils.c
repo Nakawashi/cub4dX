@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/09 13:10:37 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:45:18 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 	ici on cree un buffer qui va stocker les pixels et les afficher en meme tps
 	x and y sont les coordonnees de la fenetre.
 	0, 0 est tout en haut a gauche.
+
+	il faut dereferencer le char puis a nouveau recuperer la valeur pour
+	recuperer le int casté
 */
 void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 {

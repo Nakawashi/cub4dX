@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/15 19:37:25 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:45:42 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 */
 int	coordinate_to_pixels(int n)
 {
-	return (n * MINI_WIDTH + (MINI_WIDTH/2) - 2);
+	return (n * MINI_WIDTH + (MINI_WIDTH / 2) - 2);
 }
 
 /*

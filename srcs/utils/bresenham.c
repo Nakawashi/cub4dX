@@ -1,68 +1,85 @@
 #include "cub3d.h"
 
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	xi;
+	int	yi;
+	int	d;
+	int	x;
+	int	cst1;
+	int	cst2;
+	int	y;
+}	t_bresenham;
+
 
 static void	plot_line_high(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
 {
-	int dx = p2.x - p1.x;
-	int dy = p2.y - p1.y;
-	int xi = 1;
+	t_bresenham	datas;
 
-	if (dx < 0)
+	datas.dx = p2.x - p1.x;
+	datas.dy = p2.y - p1.y;
+	datas.xi = 1;
+	if (datas.dx < 0)
 	{
-		xi = -1;
-		dx = -dx;
+		datas.xi = -1;
+		datas.dx = -datas.dx;
 	}
-	int d = 2 * dx - dy;
-	int x = p1.x;
-
-	// Calculating const
-	int cst1 = 2 * (dx - dy);
-	int cst2 = 2 * dx;
-
-	for (int y = p1.y; y < p2.y; y++)
+	datas.d = 2 * datas.dx - datas.dy;
+	datas.x = p1.x;
+	datas.cst1 = 2 * (datas.dx - datas.dy);
+	datas.cst2 = 2 * datas.dx;
+	datas.y = p1.y;
+	while (datas.y < p2.y)
 	{
-		his_mlx_pixel_put(&global->minimap, x, y, color);
-		if (d > 0)
+		his_mlx_pixel_put(&global->minimap, datas.x, datas.y, color);
+		if (datas.d > 0)
 		{
-			x += xi;
-			d += cst1;
+			datas.x += datas.xi;
+			datas.d += datas.cst1;
 		}
 		else
-			d += cst2;
+			datas.d += datas.cst2;
+		++datas.y;
 	}
 }
 
 static void	plot_line_low(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
 {
-	int dx = p2.x - p1.x;
-	int dy = p2.y - p1.y;
-	int yi = 1;
+	t_bresenham datas;
 
-	if (dy < 0)
+	datas.dx = p2.x - p1.x;
+	datas.dy = p2.y - p1.y;
+	datas.yi = 1;
+	if (datas.dy < 0)
 	{
-		yi = -1;
-		dy = -dy;
+		datas.yi = -1;
+		datas.dy = -datas.dy;
 	}
-	int d = 2 * dy - dx;
-	int y = p1.y;
-
-	// Calculating const
-	int cst1 = 2 * (dy - dx);
-	int cst2 = 2 * dy;
-
-	for (int x = p1.x; x < p2.x; x++)
+	datas.d = 2 * datas.dy - datas.dx;
+	datas.y = p1.y;
+	datas.cst1 = 2 * (datas.dy - datas.dx);
+	datas.cst2 = 2 * datas.dy;
+	datas.x = p1.x;
+	while (datas.x < p2.x)
 	{
-		his_mlx_pixel_put(&global->minimap, x, y, color);
-		if (d > 0)
+		his_mlx_pixel_put(&global->minimap, datas.x, datas.y, color);
+		if (datas.d > 0)
 		{
-			y += yi;
-			d += cst1;
+			datas.y += datas.yi;
+			datas.d += datas.cst1;
 		}
 		else
-			d += cst2;
+			datas.d += datas.cst2;
+		++datas.x;
 	}
 }
 
+/*
+	Draw the ray
+	https://lodev.org/cgtutor/raycasting.html
+*/
 void	bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
 {
 	if (fabs(p2.y - p1.y) < fabs(p2.x - p1.x))

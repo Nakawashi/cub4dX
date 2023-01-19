@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/19 18:36:29 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:56:01 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,24 @@ float	get_delta_distance(float direction)
 	Digital Differential Analysis is a fast algorithm
 	typically used on square grids to find which squares a line hits
 	https://lodev.org/cgtutor/raycasting.html
+
+	1. set in wich direction we are going to follow, with step value
+	2. infinite loop until we find a wall
 */
 t_vector2_f	dda(t_global *global, t_ray *ray)
 {
-	(void)ray;
-	// t_vector2_f	player;
+	t_vector2_d cell;
 	t_vector2_f	destination; // corrdinate of where we touch the wall
-	t_vector2_f	direction; // x et y big triangle, complete, son hypotenuse est entre le player et le mur vise par le rayon
 	t_vector2_f step; // either 1 or -1
 	t_vector2_f	side_distance;
 	t_vector2_f	delta_distance;
 
-
-	// ray->direction.x = 0;
-	// ray->direction.y = -1;
-
-	// player.x = global->player.position.x;
-	// player.y = global->player.position.y;
 	destination = global->player.position;
-	// destination.x = (int)player.x;
-	// destination.y = (int)player.y;
-	// direction.x = ray->direction.x - player.x; // distance trait
-	// direction.y = ray->direction.y - player.y;
-	direction.x = cos(global->player.angle);
-	direction.y = sin(global->player.angle);
-
-	delta_distance.x = get_delta_distance(direction.x);
-	delta_distance.y = get_delta_distance(direction.y);
-
-	if (direction.x < 0)
+	ray->direction.x = cos(global->player.angle);
+	ray->direction.y = sin(global->player.angle);
+	delta_distance.x = get_delta_distance(ray->direction.x);
+	delta_distance.y = get_delta_distance(ray->direction.y);
+	if (ray->direction.x < 0)
 	{
 		step.x = -1; // Calculating X step (depending on the direction)
 		side_distance.x = (global->player.position.x - destination.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
@@ -85,8 +74,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 		step.x = 1;
 		side_distance.x = (destination.x + 1.0f - global->player.position.x) * delta_distance.x;
 	}
-
-	if (direction.y < 0)
+	if (ray->direction.y < 0)
 	{
 		step.y = -1; // Calculating Y step (depending on the direction)
 		side_distance.y = (global->player.position.y - destination.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
@@ -96,8 +84,6 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 		step.y = 1;
 		side_distance.y = (destination.y + 1.0f - global->player.position.y) * delta_distance.y;
 	}
-
-
 	// boucle qui va faire avancer notre rayon jusqu'a toucher un mur
 	while (1)
 	{
@@ -111,13 +97,8 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 			side_distance.y += delta_distance.y;
 			destination.y += step.y;
 		}
-
-		// Converting pixel coordinates to tab coordinates
-		t_vector2_d cell = {
-			destination.x / MINI_WIDTH,
-			destination.y / MINI_WIDTH
-		};
-
+		cell.x = destination.x / MINI_WIDTH;
+		cell.y = destination.y / MINI_WIDTH;
 		if (global->map_datas.map[cell.y][cell.x] == '1') // Is a wall
 		{
 			printf("dest x: %f\n", destination.x);
