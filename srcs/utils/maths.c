@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/15 15:00:46 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:36:29 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ float	radians_to_degrees(float radian)
 	return (radian / (M_PI / 180.0));
 }
 
+
 t_vector2_d	ftoi(t_vector2_f positions)
 {
 	t_vector2_d	destination;
@@ -29,6 +30,17 @@ t_vector2_d	ftoi(t_vector2_f positions)
 	destination.x = (int)positions.x;
 	destination.y = (int)positions.y;
 	return (destination);
+}
+
+float	get_delta_distance(float direction)
+{
+	float	delta_distance;
+
+	if (direction == 0)
+		delta_distance = 1e30;
+	else
+		delta_distance = fabs(1.0f / direction);
+	return (delta_distance);
 }
 
 /*
@@ -60,8 +72,8 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 	direction.x = cos(global->player.angle);
 	direction.y = sin(global->player.angle);
 
-	delta_distance.x = (direction.x == 0) ? 1e30 : fabs(1.0f / direction.x); // 1e30 is a large value
-	delta_distance.y = (direction.y == 0) ? 1e30 : fabs(1.0f / direction.y);
+	delta_distance.x = get_delta_distance(direction.x);
+	delta_distance.y = get_delta_distance(direction.y);
 
 	if (direction.x < 0)
 	{

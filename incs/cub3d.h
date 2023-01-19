@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/15 19:55:17 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:03:44 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct s_player
 
 }	t_player;
 
-/*
+/*	
 	float coordinates.
 	better performances, less precision than double.
 	https://b-bischoff.github.io/web/cube3d.html
