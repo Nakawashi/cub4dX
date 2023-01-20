@@ -1,47 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maths.c                                            :+:      :+:    :+:   */
+/*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/19 22:56:01 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/20 17:31:07 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	degree_to_radians(float degree)
-{
-	return (degree * M_PI / 180.0);
-}
+// static void	init_dda(t_global *global, t_ray *ray)
+// {
 
-float	radians_to_degrees(float radian)
-{
-	return (radian / (M_PI / 180.0));
-}
-
-
-t_vector2_d	ftoi(t_vector2_f positions)
-{
-	t_vector2_d	destination;
-
-	destination.x = (int)positions.x;
-	destination.y = (int)positions.y;
-	return (destination);
-}
-
-float	get_delta_distance(float direction)
-{
-	float	delta_distance;
-
-	if (direction == 0)
-		delta_distance = 1e30;
-	else
-		delta_distance = fabs(1.0f / direction);
-	return (delta_distance);
-}
+// }
 
 /*
 	Digital Differential Analysis is a fast algorithm
@@ -51,62 +25,61 @@ float	get_delta_distance(float direction)
 	1. set in wich direction we are going to follow, with step value
 	2. infinite loop until we find a wall
 */
-t_vector2_f	dda(t_global *global, t_ray *ray)
+t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 {
 	t_vector2_d cell;
-	t_vector2_f	destination; // corrdinate of where we touch the wall
 	t_vector2_f step; // either 1 or -1
 	t_vector2_f	side_distance;
 	t_vector2_f	delta_distance;
 
-	destination = global->player.position;
-	ray->direction.x = cos(global->player.angle);
-	ray->direction.y = sin(global->player.angle);
+	ray->impact_cell = global->player.position;
+	ray->direction.x = cos(angle);
+	ray->direction.y = sin(angle);
 	delta_distance.x = get_delta_distance(ray->direction.x);
 	delta_distance.y = get_delta_distance(ray->direction.y);
 	if (ray->direction.x < 0)
 	{
 		step.x = -1; // Calculating X step (depending on the direction)
-		side_distance.x = (global->player.position.x - destination.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
+		side_distance.x = (global->player.position.x - ray->impact_cell.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
 	}
 	else
 	{
 		step.x = 1;
-		side_distance.x = (destination.x + 1.0f - global->player.position.x) * delta_distance.x;
+		side_distance.x = (ray->impact_cell.x + 1.0f - global->player.position.x) * delta_distance.x;
 	}
 	if (ray->direction.y < 0)
 	{
 		step.y = -1; // Calculating Y step (depending on the direction)
-		side_distance.y = (global->player.position.y - destination.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
+		side_distance.y = (global->player.position.y - ray->impact_cell.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
 	}
 	else
 	{
 		step.y = 1;
-		side_distance.y = (destination.y + 1.0f - global->player.position.y) * delta_distance.y;
+		side_distance.y = (ray->impact_cell.y + 1.0f - global->player.position.y) * delta_distance.y;
 	}
-	// boucle qui va faire avancer notre rayon jusqu'a toucher un mur
 	while (1)
 	{
 		if (side_distance.x < side_distance.y)
 		{
 			side_distance.x += delta_distance.x;
-			destination.x += step.x;
+			ray->impact_cell.x += step.x;
 		}
 		else
 		{
 			side_distance.y += delta_distance.y;
-			destination.y += step.y;
+			ray->impact_cell.y += step.y;
 		}
-		cell.x = destination.x / MINI_WIDTH;
-		cell.y = destination.y / MINI_WIDTH;
-		if (global->map_datas.map[cell.y][cell.x] == '1') // Is a wall
+		cell.x = ray->impact_cell.x / MINI_WIDTH;
+		cell.y = ray->impact_cell.y / MINI_WIDTH;
+		if (global->map_datas.map[cell.y][cell.x] == '1')
 		{
-			printf("dest x: %f\n", destination.x);
-			printf("dest y: %f\n", destination.y);
-			bresenham(global, global->player.position, destination, PLUM);
-			return (destination);
+			printf("dest x: %f\n", ray->impact_cell.x);
+			printf("dest y: %f\n", ray->impact_cell.y);
+			bresenham(global, global->player.position, ray->impact_cell, PLUM);
+			return (ray->impact_cell);
 		}
 	}
+}
 
 
 // gestion des erreurs ci dessous
@@ -144,5 +117,3 @@ t_vector2_f	dda(t_global *global, t_ray *ray)
 // 		return (vector_d_to_f(destination));
 // 	}
 // }
-
-}

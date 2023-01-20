@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/15 19:30:22 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:44:51 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_interface(t_global *global)
 	init_window(&global->window);
 	my_mlx_put_ceiling(global, 0, 0, BLEU);
 	my_mlx_put_floor(global, 0, WIN_HEIGTH/2, JAUNE);
-	global->map_datas.map = read_map("assets/map2.cub");
+	global->map_datas.map = read_map("assets/map1.cub");
 	if (!global->map_datas.map)
 		exit (1);
 	get_map_height(&global->map_datas);

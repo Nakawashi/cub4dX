@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/19 17:03:44 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:33:53 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@
 # define ARROW_DOWN 125
 # define ARROW_RIGHT 124
 # define KEY_ESC 53
+
+// 1 degree in radians
+# define FOV 60
+# define PI 3.1415926
 
 // events a ne pas confondre avec les "evenements du clavier"
 enum e_events
@@ -123,18 +127,22 @@ typedef struct s_player
 
 }	t_player;
 
-/*	
+/*
 	float coordinates.
 	better performances, less precision than double.
 	https://b-bischoff.github.io/web/cube3d.html
+
+	direction : plot right or left side
+	impact_cell : destinaton's coordinates, where our ray touches the wall
+	side_hit : wich side of the wall is hit
 */
 typedef struct s_ray
 {
 	t_vector2_f	direction;
-	t_vector2_f	cell_position;
+	t_vector2_f	impact_cell;
 	float		ray_length;
-	int			wall_side_hit;
-	float		angle;
+	int			side_hit;
+	float		radian_angle;
 }	t_ray;
 
 typedef struct s_global
@@ -191,6 +199,7 @@ void		get_map_height(t_map *map);
 void		my_mlx_put_square(t_img *img, t_vector2_d pos, int size, int color);
 void		init_minimap(t_global *global);
 void		draw_minimap(t_global *global);
+t_vector2_f	dda(t_global *global, t_ray *ray, float angle);
 
 //------------------------------//
 //								//
@@ -216,14 +225,14 @@ void		get_player_coordinates(char **map, t_vector2_f position);
 
 //------------------------------//
 //								//
-//			MATHS				//
+//			MATHS UTILS			//
 //								//
 //------------------------------//
 
 float		degree_to_radians(float degree);
 float		radians_to_degrees(float radian);
-t_vector2_f	dda(t_global *global, t_ray *ray);
-
+float		get_delta_distance(float direction);
 void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
+
 
 #endif
