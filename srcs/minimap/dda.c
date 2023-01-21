@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/20 17:31:07 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/21 11:57:39 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 {
 	t_vector2_d cell;
 	t_vector2_f step; // either 1 or -1
-	t_vector2_f	side_distance;
 	t_vector2_f	delta_distance;
 
 	ray->impact_cell = global->player.position;
@@ -40,41 +39,41 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 	if (ray->direction.x < 0)
 	{
 		step.x = -1; // Calculating X step (depending on the direction)
-		side_distance.x = (global->player.position.x - ray->impact_cell.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
+		ray->side_dist.x = (global->player.position.x - ray->impact_cell.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
 	}
 	else
 	{
 		step.x = 1;
-		side_distance.x = (ray->impact_cell.x + 1.0f - global->player.position.x) * delta_distance.x;
+		ray->side_dist.x = (ray->impact_cell.x + 1.0f - global->player.position.x) * delta_distance.x;
 	}
 	if (ray->direction.y < 0)
 	{
 		step.y = -1; // Calculating Y step (depending on the direction)
-		side_distance.y = (global->player.position.y - ray->impact_cell.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
+		ray->side_dist.y = (global->player.position.y - ray->impact_cell.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
 	}
 	else
 	{
 		step.y = 1;
-		side_distance.y = (ray->impact_cell.y + 1.0f - global->player.position.y) * delta_distance.y;
+		ray->side_dist.y = (ray->impact_cell.y + 1.0f - global->player.position.y) * delta_distance.y;
 	}
 	while (1)
 	{
-		if (side_distance.x < side_distance.y)
+		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			side_distance.x += delta_distance.x;
+			ray->side_dist.x += delta_distance.x;
 			ray->impact_cell.x += step.x;
 		}
 		else
 		{
-			side_distance.y += delta_distance.y;
+			ray->side_dist.y += delta_distance.y;
 			ray->impact_cell.y += step.y;
 		}
 		cell.x = ray->impact_cell.x / MINI_WIDTH;
 		cell.y = ray->impact_cell.y / MINI_WIDTH;
 		if (global->map_datas.map[cell.y][cell.x] == '1')
 		{
-			printf("dest x: %f\n", ray->impact_cell.x);
-			printf("dest y: %f\n", ray->impact_cell.y);
+// printf("dest x: %f\n", ray->impact_cell.x);
+// printf("dest y: %f\n", ray->impact_cell.y);
 			bresenham(global, global->player.position, ray->impact_cell, PLUM);
 			return (ray->impact_cell);
 		}

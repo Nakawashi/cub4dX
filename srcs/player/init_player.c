@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/19 22:45:42 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/21 11:30:44 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	coordinate_to_pixels(int n)
 	get player's coordinates
 	Creation of the player's image
 	Print it on the screen at those coordinates
-	get player's watching direction (angle)
+	get player's watching direction (initial_angle)
 */
 void	init_player(t_global *global, t_vector2_f pos, int color)
 {

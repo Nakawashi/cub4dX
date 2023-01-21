@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/20 17:33:53 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/21 11:56:59 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct s_player
 	t_img		img;
 	t_vector2_f	position;
 	char		direction;
-	float		angle;
+	float		initial_angle;
 	float		speed;
 
 }	t_player;
@@ -140,9 +140,9 @@ typedef struct s_ray
 {
 	t_vector2_f	direction;
 	t_vector2_f	impact_cell;
+	t_vector2_f	side_dist;
 	float		ray_length;
 	int			side_hit;
-	float		radian_angle;
 }	t_ray;
 
 typedef struct s_global
