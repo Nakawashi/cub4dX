@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/21 11:56:59 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/23 00:06:18 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 
 // 1 degree in radians
 # define FOV 60
-# define PI 3.1415926
+
 
 // events a ne pas confondre avec les "evenements du clavier"
 enum e_events

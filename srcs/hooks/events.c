@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/21 12:23:57 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/23 01:01:48 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,22 @@ static void	move_left(t_global *global)
 
 int	key_hook(int keycode, t_global *global)
 {
-	draw_minimap(global); // clear minimap
+	int	i;
 
+	draw_minimap(global); // clear minimap
+	i = 30;
+	while (i >= 0)
+	{
+		dda(global, &global->ray, global->player.initial_angle - (degree_to_radians(i)));
+		i--;
+	}
 	dda(global, &global->ray, global->player.initial_angle);
-	global->ray.impact_cell.
+	i = 0;
+	while (i < 30)
+	{
+		dda(global, &global->ray, global->player.initial_angle + (degree_to_radians(i)));
+		i++;
+	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->minimap.img, 0, 0); // display minimap PLUS dda
 	draw_player(global, global->player.position);
