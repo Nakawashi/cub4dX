@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/23 00:06:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:49:29 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,10 @@ typedef struct s_ray
 	t_vector2_f	impact_cell;
 	t_vector2_f	side_dist;
 	float		ray_length;
-	int			side_hit;
+	float		perp_wall_dist;
+	float		wallX;
+	char		side_hit;
+	int			texX;
 }	t_ray;
 
 typedef struct s_global

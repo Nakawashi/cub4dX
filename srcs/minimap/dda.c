@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/23 00:57:41 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:56:17 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 	delta_distance.y = get_delta_distance(ray->direction.y);
 	if (ray->direction.x < 0)
 	{
-		step.x = -1; // Calculating X step (depending on the direction)
+		step.x = -1;
 		ray->side_dist.x = (global->player.position.x - ray->impact_cell.x) * delta_distance.x; // Calculating X gap to the nearest integer coordinate
 	}
 	else
@@ -48,7 +48,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 	}
 	if (ray->direction.y < 0)
 	{
-		step.y = -1; // Calculating Y step (depending on the direction)
+		step.y = -1;
 		ray->side_dist.y = (global->player.position.y - ray->impact_cell.y) * delta_distance.y; // Calculating Y gap to the nearest integer coordinate
 	}
 	else
@@ -58,22 +58,44 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 	}
 	while (1)
 	{
+		//jump to next map square, either in x-direction, or in y-direction
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
 			ray->side_dist.x += delta_distance.x;
 			ray->impact_cell.x += step.x;
+			ray->side_hit = 'v';
 		}
 		else
 		{
 			ray->side_dist.y += delta_distance.y;
 			ray->impact_cell.y += step.y;
+			ray->side_hit = 'h';
 		}
 		cell.x = ray->impact_cell.x / MINI_WIDTH;
 		cell.y = ray->impact_cell.y / MINI_WIDTH;
 		if (global->map_datas.map[cell.y][cell.x] == '1')
 		{
-// printf("dest x: %f\n", ray->impact_cell.x);
-// printf("dest y: %f\n", ray->impact_cell.y);
+			//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
+			if (ray->side_hit == 'v')
+			{
+				ray->perp_wall_dist = ray->side_dist.x - delta_distance.x;
+				ray->wallX = global->player.position.y + ray->perp_wall_dist * ray->direction.y;
+			}
+			else
+			{
+				ray->perp_wall_dist = ray->side_dist.y - delta_distance.y;
+				ray->wallX = global->player.position.x + ray->perp_wall_dist * ray->direction.x;
+			}
+			ray->wallX -= floor(ray->wallX);
+			ray->texX = (int)(ray->wallX * (float)ray->texX);
+			if (ray->side_hit == 'v' && ray->direction.x > 0)
+				ray->texX = MINI_WIDTH - ray->texX - 1;
+			if (ray->side_hit == 'h' && ray->direction.y < 1)
+				ray->texX = MINI_WIDTH - ray->texX - 1;
+			printf("wall site : [%c]\n", ray->side_hit);
+			printf("wall dist : [%f]\n", ray->perp_wall_dist);
+			printf("wall coord : [%f]\n", ray->wallX);
+			printf("wall texture : [%d]\n", ray->texX);
 			bresenham(global, global->player.position, ray->impact_cell, PLUM);
 			return (ray->impact_cell);
 		}
