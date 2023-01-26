@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/25 18:56:17 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:26:08 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,16 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 				ray->perp_wall_dist = ray->side_dist.y - delta_distance.y;
 				ray->wallX = global->player.position.x + ray->perp_wall_dist * ray->direction.x;
 			}
-			ray->wallX -= floor(ray->wallX);
+			ray->wallX -= floor(ray->wallX);//entier le plus proche
 			ray->texX = (int)(ray->wallX * (float)ray->texX);
 			if (ray->side_hit == 'v' && ray->direction.x > 0)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
 			if (ray->side_hit == 'h' && ray->direction.y < 1)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
-			printf("wall site : [%c]\n", ray->side_hit);
-			printf("wall dist : [%f]\n", ray->perp_wall_dist);
-			printf("wall coord : [%f]\n", ray->wallX);
-			printf("wall texture : [%d]\n", ray->texX);
+			printf("\nwall site		:	[%c]\n", ray->side_hit);
+			printf("wall dist		:	[%f]\n", ray->perp_wall_dist);
+			printf("wall coord		:	[%f]\n", ray->wallX);
+			printf("wall texture		:	[%d]\n\n", ray->texX);
 			bresenham(global, global->player.position, ray->impact_cell, PLUM);
 			return (ray->impact_cell);
 		}

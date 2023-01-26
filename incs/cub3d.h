@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/25 18:49:29 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:49:09 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_player
 	direction : plot right or left side
 	impact_cell : destinaton's coordinates, where our ray touches the wall
 	side_hit : wich side of the wall is hit
+	wallX
 */
 typedef struct s_ray
 {
@@ -155,6 +156,7 @@ typedef struct s_global
 	t_img		floor_img;
 	t_img		ceiling_img;
 	t_img		minimap;
+	t_img		render_img;
 	t_player	player;
 	t_ray		ray;
 }	t_global;
@@ -237,5 +239,7 @@ float		radians_to_degrees(float radian);
 float		get_delta_distance(float direction);
 void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
 
+
+void	display_rainbow(t_global *global);
 
 #endif
