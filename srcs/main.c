@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/21 11:30:44 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:59:46 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,48 +29,14 @@ int	main(int argc, char **argv)
 	global.player.position.x = coordinate_to_pixels(10);
 	global.player.position.y = coordinate_to_pixels(4);
 	global.player.initial_angle = degree_to_radians(90);
-	global.player.speed = 1;
+	global.player.speed = 1.5;
 
-// for (int i = 0; i < global.map_datas.map_height; ++i)
-// 	printf("%s\n", global.map_datas.map[i]);
+
+	display_rainbow(&global); // comme ca la minimap s'affiche tt de suite
 	init_minimap(&global);
 	init_player(&global, global.player.position, PINK); // position initiale du player
-// printf("global.player.x : %f\n", global.player.position.x);
-// printf("global.player.y : %f\n", global.player.position.y);
 	player_direction(global.player.direction, global.player.initial_angle);
 	handle_events(&global);
 	mlx_loop(&global.window.mlx_id);
 	return (0);
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	t_global	global;
-// 	(void)argc;
-// 	(void)argv;
-
-// //*******
-// 	init_interface(&global);
-// //*******
-
-// 	global.player.position.x = coordinate_to_pixels(10);
-// 	global.player.position.y = coordinate_to_pixels(4);
-// 	global.player.initial_angle = degree_to_radians(-90);
-
-
-// for (int i = 0; i < global.map_datas.map_height; ++i)
-// 	printf("%s\n", global.map_datas.map[i]);
-
-// 	init_minimap(&global);
-
-// 	printf("global.player.x : %f\n", global.player.position.x);
-// 	printf("global.player.y : %f\n", global.player.position.y);
-
-// 	init_player(&global, global.player.position, PINK); // position initiale du player
-// 	player_direction(global.player.direction, global.player.initial_angle);
-// 	global.player.speed = 1;
-
-// 	handle_events(&global);
-// 	mlx_loop(&global.window.mlx_id);
-// 	return (0);
-// }
