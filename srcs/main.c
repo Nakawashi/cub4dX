@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/26 16:59:46 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/28 00:15:10 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 	global.player.position.y = coordinate_to_pixels(4);
 	global.player.initial_angle = degree_to_radians(90);
 	global.player.speed = 1.5;
-
 
 	display_rainbow(&global); // comme ca la minimap s'affiche tt de suite
 	init_minimap(&global);

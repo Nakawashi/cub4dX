@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/26 14:29:13 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:48:18 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,41 +61,25 @@ int	key_hook(int keycode, t_global *global)
 		dda(global, &global->ray, global->player.initial_angle + (degree_to_radians(i)));
 		i++;
 	}
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->minimap.img, 0, 0); // display minimap PLUS dda
 	draw_player(global, global->player.position);
 	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)
-	{
 		move_forward(global);
-		// printf("you pressed w\n\n");
-	}
 	if (keycode == KEY_A)
-	{
 		move_left(global);
-		// printf("you pressed a\n\n");
-	}
 	if (keycode == KEY_S)
-	{
 		move_backward(global);
-		// printf("you pressed s\n\n");
-	}
 	if (keycode == KEY_D)
-	{
 		move_right(global);
-		// printf("you pressed d\n\n");
-	}
 	if (keycode == ARROW_LEFT)
-	{
-		global->player.initial_angle -= 0.04;
-	}
+		global->player.initial_angle -= 0.05;
 	if (keycode == ARROW_RIGHT)
-	{
-		global->player.initial_angle += 0.04;
-	}
-	printf("player horizontal :	[%f]\n", global->player.position.x);
-	printf("player vertical : 	[%f]\n", global->player.position.y);
+		global->player.initial_angle += 0.05;
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->minimap.img, 0, 0); // display minimap PLUS dda
+	printf("player.position.x :	[%f]\n", global->player.position.x);
+	printf("player.position.y :	[%f]\n", global->player.position.y);
 	return (0);
 }
 

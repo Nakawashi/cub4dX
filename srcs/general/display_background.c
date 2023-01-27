@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:10:32 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 15:58:20 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:12:15 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 	careful: i and j build the image (line per line)
 	x and y are position where to start to prin, in the window
 */
-void	my_mlx_put_background(t_global *global, int x, int y)
+void	display_background(t_global *global, int x, int y)
 {
 	int	i;
 	int	j;
+	int	k;
 
+	k = 32;
 	create_image(&global->background_img, global->window.mlx_id, WIN_WIDTH, WIN_HEIGTH);
 	i = 0;
 	while(i < WIN_HEIGTH)

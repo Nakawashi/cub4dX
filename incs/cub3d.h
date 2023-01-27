@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/26 15:49:09 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:19:24 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@
 // Window
 # define WIN_WIDTH 1024
 # define WIN_HEIGTH 512
-# define JAUNE 0x00FFCE6D
 # define BLEU 0x0081D5FF
+# define JAUNE 0x00FFCE6D
 # define PLUM 0x00DDA0DD
+# define BORDEAU 0x005F021F
+# define BLEUF 0x00001BEC
+# define G_FAV 0x008700AF
 
 // Minimap
 // Careful could have to update init_position file if this value is changed
@@ -153,8 +156,7 @@ typedef struct s_global
 {
 	t_window	window;
 	t_map		map_datas;
-	t_img		floor_img;
-	t_img		ceiling_img;
+	t_img		background_img;
 	t_img		minimap;
 	t_img		render_img;
 	t_player	player;
@@ -171,8 +173,7 @@ typedef struct s_global
 void		init_window(t_window *window);
 void		init_interface(t_global *global);
 // display ground
-void		my_mlx_put_floor(t_global *global, int x, int y, int color);
-void		my_mlx_put_ceiling(t_global *global, int x, int y, int color);
+void		display_background(t_global *global, int x, int y);
 // handle exit
 int			clean(t_global *global);
 

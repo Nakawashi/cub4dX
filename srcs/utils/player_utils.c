@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:30:41 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/15 19:34:50 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:42:39 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	get_player_coordinates(char **map, t_vector2_f position)
 				position.x = coordinate_to_pixels(j);
 				position.y = coordinate_to_pixels(i);
 				printf("x: [%f] y: [%f]\n", position.x, position.y);
-
 				return ;
 			}
 		}

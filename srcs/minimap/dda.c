@@ -6,16 +6,11 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/26 15:26:08 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:46:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static void	init_dda(t_global *global, t_ray *ray)
-// {
-
-// }
 
 /*
 	Digital Differential Analysis is a fast algorithm
@@ -92,10 +87,10 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
 			if (ray->side_hit == 'h' && ray->direction.y < 1)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
-			printf("\nwall site		:	[%c]\n", ray->side_hit);
-			printf("wall dist		:	[%f]\n", ray->perp_wall_dist);
-			printf("wall coord		:	[%f]\n", ray->wallX);
-			printf("wall texture		:	[%d]\n\n", ray->texX);
+			// printf("\nwall site		:	[%c]\n", ray->side_hit);
+			// printf("wall dist		:	[%f]\n", ray->perp_wall_dist);
+			// printf("wall coord		:	[%f]\n", ray->wallX);
+			// printf("wall texture		:	[%d]\n\n", ray->texX);
 			bresenham(global, global->player.position, ray->impact_cell, PLUM);
 			return (ray->impact_cell);
 		}
