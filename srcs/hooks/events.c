@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/29 12:23:06 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/29 12:29:34 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	draw_player(t_global *global, t_vector2_f pos)
 {
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.img.img, pos.x - 2, pos.y - 2);
+		global->player.img.img, pos.x - 1, pos.y - 1);
 }
 
 static void	move_forward(t_global *global)
@@ -47,20 +47,6 @@ int	key_hook(int keycode, t_global *global)
 {
 	int	i;
 
-	draw_minimap(global); // clear minimap
-	i = 30;
-	while (i >= 0)
-	{
-		dda(global, &global->ray, global->player.initial_angle - (degree_to_radians(i)));
-		i--;
-	}
-	dda(global, &global->ray, global->player.initial_angle);
-	i = 0;
-	while (i < 30)
-	{
-		dda(global, &global->ray, global->player.initial_angle + (degree_to_radians(i)));
-		i++;
-	}
 	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)
@@ -75,6 +61,20 @@ int	key_hook(int keycode, t_global *global)
 		global->player.initial_angle -= 0.05;
 	if (keycode == ARROW_RIGHT)
 		global->player.initial_angle += 0.05;
+	draw_minimap(global); // clear minimap
+	i = 30;
+	while (i >= 0)
+	{
+		dda(global, &global->ray, global->player.initial_angle - (degree_to_radians(i)));
+		i--;
+	}
+	dda(global, &global->ray, global->player.initial_angle);
+	i = 0;
+	while (i < 30)
+	{
+		dda(global, &global->ray, global->player.initial_angle + (degree_to_radians(i)));
+		i++;
+	}
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->minimap.img, 0, 0); // display minimap PLUS dda
 	draw_player(global, global->player.position);

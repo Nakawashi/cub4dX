@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/29 12:27:41 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/29 12:39:07 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,37 +58,6 @@ void	create_image(t_img *img, t_window *mlx_id, int width, int height)
 	img->line_length /= 4;
 }
 
-/*
-	display vertical pixels
-*/
-// void	display_rainbow(t_global *global)
-// {
-// 	int			column;
-// 	int			line;
-// 	int			i;
-// 	//const int	colors[] = {BLEU, JAUNE, PLUM};
-// 	// const int	colors[] = {0x00ff0000, 0x00ffa500, 0x00ffff00, 0x00008000, 0x000000ff, 0x004b0082, 0x00ee82ee};
-
-// 	create_image(&global->render_img, global->window.mlx_id, WIN_WIDTH, WIN_HEIGTH);
-// 	i = 0;
-// 	line = 0;
-// 	while (line < WIN_WIDTH)
-// 	{
-// 		column = -1;
-// 		while (column < WIN_HEIGTH/2)
-// 		{
-// 			his_mlx_pixel_put(&global->render_img, line, column, 0x00ffff00); // 0/4 = 0, 1/4 = 0, 2/4 = 0, 3/4 = 0, 4/4 = 1.
-// 			++column;
-// 			++i;
-// 		}
-// 		if (i == 4)
-// 			i = -1;
-// 		++i;
-// 		++line;
-// 	}
-// 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0);
-// }
-
 void	display_rainbow(t_global *global)
 {
 	int			column;
@@ -103,9 +72,14 @@ void	display_rainbow(t_global *global)
 	while (line < WIN_WIDTH)
 	{
 		column = 0;
-		while (column < WIN_HEIGTH/2)
+		while (column < WIN_HEIGTH)
 		{
-			his_mlx_pixel_put(&global->render_img, line, column, colors[i/10]);//meme taille que la couleur
+			if (column <= 250)
+				his_mlx_pixel_put(&global->render_img, line, column, TRANSP);//meme taille que la couleur
+			else if (column < 350)
+				his_mlx_pixel_put(&global->render_img, line, column, colors[i/10]);
+			else
+				his_mlx_pixel_put(&global->render_img, line, column, TRANSP);
 			++column;
 		}
 		if (i == 29)
@@ -113,5 +87,5 @@ void	display_rainbow(t_global *global)
 		++i;
 		++line;
 	}
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0 + WIN_HEIGTH/3);
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0);
 }

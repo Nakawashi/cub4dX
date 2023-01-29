@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 19:19:24 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/29 12:33:38 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define BORDEAU 0x005F021F
 # define BLEUF 0x00001BEC
 # define G_FAV 0x008700AF
+# define TRANSP 0xFF000000
 
 // Minimap
 // Careful could have to update init_position file if this value is changed
@@ -101,7 +102,7 @@ typedef struct s_window
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	char	*texture_path;
 	int		img_width;
 	int		img_height;
