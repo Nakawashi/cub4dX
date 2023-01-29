@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/28 00:34:13 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/29 12:27:41 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@
 
 	il faut dereferencer le char puis a nouveau recuperer la valeur pour
 	recuperer le int casté
+
+	img->addr : on met le pixel de telle couleur a cet index du tableau
 */
 void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	if (x < 0 || y < 0 || x > img->img_width || y > img->img_height)
+		return ;
+	img->addr[y * img->line_length + x] = color;
 }
 
 void	init_img_struct(t_img *img)
@@ -47,11 +48,14 @@ void	create_image(t_img *img, t_window *mlx_id, int width, int height)
 {
 	init_img_struct(img);
 	img->img = mlx_new_image(mlx_id, width, height);
-	img->addr = mlx_get_data_addr(
+	img->img_width = width;
+	img->img_height = height;
+	img->addr = (int *)mlx_get_data_addr(
 		img->img,
 		&img->bits_per_pixel,
 		&img->line_length,
 		&img->endian);
+	img->line_length /= 4;
 }
 
 /*
