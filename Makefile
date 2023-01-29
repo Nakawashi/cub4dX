@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/01/09 13:15:16 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/19 23:59:43 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,22 @@ NONE	= \033[0m
 #################################
 SRCS_FILES	=	srcs/main.c \
 				srcs/general/display_background.c \
-				srcs/general/init_window.c \
+				srcs/general/init_interface.c \
 				srcs/general/quit.c \
-				srcs/images/img_utils.c \
 				srcs/map/read_map.c \
+				srcs/map/check_map_utils.c \
 				srcs/map/read_file.c \
 				srcs/map/read_args.c \
-				srcs/map/map_utils.c \
+				srcs/utils/img_utils.c \
+				srcs/utils/maths_utils.c \
+				srcs/utils/bresenham.c \
+				srcs/utils/player_utils.c \
 				srcs/minimap/create_square.c \
 				srcs/minimap/init_minimap.c \
-				srcs/moves/events.c \
-				srcs/player/init_position.c \
+				srcs/minimap/dda.c \
+				srcs/hooks/events.c \
+				srcs/player/init_player.c \
+				srcs/player/player_movements.c
 
 
 #####################################
@@ -79,8 +84,8 @@ INCLUDES	+= -L $(DIR_MLX) -lmlx
 
 all: $(NAME)
 
-# $(OBJS): %.o : %.c
-# 	$(CC) $(CFLAGS) -I $(OPTIONS) -o $@ -c $<
+$(OBJS): %.o : %.c incs/cub3d.h
+	$(CC) $(CFLAGS) -I $(OPTIONS) -o $@ -c $<
 
 $(NAME):	$(OBJS)
 	@printf "$(BLUE)Making libmlx... $(NONE)"

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_position.c                                    :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 14:14:03 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 20:24:18 by lgenevey         ###   ########.fr       */
+/*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/01/21 11:30:44 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,37 @@
 */
 int	coordinate_to_pixels(int n)
 {
-	return (n * MINI_WIDTH + (MINI_WIDTH/2) - 2);
-	//return (n * MINI_WIDTH);
+	return (n * MINI_WIDTH + (MINI_WIDTH / 2) - 2);
 }
 
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// [x	-	j	-	width	-	lines]
-// [y	-	i	-	height	-	columns]
-// OK
+/*
+	@arguments
+	t_global *global : can access to many datas
+	int x and int y : coordinates where the image is printed
+	int color : color of the image
+	@description
+	get player's coordinates
+	Creation of the player's image
+	Print it on the screen at those coordinates
+	get player's watching direction (initial_angle)
+*/
+void	init_player(t_global *global, t_vector2_f pos, int color)
+{
+	int	i;
+	int	j;
+
+	create_image(&global->player.img, global->window.mlx_id, 4, 4);
+	i = 0;
+	while(i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			his_mlx_pixel_put(&global->player.img, j, i, color);
+			++j;
+		}
+		++i;
+	}
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
+		global->player.img.img, pos.x, pos.y);
+}

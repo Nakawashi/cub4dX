@@ -6,35 +6,34 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 13:08:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/08 16:14:54 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:51:49 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-	draw colored square for the minimap
+	draw colored square on the minimap
 	careful: i and j build the image (line per line)
-	x and y are position where to start to prin, in the window
+	x and y are position where to start to print, in the window
 */
-void	my_mlx_put_square(t_global *global, int x, int y, int color)
+void	my_mlx_put_square(t_img *img, t_vector2_d pos, int size, int color)
 {
 	int	i;
 	int	j;
 
-	create_image(&global->minimap, global->window.mlx_id,
-		MINI_WIDTH, MINI_HEIGHT);
 	i = 0;
-	while(i < MINI_HEIGHT)
+	while(i < size)
 	{
 		j = 0;
-		while (j < MINI_WIDTH)
+		while (j < size)
 		{
-			his_mlx_pixel_put(&global->minimap, j, i, color);
+			his_mlx_pixel_put(img,
+				j + pos.x * MINI_WIDTH,
+				i + pos.y * MINI_WIDTH,
+				color);
 			++j;
 		}
 		++i;
 	}
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->minimap.img, x, y);
 }
