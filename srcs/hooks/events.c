@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/29 12:29:34 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:56:05 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,26 @@ int	key_hook(int keycode, t_global *global)
 	if (keycode == KEY_D)
 		move_right(global);
 	if (keycode == ARROW_LEFT)
-		global->player.initial_angle -= 0.05;
+		global->player.initial_angle -= 0.08;
 	if (keycode == ARROW_RIGHT)
-		global->player.initial_angle += 0.05;
+		global->player.initial_angle += 0.08;
 	draw_minimap(global); // clear minimap
 	i = 30;
-	while (i >= 0)
-	{
-		dda(global, &global->ray, global->player.initial_angle - (degree_to_radians(i)));
-		i--;
-	}
-	dda(global, &global->ray, global->player.initial_angle);
-	i = 0;
-	while (i < 30)
-	{
-		dda(global, &global->ray, global->player.initial_angle + (degree_to_radians(i)));
-		i++;
-	}
+	// while (i >= 0)
+	// {
+	// 	dda(global, &global->ray, global->player.initial_angle - (degree_to_radians(i)));
+	// 	i--;
+	// }
+	// // dda(global, &global->ray, global->player.initial_angle);
+	// i = 0;
+	// while (i < 30)
+	// {
+	// 	dda(global, &global->ray, global->player.initial_angle + (degree_to_radians(i)));
+	// 	i++;
+	// }
+	draw_rainbow(global);
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0);
+	printf("global->ray.ray_length	:	[%f]\n", global->ray.ray_length);
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->minimap.img, 0, 0); // display minimap PLUS dda
 	draw_player(global, global->player.position);
