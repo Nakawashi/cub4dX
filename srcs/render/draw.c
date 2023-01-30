@@ -6,51 +6,27 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/30 16:55:11 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:06:08 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-/*
-	Re-maps a number from one range to another.
-	First range : widths pixels
-	Second range : FOV
-	map(value, fromLow, fromHigh, toLow, toHigh)
-	value: the number to map.
-	fromLow: the lower bound of the value’s current range.
-	fromHigh: the upper bound of the value’s current range.
-	toLow: the lower bound of the value’s target range.
-	toHigh: the upper bound of the value’s target range.
-	https://www.arduino.cc/reference/en/language/functions/math/map/
-	x		:	ou je suis actuellement entre 0 et largeur de fenetre
-	in_min	:	colonne min, 0
-	in_max	:	colonne max, WIN_WIDTH
-	out_min	:	min range du FOV, 0 ou -30
-	out_max	:	max range du FOV, 60 ou 30
-*/
-// float	map(long x, long in_min, long in_max, long out_min, long out_max)
-// {
-// 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-// }
-float	map(long x)
-{
-	return (x - 0.0) * (60.0 - 0.0) / (1024.0 - 0.0) + 0.0;
-}
-
-void	draw_column(t_global *global, long pos, int *x)
+void	draw_column(t_global *global, int *x)
 {
 	int			i;
 	int			taille_baton;
 	int			temp;
+	long		actual_position;
 	const int	colors[] = {BORDEAU, G_FAV, BLEUF};
 
-
-	pos = 0;
+	actual_position = global->player.initial_angle - (degree_to_radians(-30));
 	temp = 0;
 	i = 0;
-	dda(global, &global->ray, global->player.initial_angle);
+	if (actual_position >= actual_position + 60)
+		return ;
+	dda(global, &global->ray, map(actual_position));
+	printf("map : [%f]\n", map(actual_position));
 	taille_baton = global->ray.ray_length;
 	while (i < WIN_HEIGTH)
 	{
@@ -65,18 +41,17 @@ void	draw_column(t_global *global, long pos, int *x)
 	if (temp == 29)
 		temp = -1;
 	++temp;
+	++actual_position;
 }
 
 void	draw_rainbow(t_global *global)
 {
-	int			column;
-	long		pos;
+	int		column;
 
-	pos = 0;
 	column = 0;
 	while (column < WIN_WIDTH)
 	{
-		draw_column(global, pos, &column);
+		draw_column(global, &column);
 		++column;
 	}
 }

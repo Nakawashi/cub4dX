@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/30 15:05:15 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:42:16 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,7 @@ float		degree_to_radians(float degree);
 float		radians_to_degrees(float radian);
 float		get_delta_distance(float direction);
 void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
+float		map(long pos);
 
 
 void	draw_rainbow(t_global *global);
