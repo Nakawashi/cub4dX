@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 18:46:47 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:39:51 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,21 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 		{
 			ray->side_dist.x += delta_distance.x;
 			ray->impact_cell.x += step.x;
-			ray->side_hit = 'v';
+			// ray->side_hit = 'v';
+			if (step.x == -1)
+				ray->side_hit = 'e';
+			else
+				ray->side_hit = 'w';
 		}
 		else
 		{
 			ray->side_dist.y += delta_distance.y;
 			ray->impact_cell.y += step.y;
-			ray->side_hit = 'h';
+			// ray->side_hit = 'h';
+			if (step.y == -1)
+				ray->side_hit = 's';
+			else
+				ray->side_hit = 'n';
 		}
 		cell.x = ray->impact_cell.x / MINI_WIDTH;
 		cell.y = ray->impact_cell.y / MINI_WIDTH;
@@ -73,13 +81,13 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 			//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
 			if (ray->side_hit == 'v')
 			{
-				ray->perp_wall_dist = ray->side_dist.x - delta_distance.x;
-				ray->wallX = global->player.position.y + ray->perp_wall_dist * ray->direction.y;
+				ray->ray_length = ray->side_dist.x - delta_distance.x;
+				ray->wallX = global->player.position.y + ray->ray_length * ray->direction.y;
 			}
 			else
 			{
-				ray->perp_wall_dist = ray->side_dist.y - delta_distance.y;
-				ray->wallX = global->player.position.x + ray->perp_wall_dist * ray->direction.x;
+				ray->ray_length = ray->side_dist.y - delta_distance.y;
+				ray->wallX = global->player.position.x + ray->ray_length * ray->direction.x;
 			}
 			ray->wallX -= floor(ray->wallX);//entier le plus proche
 			ray->texX = (int)(ray->wallX * (float)ray->texX);
@@ -87,10 +95,10 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
 			if (ray->side_hit == 'h' && ray->direction.y < 1)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
-			// printf("\nwall site		:	[%c]\n", ray->side_hit);
-			// printf("wall dist		:	[%f]\n", ray->perp_wall_dist);
-			// printf("wall coord		:	[%f]\n", ray->wallX);
-			// printf("wall texture		:	[%d]\n\n", ray->texX);
+			printf("\nwall side		:	[%c]\n", ray->side_hit);
+			printf("wall dist		:	[%f]\n", ray->ray_length);
+			printf("wall coord		:	[%f]\n", ray->wallX);
+			printf("wall texture	:	[%d]\n\n", ray->texX);
 			bresenham(global, global->player.position, ray->impact_cell, PLUM);
 			return (ray->impact_cell);
 		}

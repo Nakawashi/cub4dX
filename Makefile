@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/01/19 23:59:43 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/01/29 12:55:45 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/hooks/events.c \
 				srcs/player/init_player.c \
 				srcs/player/player_movements.c \
+				srcs/render/draw.c \
 
 #####################################
 #									#
