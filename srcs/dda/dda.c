@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 17:33:49 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 19:04:35 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,15 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 			//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
 			if (ray->side_dir == 'v')
 			{
-				printf("ray->side_dir : [%c]\n", ray->side_dir);
 				ray->ray_length = ray->side_dist.x - ray->delta_dist.x;
-				printf("ray->ray_length : [%f]\n", ray->ray_length);
 				ray->wallX = global->player.pos.y + ray->ray_length * ray->direction.y;
 			}
 			else
 			{
-				printf("ray->side_dir : [%c]\n", ray->side_dir);
 				ray->ray_length = ray->side_dist.y - ray->delta_dist.y;
-				printf("ray->ray_length : [%f]\n\n", ray->ray_length);
 				ray->wallX = global->player.pos.x + ray->ray_length * ray->direction.x;
 			}
+			
 			bresenham(global, global->player.pos, ray->i_cell, PLUM);
 			return (ray->i_cell);
 		}

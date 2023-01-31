@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 14:21:01 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:25:46 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,24 @@ void	draw_player(t_global *global, t_vector2_f pos)
 
 static void	move_forward(t_global *global)
 {
-	global->player.position.x += cos(global->player.initial_angle) * global->player.speed;
-	global->player.position.y += sin(global->player.initial_angle) * global->player.speed;
+	global->player.pos.x += cos(global->player.initial_angle) * global->player.speed;
+	global->player.pos.y += sin(global->player.initial_angle) * global->player.speed;
 }
 
 static void	move_backward(t_global *global)
 {
-	global->player.position.x -= cos(global->player.initial_angle) * global->player.speed;
-	global->player.position.y -= sin(global->player.initial_angle) * global->player.speed;
+	global->player.pos.x -= cos(global->player.initial_angle) * global->player.speed;
+	global->player.pos.y -= sin(global->player.initial_angle) * global->player.speed;
 }
 static void	move_right(t_global *global)
 {
-	global->player.position.x += cos(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
-	global->player.position.y += sin(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
+	global->player.pos.x += cos(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
+	global->player.pos.y += sin(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
 }
 static void	move_left(t_global *global)
 {
-	global->player.position.x += cos(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
-	global->player.position.y += sin(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
+	global->player.pos.x += cos(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
+	global->player.pos.y += sin(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
 }
 
 int	key_hook(int keycode, t_global *global)
@@ -69,7 +69,7 @@ int	key_hook(int keycode, t_global *global)
 
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0); // display minimap, and bresenham
 
-	draw_player(global, global->player.position);
+	draw_player(global, global->player.pos);
 	return (0);
 }
 
@@ -79,7 +79,7 @@ int	key_hook(int keycode, t_global *global)
 		draw_minimap(global);
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
 		global->minimap.img, 0, 0);
-	draw_player(global, global->player.position);
+	draw_player(global, global->player.pos);
 	dda(global, &global->ray);
 */
 void	handle_events(t_global *global)

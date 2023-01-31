@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 14:48:04 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 19:08:03 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	draw_column(t_global *global, int *x)
 {
-	int			i;
-	int			taille_baton;
+	int		i;
+	int		taille_baton;
 	// const int	colors[] = {BORDEAU, G_FAV, BLEUF};
 
 	i = 0;
