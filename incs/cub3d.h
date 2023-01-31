@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 14:00:30 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:23:55 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define BORDEAU 0x005F021F
 # define BLEUF 0x00001BEC
 # define G_FAV 0x008700AF
+# define TRUC 0x0087FFAF
 # define TRANSP 0xFF000000
 
 // Minimap

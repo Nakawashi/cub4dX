@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 13:39:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:44:46 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ float	get_delta_distance(float direction)
 // }
 float	map(long pos)
 {
-	return ((pos - 0.0) * (60.0 - 0.0) / (1024.0 - 0.0) + 0.0);
+	return ((pos - 0.0) * (0.0 - 60.0) / (1024.0 - 0.0) + 60.0);
 }

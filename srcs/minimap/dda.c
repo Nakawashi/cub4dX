@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 13:32:10 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:56:38 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,63 +81,20 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 			//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
 			if (ray->side_dir == 'v')
 			{
+				printf("ray->side_dir : [%c]\n", ray->side_dir);
 				ray->ray_length = ray->side_dist.x - delta_distance.x;
+				printf("ray->ray_length : [%f]\n", ray->ray_length);
 				ray->wallX = global->player.position.y + ray->ray_length * ray->direction.y;
 			}
 			else
 			{
+				printf("ray->side_dir : [%c]\n", ray->side_dir);
 				ray->ray_length = ray->side_dist.y - delta_distance.y;
+				printf("ray->ray_length : [%f]\n\n", ray->ray_length);
 				ray->wallX = global->player.position.x + ray->ray_length * ray->direction.x;
 			}
-			ray->wallX -= floor(ray->wallX);//entier le plus proche
-			ray->texX = (int)(ray->wallX * (float)ray->texX);
-			if (ray->side_dir == 'v' && ray->direction.x > 0)
-				ray->texX = MINI_WIDTH - ray->texX - 1;
-			if (ray->side_dir == 'h' && ray->direction.y < 1)
-				ray->texX = MINI_WIDTH - ray->texX - 1;
-			printf("\nwall side		:	[%c]\n", ray->side_hit);
-			printf("wall dist		:	[%f]\n", ray->ray_length);
-			printf("wall coord		:	[%f]\n", ray->wallX);
-			printf("wall texture	:	[%d]\n\n", ray->texX);
 			bresenham(global, global->player.position, ray->impact_cell, PLUM);
 			return (ray->impact_cell);
 		}
 	}
 }
-
-
-// gestion des erreurs ci dessous
-// // Using squared values is faster than using square root function
-// float ray_length = get_vector_d_length_squared(origin, destination);
-
-// while (ray_length < data->view_dst * data->view_dst)
-// {
-// 	if (side_distance.x < side_distance.y)
-// 	{
-// 		side_distance.x += delta_dist.x;
-// 		destination.x += step.x;
-// 	}
-// 	else
-// 	{
-// 		side_distance.y += delta_dist.y;
-// 		destination.y += step.y;
-// 	}
-
-// 	ray_length = get_vector_d_length_squared(origin, destination);
-
-// 	// Converting pixel coordinates to tab coordinates
-// 	t_vector2_d cell = {
-// 		destination.x / data->cell_size,
-// 		destination.y / data->cell_size
-// 	};
-
-// 	if (cell.x < 0 || cell.x >= data->win_width)
-// 		continue;
-// 	if (cell.y < 0 || cell.y >= data->win_height)
-// 		continue;
-
-// 	if (data->tab[cell.y][cell.x] == 1) // Is a wall
-// 	{
-// 		return (vector_d_to_f(destination));
-// 	}
-// }

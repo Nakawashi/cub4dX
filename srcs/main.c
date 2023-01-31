@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/29 12:58:50 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:36:29 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	main(int argc, char **argv)
 	init_interface(&global);
 	global.player.position.x = coordinate_to_pixels(10);
 	global.player.position.y = coordinate_to_pixels(4);
-	global.player.initial_angle = degree_to_radians(90);
+	global.player.initial_angle = degree_to_radians(0);
 	global.player.speed = 1.5;
 
-	init_minimap(&global);
 	init_rainbow(&global); // comme ca la minimap s'affiche tt de suite
+	init_minimap(&global);
 	init_player(&global, global.player.position, PINK); // position initiale du player
 	player_direction(global.player.direction, global.player.initial_angle);
 	handle_events(&global);

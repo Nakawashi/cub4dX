@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 14:04:45 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:21:01 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,14 @@ int	key_hook(int keycode, t_global *global)
 	if (keycode == ARROW_RIGHT)
 		global->player.initial_angle += 0.08;
 
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->background_img.img, 0, 0);
-
-	// draw_rainbow(global);
-	// mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0);
+	// mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->background_img.img, 0, 0); segfault
 
 	draw_minimap(global); // clear minimap
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0);
+
+	draw_rainbow(global); // draw render and bresenham
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0);
+
+	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0); // display minimap, and bresenham
 
 	draw_player(global, global->player.position);
 	return (0);
