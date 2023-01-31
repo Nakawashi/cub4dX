@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/30 17:42:16 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:00:30 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ typedef struct s_player
 	char		direction;
 	float		initial_angle;
 	float		speed;
-
 }	t_player;
 
 /*
@@ -138,8 +137,9 @@ typedef struct s_player
 
 	direction : plot right or left side
 	impact_cell : destinaton's coordinates, where our ray touches the wall
-	side_hit : wich side of the wall is hit
-	wallX
+	side_hit : wich side of the wall is hit (nsew)
+	side_dir : vertical or horizontal
+	wallX :
 */
 typedef struct s_ray
 {
@@ -149,6 +149,7 @@ typedef struct s_ray
 	float		ray_length;
 	float		wallX;
 	char		side_hit;
+	char		side_dir;
 	int			texX;
 }	t_ray;
 
@@ -173,7 +174,7 @@ typedef struct s_global
 void		init_window(t_window *window);
 void		init_interface(t_global *global);
 // display ground
-void		display_background(t_global *global, int x, int y);
+void		init_background(t_global *global, int x, int y);
 // handle exit
 int			clean(t_global *global);
 

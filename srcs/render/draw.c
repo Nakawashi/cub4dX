@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/30 19:06:08 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:04:38 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,11 @@ void	draw_column(t_global *global, int *x)
 	int			i;
 	int			taille_baton;
 	int			temp;
-	long		actual_position;
-	const int	colors[] = {BORDEAU, G_FAV, BLEUF};
+	// const int	colors[] = {BORDEAU, G_FAV, BLEUF};
 
-	actual_position = global->player.initial_angle - (degree_to_radians(-30));
 	temp = 0;
 	i = 0;
-	if (actual_position >= actual_position + 60)
-		return ;
-	dda(global, &global->ray, map(actual_position));
-	printf("map : [%f]\n", map(actual_position));
+	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x) - 30)); // map prend la position de la colonne entre 0 et 1024 et rend une valeur entre -30 et 30
 	taille_baton = global->ray.ray_length;
 	while (i < WIN_HEIGTH)
 	{
@@ -34,14 +29,13 @@ void	draw_column(t_global *global, int *x)
 			his_mlx_pixel_put(&global->render_img, *x, i, TRANSP);
 		else
 		{
-			his_mlx_pixel_put(&global->render_img, *x, i, colors[temp/10]);
+			his_mlx_pixel_put(&global->render_img, *x, i, G_FAV);
 		}
 		++i;
 	}
-	if (temp == 29)
-		temp = -1;
-	++temp;
-	++actual_position;
+	// if (temp == 29)
+	// 	temp = -1;
+	// ++temp;
 }
 
 void	draw_rainbow(t_global *global)

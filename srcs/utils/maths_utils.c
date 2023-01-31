@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/30 17:50:25 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:39:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ float	get_delta_distance(float direction)
 	in_max	:	colonne max, WIN_WIDTH
 	out_min	:	min range du FOV, 0 ou -30
 	out_max	:	max range du FOV, 60 ou 30
+	retourne un nombre entre 0 et 60 ici
 */
 // float	map(long x, long in_min, long in_max, long out_min, long out_max)
 // {
@@ -65,5 +66,5 @@ float	get_delta_distance(float direction)
 // }
 float	map(long pos)
 {
-	return (pos - 0.0) * (60.0 - 0.0) / (1024.0 - 0.0) + 0.0;
+	return ((pos - 0.0) * (60.0 - 0.0) / (1024.0 - 0.0) + 0.0);
 }

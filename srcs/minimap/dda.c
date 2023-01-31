@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/30 15:39:51 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:32:10 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 		{
 			ray->side_dist.x += delta_distance.x;
 			ray->impact_cell.x += step.x;
-			// ray->side_hit = 'v';
+			ray->side_dir = 'v';
 			if (step.x == -1)
 				ray->side_hit = 'e';
 			else
@@ -68,7 +68,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 		{
 			ray->side_dist.y += delta_distance.y;
 			ray->impact_cell.y += step.y;
-			// ray->side_hit = 'h';
+			ray->side_dir = 'h';
 			if (step.y == -1)
 				ray->side_hit = 's';
 			else
@@ -79,7 +79,7 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 		if (global->map_datas.map[cell.y][cell.x] == '1')
 		{
 			//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
-			if (ray->side_hit == 'v')
+			if (ray->side_dir == 'v')
 			{
 				ray->ray_length = ray->side_dist.x - delta_distance.x;
 				ray->wallX = global->player.position.y + ray->ray_length * ray->direction.y;
@@ -91,9 +91,9 @@ t_vector2_f	dda(t_global *global, t_ray *ray, float angle)
 			}
 			ray->wallX -= floor(ray->wallX);//entier le plus proche
 			ray->texX = (int)(ray->wallX * (float)ray->texX);
-			if (ray->side_hit == 'v' && ray->direction.x > 0)
+			if (ray->side_dir == 'v' && ray->direction.x > 0)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
-			if (ray->side_hit == 'h' && ray->direction.y < 1)
+			if (ray->side_dir == 'h' && ray->direction.y < 1)
 				ray->texX = MINI_WIDTH - ray->texX - 1;
 			printf("\nwall side		:	[%c]\n", ray->side_hit);
 			printf("wall dist		:	[%f]\n", ray->ray_length);

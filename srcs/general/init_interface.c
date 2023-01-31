@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 19:11:19 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:00:30 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_window(t_window *window)
 void	init_interface(t_global *global)
 {
 	init_window(&global->window);
-	display_background(global, 0, 0);
+	init_background(global, 0, 0);
 	global->map_datas.map = read_map("assets/map1.cub");
 	if (!global->map_datas.map)
 		exit (1);
