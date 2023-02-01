@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 18:48:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/29 11:57:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	draw_player(t_global *global, t_vector2_f pos)
 {
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.img.img, pos.x, pos.y);
+		global->player.img.img, pos.x - 2, pos.y - 2);
 }
 
 static void	move_forward(t_global *global)
