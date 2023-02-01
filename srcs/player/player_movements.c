@@ -18,14 +18,14 @@
 	@description
 	Indique dans quelle direction le joueur avancera sur la minimap
 */
-void	player_direction(char direction, float angle)
-{
-	if (direction == 'N')
-		angle = degree_to_radians(-90);
-	if (direction == 'W')
-		angle = degree_to_radians(180);
-	if (direction == 'E')
-		angle = degree_to_radians(0);
-	if (direction == 'S')
-		angle = degree_to_radians(90);
-}
+// void	player_direction(char direction, float angle)
+// {
+// 	if (direction == 'N')
+// 		angle = degree_to_radians(-90);
+// 	if (direction == 'W')
+// 		angle = degree_to_radians(180);
+// 	if (direction == 'E')
+// 		angle = degree_to_radians(0);
+// 	if (direction == 'S')
+// 		angle = degree_to_radians(90);
+// }
