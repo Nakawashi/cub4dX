@@ -195,6 +195,7 @@ int			clean(t_global *global);
 void		his_mlx_pixel_put(t_img *img, int x, int y, int color);
 void		init_img_struct(t_img *img);
 void		create_image(t_img *img, t_window *mlx_id, int width, int height);
+int			open_image(t_img *img, t_window *mlx_id, char *filename);
 
 //------------------------------//
 //								//
@@ -203,7 +204,7 @@ void		create_image(t_img *img, t_window *mlx_id, int width, int height);
 //------------------------------//
 
 
-int		read_file(t_global *global, const char *path_to_file);
+int		read_file(t_global *global, char *path_to_file);
 int		read_args(t_global *global, int fd);
 int		read_map(t_global *global, int fd);
 
@@ -213,8 +214,9 @@ int		check_illegal_chars(t_map *mapinfo);
 int		check_cases(t_map *mapinfo);
 int		square_map(t_map *mapinfo);
 
-// char	**read_map(const char *path_to_file);
-// void	get_map_height(t_map *map);
+int		parse_colors(t_global *global);
+int		ft_tab_length(char **tab);
+
 
 //------------------------------//
 //								//

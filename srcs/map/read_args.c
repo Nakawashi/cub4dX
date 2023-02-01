@@ -5,16 +5,7 @@ static int	is_color(char **line_args, t_window *win, int *nbr_args);
 static int	get_args(const char *line, t_global *global,
 				t_window *win, int *nbr_args);
 
-// Get length of a char **
-int	ft_tab_length(char **tab)
-{
-	size_t	length;
 
-	length = 0;
-	while (tab[length])
-		length++;
-	return (length);
-}
 
 int	read_args(t_global *global, int fd)
 {

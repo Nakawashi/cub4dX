@@ -1,12 +1,10 @@
-NO ./assets/normal_north.xpm
-SO ./assets/normal_south.xpm
-WE ./assets/normal_west.xpm
-EA ./assets/normal_east.xpm
+NO ./assets/brick.xpm
+SO ./assets/debug.xpm
+WE ./assets/furnace.xpm
+EA ./assets/tnt.xpm
 
-N ./maps/cursed.cub
-
-F 220,200,0
-C 225,30,0
+F 255,0,0
+C 0,255,0
 
 111111111111111111111111111111111111111111111111111111111111
 111111101111111111111111111111111111111111111111111111111111

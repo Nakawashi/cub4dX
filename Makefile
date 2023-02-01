@@ -37,6 +37,8 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/map/check_map_utils.c \
 				srcs/map/read_file.c \
 				srcs/map/read_args.c \
+				srcs/map/parse_utils.c \
+				srcs/map/parse_color.c \
 				srcs/utils/img_utils.c \
 				srcs/utils/maths_utils.c \
 				srcs/utils/bresenham.c \

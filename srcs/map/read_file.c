@@ -13,16 +13,20 @@
 #include "cub3d.h"
 
 static int	check_filename(const char *path);
+static int	after_parse(t_global *global);
 
 /*
 	Read the .ber map and saves it on map.map which is a 2 dimension table.
 */
-int	read_file(t_global *global, const char *path_to_file)
+int	read_file(t_global *global, char *path_to_file)
 {
 	int		fd;
 
-	if (check_filename(path_to_file) < 0)
-		return (-2);
+	if (check_filename(path_to_file) != 0)
+	{
+		printf("ERROR\n Error file not .cub\n");
+		return (-1);
+	}
 	fd = open(path_to_file, O_RDONLY);
 	if (fd == -1)
 	{
@@ -41,9 +45,25 @@ int	read_file(t_global *global, const char *path_to_file)
 			return (-2);
 	}
 	close(fd);
+	if (after_parse(global) < 0)
+		return (-2);
 	return (0);
 }
 
+static int	after_parse(t_global *global)
+{
+	if (open_image(&global->no, global->window.mlx_id, global->no.texture_path) < 0)
+		return (-2);
+	if (open_image(&global->so, global->window.mlx_id, global->so.texture_path) < 0)
+		return (-2);
+	if (open_image(&global->we, global->window.mlx_id, global->we.texture_path) < 0)
+		return (-2);
+	if (open_image(&global->ea, global->window.mlx_id, global->ea.texture_path) < 0)
+		return (-2);
+	if (parse_colors(global) < 0)
+		return (-2);
+	return (0);
+}
 
 static int	check_filename(const char *path)
 {

@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int	read_map_line(t_global *global, char **saved, char *line);
+static int	read_map_line(t_global *global, char **saved, char **line);
 
 /*
 	Read the .ber map and saves it on map.map which is a 2 dimension table.
@@ -31,7 +31,7 @@ int	read_map(t_global *global, int fd)
 			break ;
 		if (ft_strlen(saved) > 1 || ft_strlen(line) > 1)
 		{
-			read_map_line(global, &saved, line);
+			read_map_line(global, &saved, &line);
 			global->map_datas.map_height++;
 		}
 		free(line);
@@ -41,22 +41,22 @@ int	read_map(t_global *global, int fd)
 	return (0);
 }
 
-static int	read_map_line(t_global *global, char **saved, char *line)
+static int	read_map_line(t_global *global, char **saved, char **line)
 {
-	if (ft_strcmp(line, "\n") == 0)
+	if (ft_strcmp(*line, "\n") == 0)
 	{
-		free(line);
-		line = ft_strdup_safe(" \n");
+		free(*line);
+		*line = ft_strdup_safe(" \n");
 	}
-	*saved = ft_strjoin_free(*saved, line);
-	if (ft_strchr(line, '\n') != NULL
-		&& (int)ft_strlen(line) - 1 > global->map_datas.map_width)
+	*saved = ft_strjoin_free(*saved, *line);
+	if (ft_strchr(*line, '\n') != NULL
+		&& (int)ft_strlen(*line) - 1 > global->map_datas.map_width)
 	{
-		global->map_datas.map_width = ft_strlen(line) - 1;
+		global->map_datas.map_width = ft_strlen(*line) - 1;
 	}
-	else if ((int)ft_strlen(line) > global->map_datas.map_width)
+	else if ((int)ft_strlen(*line) > global->map_datas.map_width)
 	{
-		global->map_datas.map_width = ft_strlen(line);
+		global->map_datas.map_width = ft_strlen(*line);
 	}
 	return (0);
 }

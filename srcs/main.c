@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 		init_interface(&global, argv[1]);
 	else
-		init_interface(&global, "assets/arx.cub");
-	global.player.speed = 1.5;
+		init_interface(&global, "assets/map1v2.cub");
+	global.player.speed = 0.75;
 
 	init_rainbow(&global); // comme ca la minimap s'affiche tt de suite
 	init_minimap(&global);
