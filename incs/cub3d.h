@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 19:19:24 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:24:44 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define BORDEAU 0x005F021F
 # define BLEUF 0x00001BEC
 # define G_FAV 0x008700AF
+# define TRUC 0x0087FFAF
+# define TRANSP 0xFF000000
 
 // Minimap
 // Careful could have to update init_position file if this value is changed
@@ -101,7 +103,7 @@ typedef struct s_window
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	char	*texture_path;
 	int		img_width;
 	int		img_height;
@@ -123,11 +125,10 @@ typedef struct s_map
 typedef struct s_player
 {
 	t_img		img;
-	t_vector2_f	position;
+	t_vector2_f	pos;
 	char		direction;
 	float		initial_angle;
 	float		speed;
-
 }	t_player;
 
 /*
@@ -136,19 +137,23 @@ typedef struct s_player
 	https://b-bischoff.github.io/web/cube3d.html
 
 	direction : plot right or left side
-	impact_cell : destinaton's coordinates, where our ray touches the wall
-	side_hit : wich side of the wall is hit
-	wallX
+	i_cell (impact_cell): dest's coordinates, where our ray touches the wall
+	side_hit : wich side of the wall is hit (nsew)
+	side_dir : vertical or horizontal
+	wallX :
 */
 typedef struct s_ray
 {
 	t_vector2_f	direction;
-	t_vector2_f	impact_cell;
+	t_vector2_f	i_cell;
 	t_vector2_f	side_dist;
+	t_vector2_f step; // either 1 or -1
+	t_vector2_f	delta_dist;
+	t_player	player;
 	float		ray_length;
-	float		perp_wall_dist;
 	float		wallX;
 	char		side_hit;
+	char		side_dir;
 	int			texX;
 }	t_ray;
 
@@ -177,13 +182,7 @@ typedef struct s_global
 void		init_window(t_window *window);
 void		init_interface(t_global *global, char *map);
 // display ground
-void	my_mlx_put_floor(t_global *global, int x, int y, int color);
-void	my_mlx_put_ceiling(t_global *global, int x, int y, int color);
-// display window
-void	init_window(t_window *window);
-
-
-void		display_background(t_global *global, int x, int y);
+void		init_background(t_global *global, int x, int y);
 // handle exit
 int			clean(t_global *global);
 
@@ -260,9 +259,25 @@ float		degree_to_radians(float degree);
 float		radians_to_degrees(float radian);
 float		get_delta_distance(float direction);
 void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
+float		map(long pos);
 
+//------------------------------//
+//								//
+//			RENDER				//
+//								//
+//------------------------------//
 
-void	display_rainbow(t_global *global);
+void		init_rainbow(t_global *global);
+void		draw_rainbow(t_global *global);
+
+//------------------------------//
+//								//
+//				DDA				//
+//								//
+//------------------------------//
+
+void		init_ray_struct(t_global *global, t_ray *ray, float angle);
+void		init_side_dist(t_ray *ray);
 
 
 #endif

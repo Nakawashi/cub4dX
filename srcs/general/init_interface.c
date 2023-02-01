@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 19:11:19 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:00:30 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_window(t_window *window)
 void	init_interface(t_global *global, char *map)
 {
 	init_window(&global->window);
-	display_background(global, 0, 0);
+	init_background(global, 0, 0);
 
 	init_parsing(global);
 	if (read_file(global, map) < 0)
@@ -42,12 +42,6 @@ void	init_interface(t_global *global, char *map)
 	printf("path ea %s\n", global->ea.texture_path);
 	printf("color ceil %s\n", global->window.color_ceiling_hexa);
 	printf("color floor %s\n", global->window.color_floor_hexa);
-	
-
-	// global->map_datas.map = read_map("assets/map1.cub");
-	// if (!global->map_datas.map)
-	// 	exit (1);
-	// get_map_height(&global->map_datas);
 }
 
 static void	init_parsing(t_global *global)
@@ -55,7 +49,7 @@ static void	init_parsing(t_global *global)
 	global->map_datas.map = NULL;
 	global->map_datas.map_width = 0;
 	global->map_datas.map_height = 0;
-	global->player.position.x = -1;
+	global->player.pos.x = -1;
 
 	global->window.color_ceiling_hexa = NULL;
 	global->window.color_floor_hexa = NULL;

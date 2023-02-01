@@ -20,7 +20,7 @@ int	check_player(t_map *mapinfo, t_player *pl)
 		}
 		y++;
 	}
-	if (pl->position.x == -1)
+	if (pl->pos.x == -1)
 	{
 		printf("ERROR\n Error player not found\n");
 		return (-1);
@@ -77,10 +77,10 @@ int	check_cases(t_map *mapinfo)
 
 static int	save_player(t_map *mapinfo, t_player *pl, int x, int y)
 {
-	if (ft_strchr("NSWE", mapinfo->map[y][x]) != NULL && pl->position.x == -1)
+	if (ft_strchr("NSWE", mapinfo->map[y][x]) != NULL && pl->pos.x == -1)
 	{
-		pl->position.x = coordinate_to_pixels(x);
-		pl->position.y = coordinate_to_pixels(y);
+		pl->pos.x = coordinate_to_pixels(x);
+		pl->pos.y = coordinate_to_pixels(y);
 		if (mapinfo->map[y][x] == 'N')
 			pl->initial_angle = degree_to_radians(-90);
 		else if (mapinfo->map[y][x] == 'S')

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:59:03 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/15 20:02:15 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:25:57 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ enum e_minimap
 // 				|| global->map_datas.map[i][j] == 'W')
 // 				{
 // 					my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-// 					global->player.position.x = coordinate_to_pixels(j);
-// 					global->player.position.y = coordinate_to_pixels(i);
+// 					global->player.pos.x = coordinate_to_pixels(j);
+// 					global->player.pos.y = coordinate_to_pixels(i);
 // 				}
 // 			else
 // 			{

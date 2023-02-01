@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_background.c                               :+:      :+:    :+:   */
+/*   init_background.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,7 +18,7 @@
 	careful: i and j build the image (line per line)
 	x and y are position where to start to prin, in the window
 */
-void	display_background(t_global *global, int x, int y)
+void	init_background(t_global *global, int x, int y)
 {
 	int	i;
 	int	j;
