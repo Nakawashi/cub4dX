@@ -45,6 +45,7 @@ static void	move_left(t_global *global)
 
 int	key_hook(int keycode, t_global *global)
 {
+	static int map = 0;
 	if (keycode == KEY_ESC)
 		clean(global);
 	if (keycode == KEY_W)
@@ -60,6 +61,9 @@ int	key_hook(int keycode, t_global *global)
 	if (keycode == ARROW_RIGHT)
 		global->player.initial_angle += 0.08;
 
+	if (keycode == 46) // KEY_M
+		map = !map;
+
 	// mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->background_img.img, 0, 0); segfault
 
 	draw_minimap(global); // clear minimap
@@ -67,9 +71,12 @@ int	key_hook(int keycode, t_global *global)
 	draw_rainbow(global); // draw render and bresenham
 	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0);
 
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0); // display minimap, and bresenham
+	if (map)
+	{
+		mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0); // display minimap, and bresenham
 
-	draw_player(global, global->player.pos);
+		draw_player(global, global->player.pos);
+	}
 	return (0);
 }
 

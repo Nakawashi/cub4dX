@@ -164,6 +164,10 @@ typedef struct s_global
 	t_img		background_img;
 	t_img		minimap;
 	t_img		render_img;
+	t_img		no;
+	t_img		so;
+	t_img		we;
+	t_img		ea;
 	t_player	player;
 	t_ray		ray;
 }	t_global;
@@ -176,7 +180,7 @@ typedef struct s_global
 
 // init interface
 void		init_window(t_window *window);
-void		init_interface(t_global *global);
+void		init_interface(t_global *global, char *map);
 // display ground
 void		init_background(t_global *global, int x, int y);
 // handle exit
@@ -191,6 +195,7 @@ int			clean(t_global *global);
 void		his_mlx_pixel_put(t_img *img, int x, int y, int color);
 void		init_img_struct(t_img *img);
 void		create_image(t_img *img, t_window *mlx_id, int width, int height);
+int			open_image(t_img *img, t_window *mlx_id, char *filename);
 
 //------------------------------//
 //								//
@@ -198,8 +203,20 @@ void		create_image(t_img *img, t_window *mlx_id, int width, int height);
 //								//
 //------------------------------//
 
-char		**read_map(const char *path_to_file);
-void		get_map_height(t_map *map);
+
+int		read_file(t_global *global, char *path_to_file);
+int		read_args(t_global *global, int fd);
+int		read_map(t_global *global, int fd);
+
+int		check_map(t_map *mapinfo, t_player *pl);
+int		check_player(t_map *mapinfo, t_player *pl);
+int		check_illegal_chars(t_map *mapinfo);
+int		check_cases(t_map *mapinfo);
+int		square_map(t_map *mapinfo);
+
+int		parse_colors(t_global *global);
+int		ft_tab_length(char **tab);
+
 
 //------------------------------//
 //								//
@@ -263,5 +280,6 @@ void		draw_rainbow(t_global *global);
 
 void		init_ray_struct(t_global *global, t_ray *ray, float angle);
 void		init_side_dist(t_ray *ray);
+
 
 #endif

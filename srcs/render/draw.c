@@ -24,9 +24,9 @@ void	draw_column(t_global *global, int *x)
 	while (i < WIN_HEIGTH)
 	{
 		if (i <= WIN_HEIGTH / 2 - taille_baton / 2)
-			his_mlx_pixel_put(&global->render_img, *x, i, BLEU);
+			his_mlx_pixel_put(&global->render_img, *x, i, global->window.color_ceiling_int);
 		else if (i > WIN_HEIGTH / 2 + taille_baton / 2)
-			his_mlx_pixel_put(&global->render_img, *x, i, JAUNE);
+			his_mlx_pixel_put(&global->render_img, *x, i, global->window.color_floor_int);
 		else
 		{
 			if (global->ray.side_hit == 'n')

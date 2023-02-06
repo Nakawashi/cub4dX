@@ -36,7 +36,7 @@ void	init_img_struct(t_img *img)
 {
 	img->img = NULL;
 	img->addr = NULL;
-	img->texture_path = NULL;
+	// img->texture_path = NULL;
 	img->img_width = 0;
 	img->img_height = 0;
 	img->bits_per_pixel = 0;
@@ -56,5 +56,25 @@ void	create_image(t_img *img, t_window *mlx_id, int width, int height)
 		&img->line_length,
 		&img->endian);
 	img->line_length /= 4;
+}
+
+
+int		open_image(t_img *img, t_window *mlx_id, char *filename)
+{
+	init_img_struct(img);
+	img->img = mlx_xpm_file_to_image(mlx_id, filename, &img->img_width, &img->img_height);
+
+	if (img->img == NULL)
+	{
+		printf("ERROR\n Error file %s cannot be opened\n", filename);
+		return (-1);
+	}
+	img->addr = (int *)mlx_get_data_addr(
+		img->img,
+		&img->bits_per_pixel,
+		&img->line_length,
+		&img->endian);
+	img->line_length /= 4;
+	return (0);
 }
 

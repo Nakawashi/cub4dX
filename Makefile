@@ -34,8 +34,12 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/general/init_interface.c \
 				srcs/general/quit.c \
 				srcs/map/read_map.c \
+				srcs/map/check_map_utils.c \
+				srcs/map/read_file.c \
+				srcs/map/read_args.c \
+				srcs/map/parse_utils.c \
+				srcs/map/parse_color.c \
 				srcs/utils/img_utils.c \
-				srcs/utils/map_utils.c \
 				srcs/utils/maths_utils.c \
 				srcs/utils/bresenham.c \
 				srcs/utils/player_utils.c \
@@ -57,6 +61,7 @@ CC			= gcc
 rm			= rm -rf
 OBJS		= $(SRCS_FILES:.c=.o)
 CFLAGS		= -Wall -Wextra -Werror
+
 ifeq ($(DEBUG), 1)
 	CFLAGS += -fsanitize=address -g3
 endif
