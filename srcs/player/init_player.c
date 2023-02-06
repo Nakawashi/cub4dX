@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/21 11:30:44 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:28:53 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,17 @@
 	7 is MINI_WIDTH size for now. It's square so W and H are same.
 	n is j (x) or i (y).
 */
-int	coordinate_to_pixels(int n)
+// int	coordinate_to_pixels(int n)
+// {
+// 	return (n * MINI_WIDTH + (MINI_WIDTH / 2) - 2);
+// }
+float	coordinate_to_pixels(int n)
 {
-	return (n * MINI_WIDTH + (MINI_WIDTH / 2) - 2);
+	float	res;
+
+	res = (float)n * MINI_WIDTH + (MINI_WIDTH / 2) - 2;
+	printf("floating position from integer corrdinates : [%f]\n", res);
+	return (res);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:30:41 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/27 18:42:39 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:32:07 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	get_player_coordinates(char **map, t_vector2_f position)
 			if (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 			{
+				printf("i : [%d]  -- j : [%d]\n", i, j);
 				position.x = coordinate_to_pixels(j);
 				position.y = coordinate_to_pixels(i);
 				printf("x: [%f] y: [%f]\n", position.x, position.y);

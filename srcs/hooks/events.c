@@ -6,31 +6,26 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 17:25:46 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:19:00 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-	mlx_put_image_to_window boring to write
-*/
-void	draw_player(t_global *global, t_vector2_f pos)
-{
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id,
-		global->player.img.img, pos.x - 1, pos.y - 1);
-}
-
 static void	move_forward(t_global *global)
 {
-	global->player.pos.x += cos(global->player.initial_angle) * global->player.speed;
-	global->player.pos.y += sin(global->player.initial_angle) * global->player.speed;
+	global->player.pos.x
+		+= cos(global->player.initial_angle) * global->player.speed;
+	global->player.pos.y
+		+= sin(global->player.initial_angle) * global->player.speed;
 }
 
 static void	move_backward(t_global *global)
 {
-	global->player.pos.x -= cos(global->player.initial_angle) * global->player.speed;
-	global->player.pos.y -= sin(global->player.initial_angle) * global->player.speed;
+	global->player.pos.x
+		-= cos(global->player.initial_angle) * global->player.speed;
+	global->player.pos.y
+		-= sin(global->player.initial_angle) * global->player.speed;
 }
 static void	move_right(t_global *global)
 {
@@ -64,8 +59,6 @@ int	key_hook(int keycode, t_global *global)
 	if (keycode == 46) // KEY_M
 		map = !map;
 
-	// mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->background_img.img, 0, 0); segfault
-
 	draw_minimap(global); // clear minimap
 
 	draw_rainbow(global); // draw render and bresenham
@@ -73,10 +66,22 @@ int	key_hook(int keycode, t_global *global)
 
 	if (map)
 	{
-		mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->minimap.img, 0, 0); // display minimap, and bresenham
-
-		draw_player(global, global->player.pos);
+		mlx_put_image_to_window(
+			global->window.mlx_id,
+			global->window.win_id,
+			global->minimap.img, 0, 0);
+		mlx_put_image_to_window(
+			global->window.mlx_id,
+			global->window.win_id,
+			global->player.img.img,
+			global->player.pos.x - 1.0,
+			global->player.pos.y - 1.0
+			);
 	}
+
+	printf("\npl->pos.x : %f\n", global->player.pos.x);
+	printf("pl->pos.y : %f\n\n", global->player.pos.y);
+
 	return (0);
 }
 

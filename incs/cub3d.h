@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 17:24:44 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:17:12 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,10 +245,9 @@ void		handle_events(t_global *global);
 //								//
 //------------------------------//
 
-int			coordinate_to_pixels(int n);
+// int			coordinate_to_pixels(int n);
+float		coordinate_to_pixels(int n);
 void		init_player(t_global *global, t_vector2_f pos, int color);
-void		draw_player(t_global *global, t_vector2_f pos);
-void		player_direction(char direction, float angle);
 void		get_player_coordinates(char **map, t_vector2_f position);
 
 //------------------------------//

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 17:25:12 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:38:36 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,19 @@ int	main(int argc, char **argv)
 	else
 		init_interface(&global, "assets/map1v2.cub");
 	global.player.speed = 0.75;
-
 	init_rainbow(&global); // comme ca la minimap s'affiche tt de suite
 	init_minimap(&global);
 	init_player(&global, global.player.pos, PINK); // position initiale du player
 	handle_events(&global);
+	/*
+
+	get wall positions
+		leurs coordonnees, ensuite on sait que 
+	get actual player position --> dans les events
+	comparer ces positions avec la position d'ou se trouvent les murs
+
+
+	*/
 	mlx_loop(&global.window.mlx_id);
 
 

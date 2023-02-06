@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:59:03 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/31 17:25:57 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:21:17 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,52 +17,6 @@ enum e_minimap
 	MINI_FLOOR = '0',
 	MINI_WALL = '1',
 };
-
-/*
-	Run through the map and display *img where its letter is placed
-	Get player coordinate and direction
-	Try to read less times as possible
-*/
-// void	init_minimap(t_global *global)
-// {
-// 	int		i;
-// 	int		j;
-
-// 		// create_image(&global->minimap,
-// 		// global->window.mlx_id,
-// 		// MINI_WIDTH,
-// 		// MINI_HEIGHT);
-// 	create_image(&global->minimap,
-// 		global->window.mlx_id,
-// 		global->map_datas.map_width,
-// 		global->map_datas.map_height);
-
-// 	i = -1;
-// 	while (global->map_datas.map[++i])
-// 	{
-// 		j = -1;
-// 		while (global->map_datas.map[i][++j])
-// 		{
-// 			if (global->map_datas.map[i][j] == MINI_WALL)
-// 			{
-// 				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, BLACK);
-// 			}
-// 			else if (global->map_datas.map[i][j] == 'N'
-// 				|| global->map_datas.map[i][j] == 'S'
-// 				|| global->map_datas.map[i][j] == 'E'
-// 				|| global->map_datas.map[i][j] == 'W')
-// 				{
-// 					my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-// 					global->player.pos.x = coordinate_to_pixels(j);
-// 					global->player.pos.y = coordinate_to_pixels(i);
-// 				}
-// 			else
-// 			{
-// 				my_mlx_put_square(global, &global->minimap, j * MINI_WIDTH, i * MINI_HEIGHT, WHITE);
-// 			}
-// 		}
-// 	}
-// }
 
 void	draw_minimap(t_global *global)
 {
