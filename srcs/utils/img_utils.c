@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/29 12:55:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:58:25 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	init_img_struct(t_img *img)
 {
 	img->img = NULL;
 	img->addr = NULL;
-	// img->texture_path = NULL;
 	img->img_width = 0;
 	img->img_height = 0;
 	img->bits_per_pixel = 0;
@@ -47,6 +46,7 @@ void	init_img_struct(t_img *img)
 void	create_image(t_img *img, t_window *mlx_id, int width, int height)
 {
 	init_img_struct(img);
+	img->texture_path = NULL;
 	img->img = mlx_new_image(mlx_id, width, height);
 	img->img_width = width;
 	img->img_height = height;

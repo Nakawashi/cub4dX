@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_args.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/06 11:49:56 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/02/06 11:50:02 by lgenevey         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	is_img(char **line_args, t_global *glo, int *nbr_args);
 static int	is_color(char **line_args, t_window *win, int *nbr_args);
 static int	get_args(const char *line, t_global *global,
 				t_window *win, int *nbr_args);
-
-
 
 int	read_args(t_global *global, int fd)
 {
