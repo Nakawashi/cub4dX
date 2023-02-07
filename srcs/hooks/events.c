@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 19:19:58 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:10:29 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 static void	move_forward(t_global *global)
 {
 	// si ou je vais ya un mur ou pas, ne pas avancer si oui
-	global->player.pos.x
-		+= cos(global->player.initial_angle) * global->player.speed;
-	global->player.pos.y
-		+= sin(global->player.initial_angle) * global->player.speed;
+	global->player.pos.x += cos(global->player.initial_angle) * global->player.speed;
+	global->player.pos.y += sin(global->player.initial_angle) * global->player.speed;
 }
 
 static void	move_backward(t_global *global)
 {
-	global->player.pos.x
-		-= cos(global->player.initial_angle) * global->player.speed;
-	global->player.pos.y
-		-= sin(global->player.initial_angle) * global->player.speed;
+	global->player.pos.x -= cos(global->player.initial_angle) * global->player.speed;
+	global->player.pos.y -= sin(global->player.initial_angle) * global->player.speed;
 }
 static void	move_right(t_global *global)
 {
@@ -76,11 +72,11 @@ int	key_hook(int keycode, t_global *global)
 			global->window.win_id,
 			global->player.img.img,
 			global->player.pos.x - 1.0,
-			global->player.pos.y - 1.0
-			);
+			global->player.pos.y - 1.0);
 	}
 
-	printf("\npl->pos.x : %f\n", global->player.pos.x);
+	printf("\nevents:\n");
+	printf("pl->pos.x : %f\n", global->player.pos.x);
 	printf("pl->pos.y : %f\n\n", global->player.pos.y);
 
 	return (0);

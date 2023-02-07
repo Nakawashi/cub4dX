@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 19:23:31 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:13:09 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	init_ray_struct(t_global *global, t_ray *ray, float angle);
 static void	init_side_dist(t_ray *ray);
-static void	perform_dda(t_ray *ray);
 static void	perform_dda(t_ray *ray);
 
 /*
@@ -39,7 +38,7 @@ int	dda(t_global *global, t_ray *ray, float angle)
 		{
 			if (ray->side_dir == 'v')
 			{
-				// ray->wallX = global->player.pos.y + ray->ray_length * ray->direction.y;
+				ray->wallX = global->player.pos.y + ray->ray_length * ray->direction.y;
 				ray->ray_length = (ray->side_dist.x - ray->delta_dist.x) * cos(angle - global->player.initial_angle);
 			}
 			else

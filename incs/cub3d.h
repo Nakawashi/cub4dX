@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 19:22:44 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:14:37 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,25 @@
 // Window
 # define WIN_WIDTH 1024
 # define WIN_HEIGTH 512
-# define BLEU 0x0081D5FF
-# define JAUNE 0x00FFCE6D
-# define PLUM 0x00DDA0DD
-# define BORDEAU 0x005F021F
-# define BLEUF 0x00001BEC
-# define G_FAV 0x008700AF
-# define TRUC 0x0087FFAF
-# define TRANSP 0xFF000000
 
 // Minimap
 // Careful could have to update init_position file if this value is changed
 // Si valeur paire : afficher 4 pixels. Si valeur impair : afficher 1 pixel
 # define MINI_WIDTH 8
 # define MINI_HEIGHT 8
+
+//colors
+# define BLEU 0x0081D5FF
+# define JAUNE 0x00FFCE6D
+# define BORDEAU 0x005F021F
+# define BLEUF 0x00001BEC
+# define G_FAV 0x008700AF
+# define TRUC 0x0087FFAF
 # define BLACK 0x00000000
+# define PLUM 0x00DDA0DD
 # define WHITE 0x00FFFFFF
 # define PINK 0x00EE5983
+# define TRANSP 0xFF000000
 
 // "evenements du clavier mais en fait non"
 # define KEY_W 13
@@ -61,8 +63,8 @@
 # define ARROW_RIGHT 124
 # define KEY_ESC 53
 
-// 1 degree in radians
 # define FOV 60
+# define CUB_SIZE 128
 
 
 // events a ne pas confondre avec les "evenements du clavier"
@@ -147,7 +149,7 @@ typedef struct s_ray
 	t_vector2_f	direction;
 	t_vector2_f	i_cell;
 	t_vector2_f	side_dist;
-	t_vector2_f step; // either 1 or -1
+	t_vector2_f step;
 	t_vector2_f	delta_dist;
 	t_player	player;
 	float		ray_length;
@@ -178,12 +180,9 @@ typedef struct s_global
 //								//
 //------------------------------//
 
-// init interface
 void		init_window(t_window *window);
 void		init_interface(t_global *global, char *map);
-// display ground
 void		init_background(t_global *global, int x, int y);
-// handle exit
 int			clean(t_global *global);
 
 //------------------------------//
@@ -202,7 +201,6 @@ int			open_image(t_img *img, t_window *mlx_id, char *filename);
 //			THE MAP				//
 //								//
 //------------------------------//
-
 
 int		read_file(t_global *global, char *path_to_file);
 int		read_args(t_global *global, int fd);
@@ -276,8 +274,6 @@ void		draw_rainbow(t_global *global);
 //								//
 //------------------------------//
 
-int	dda(t_global *global, t_ray *ray, float angle);
-
-
+int			dda(t_global *global, t_ray *ray, float angle);
 
 #endif

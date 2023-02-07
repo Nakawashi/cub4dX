@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 15:28:53 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:54:13 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	J : x * MINI_SIDE_SIZE - ((MINI_SIDE_SIZE/2) -2) = position x in pixels
 	I : y * MINI_SIDE_SIZE - ((MINI_SIDE_SIZE/2) -2) = position x in pixels
 
-	7 is MINI_WIDTH size for now. It's square so W and H are same.
+	8 is MINI_WIDTH size for now. It's square so W and H are same.
 	n is j (x) or i (y).
 */
 // int	coordinate_to_pixels(int n)
@@ -31,7 +31,8 @@ float	coordinate_to_pixels(int n)
 	float	res;
 
 	res = (float)n * MINI_WIDTH + (MINI_WIDTH / 2) - 2;
-	printf("floating position from integer corrdinates : [%f]\n", res);
+	printf("\ninit_player:\n");
+	printf("floating position from integer coordinates : [%f]\n", res);
 	return (res);
 }
 

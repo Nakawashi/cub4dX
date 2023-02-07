@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/07 11:54:08 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:06:04 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 		init_interface(&global, argv[1]);
 	else
 		init_interface(&global, "assets/map1v2.cub");
-	global.player.speed = 0.75;
+	global.player.speed = 0.5;
 	init_rainbow(&global); // comme ca la minimap s'affiche tt de suite
 	init_minimap(&global);
 	init_player(&global, global.player.pos, PINK); // position initiale du player
