@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 16:17:12 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:22:44 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,6 @@ int		ft_tab_length(char **tab);
 void		my_mlx_put_square(t_img *img, t_vector2_d pos, int size, int color);
 void		init_minimap(t_global *global);
 void		draw_minimap(t_global *global);
-t_vector2_f	dda(t_global *global, t_ray *ray, float angle);
 
 //------------------------------//
 //								//
@@ -277,8 +276,8 @@ void		draw_rainbow(t_global *global);
 //								//
 //------------------------------//
 
-void		init_ray_struct(t_global *global, t_ray *ray, float angle);
-void		init_side_dist(t_ray *ray);
+int	dda(t_global *global, t_ray *ray, float angle);
+
 
 
 #endif

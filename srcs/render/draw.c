@@ -6,12 +6,19 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/02 23:02:38 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:27:36 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	map():
+	prend la position de la colonne entre 0 et 1024 et rend une valeur
+	entre -30 et 30, ce qui correspond a l'angle
+	taille_baton:
+	inverser, plus c'est loin plus c'est petit mais plus le rayon est long
+*/
 void	draw_column(t_global *global, int *x)
 {
 	int		i;
@@ -19,8 +26,8 @@ void	draw_column(t_global *global, int *x)
 	// const int	colors[] = {BORDEAU, G_FAV, BLEUF};
 
 	i = 0;
-	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x) - 30)); // map prend la position de la colonne entre 0 et 1024 et rend une valeur entre -30 et 30
-	taille_baton = (4000/global->ray.ray_length); // inverser, plus c'est loin plus c'est petit mais plus le rayon est long
+	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x) - 30));
+	taille_baton = (4000/global->ray.ray_length);
 	while (i < WIN_HEIGTH)
 	{
 		if (i <= WIN_HEIGTH / 2 - taille_baton / 2)

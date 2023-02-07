@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 16:38:36 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:54:08 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 	180 : x negatif
 	90 : y positif
 	270 : y negatif
+*/
+
+/*
+	Fix player movements (coordinates now)
+	Put some textures
+	Can't pass through the walls
 */
 
 int	main(int argc, char **argv)
@@ -32,15 +38,6 @@ int	main(int argc, char **argv)
 	init_minimap(&global);
 	init_player(&global, global.player.pos, PINK); // position initiale du player
 	handle_events(&global);
-	/*
-
-	get wall positions
-		leurs coordonnees, ensuite on sait que 
-	get actual player position --> dans les events
-	comparer ces positions avec la position d'ou se trouvent les murs
-
-
-	*/
 	mlx_loop(&global.window.mlx_id);
 
 

@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/02/06 12:30:17 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/02/06 19:20:20 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/player/init_player.c \
 				srcs/render/draw.c \
 				srcs/dda/dda.c \
-				srcs/dda/dda_utils.c \
 
 #####################################
 #									#

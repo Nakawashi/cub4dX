@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 16:19:00 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:19:58 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	move_forward(t_global *global)
 {
+	// si ou je vais ya un mur ou pas, ne pas avancer si oui
 	global->player.pos.x
 		+= cos(global->player.initial_angle) * global->player.speed;
 	global->player.pos.y
