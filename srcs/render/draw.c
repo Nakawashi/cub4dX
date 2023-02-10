@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/10 15:51:36 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:17:55 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,47 @@
 	entre -30 et 30, ce qui correspond a l'angle
 	taille_baton:
 	inverser, plus c'est loin plus c'est petit mais plus le rayon est long
+
+	// if (global->ray.wallX < 0.4) // V
+	// if (i - wall_start < taille_baton * 0.4) // H
+	get_pixel:
+	image dans laquelle on vient prendre le pixel
+	map:
+	colonne du mur ou on veut dessiner
+	largeur max du mur
+	largeur max de la texture
 */
 void	draw_column(t_global *global, int *x)
 {
 	int	i;
 	int	taille_baton;
-	int	color;
+	int	texture;
 	int	wall_start;
 
-	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x) - 30));
+	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x, WIN_WIDTH, 60.0) - 30));
 	taille_baton = (4000/global->ray.ray_length);
-	i = 0;
 	wall_start = WIN_HEIGTH / 2 - taille_baton / 2;
+	i = 0;
 	while (i < WIN_HEIGTH)
 	{
 		if (i <= WIN_HEIGTH / 2 - taille_baton / 2)
-		{
-			his_mlx_pixel_put(&global->render_img, *x, i, global->window.color_ceiling_int);
-		}
+			texture = global->window.color_ceiling_int;
 		else if (i > WIN_HEIGTH / 2 + taille_baton / 2)
-		{
-			his_mlx_pixel_put(&global->render_img, *x, i, global->window.color_floor_int);
-		}
+			texture = global->window.color_floor_int;
 		else
 		{
 			if (global->ray.side_hit == 'n')
 			{
-				// if (global->ray.wallX < 0.4) // V
-				if (i - wall_start < taille_baton * 0.4) // H
-					color = G_FAV;
-				else
-					color = BLACK;
-				his_mlx_pixel_put(&global->render_img, *x, i, color);
+				texture = get_pixel(&global->no, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 			}
 			else if (global->ray.side_hit == 's')
-				his_mlx_pixel_put(&global->render_img, *x, i, color);
+				texture = get_pixel(&global->so, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 'e')
-			{
-				his_mlx_pixel_put(&global->render_img, *x, i, color);
-			}
+				texture = get_pixel(&global->ea, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 'w')
-				his_mlx_pixel_put(&global->render_img, *x, i, color);
+				texture = get_pixel(&global->we, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 		}
+		his_mlx_pixel_put(&global->render_img, *x, i, texture);
 		++i;
 	}
 }
