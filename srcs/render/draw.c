@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 19:27:36 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:51:36 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,53 @@
 */
 void	draw_column(t_global *global, int *x)
 {
-	int		i;
-	int		taille_baton;
-	// const int	colors[] = {BORDEAU, G_FAV, BLEUF};
+	int	i;
+	int	taille_baton;
+	int	color;
+	int	wall_start;
 
-	i = 0;
 	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x) - 30));
 	taille_baton = (4000/global->ray.ray_length);
+	i = 0;
+	wall_start = WIN_HEIGTH / 2 - taille_baton / 2;
 	while (i < WIN_HEIGTH)
 	{
 		if (i <= WIN_HEIGTH / 2 - taille_baton / 2)
+		{
 			his_mlx_pixel_put(&global->render_img, *x, i, global->window.color_ceiling_int);
+		}
 		else if (i > WIN_HEIGTH / 2 + taille_baton / 2)
+		{
 			his_mlx_pixel_put(&global->render_img, *x, i, global->window.color_floor_int);
+		}
 		else
 		{
 			if (global->ray.side_hit == 'n')
-				his_mlx_pixel_put(&global->render_img, *x, i, G_FAV);
+			{
+				// if (global->ray.wallX < 0.4) // V
+				if (i - wall_start < taille_baton * 0.4) // H
+					color = G_FAV;
+				else
+					color = BLACK;
+				his_mlx_pixel_put(&global->render_img, *x, i, color);
+			}
 			else if (global->ray.side_hit == 's')
-				his_mlx_pixel_put(&global->render_img, *x, i, BORDEAU);
+				his_mlx_pixel_put(&global->render_img, *x, i, color);
 			else if (global->ray.side_hit == 'e')
-				his_mlx_pixel_put(&global->render_img, *x, i, BLEUF);
+			{
+				his_mlx_pixel_put(&global->render_img, *x, i, color);
+			}
 			else if (global->ray.side_hit == 'w')
-				his_mlx_pixel_put(&global->render_img, *x, i, TRUC);
+				his_mlx_pixel_put(&global->render_img, *x, i, color);
 		}
 		++i;
 	}
 }
 
+
+/*
+	column is ---->
+*/
 void	draw_rainbow(t_global *global)
 {
 	int		column;

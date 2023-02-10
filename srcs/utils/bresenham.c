@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bresenham.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/07 16:35:01 by lgenevey          #+#    #+#             */
+/*   Updated: 2023/02/07 16:43:24 by lgenevey         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 typedef struct s_bresenham
@@ -16,12 +28,13 @@ typedef struct s_bresenham
 /*
 	plot line high (y)
 */
-static void	draw_y(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
+static void
+	draw_y(t_global *global, t_vector2_f p1, t_vector2_f dest, int color)
 {
 	t_bresenham	datas;
 
-	datas.dx = p2.x - p1.x;
-	datas.dy = p2.y - p1.y;
+	datas.dx = dest.x - p1.x;
+	datas.dy = dest.y - p1.y;
 	datas.xi = 1;
 	if (datas.dx < 0)
 	{
@@ -33,7 +46,7 @@ static void	draw_y(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
 	datas.cst1 = 2 * (datas.dx - datas.dy);
 	datas.cst2 = 2 * datas.dx;
 	datas.y = p1.y;
-	while (datas.y < p2.y)
+	while (datas.y < dest.y)
 	{
 		his_mlx_pixel_put(&global->minimap, datas.x, datas.y, color);
 		if (datas.d > 0)
@@ -47,12 +60,13 @@ static void	draw_y(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
 	}
 }
 
-static void	draw_x(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
+static void
+	draw_x(t_global *global, t_vector2_f p1, t_vector2_f dest, int color)
 {
-	t_bresenham datas;
+	t_bresenham	datas;
 
-	datas.dx = p2.x - p1.x;
-	datas.dy = p2.y - p1.y;
+	datas.dx = dest.x - p1.x;
+	datas.dy = dest.y - p1.y;
 	datas.yi = 1;
 	if (datas.dy < 0)
 	{
@@ -64,7 +78,7 @@ static void	draw_x(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
 	datas.cst1 = 2 * (datas.dy - datas.dx);
 	datas.cst2 = 2 * datas.dy;
 	datas.x = p1.x;
-	while (datas.x < p2.x)
+	while (datas.x < dest.x)
 	{
 		his_mlx_pixel_put(&global->minimap, datas.x, datas.y, color);
 		if (datas.d > 0)
@@ -82,20 +96,21 @@ static void	draw_x(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
 	Draw the ray
 	https://lodev.org/cgtutor/raycasting.html
 */
-void	bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color)
+void
+	bresenham(t_global *global, t_vector2_f from, t_vector2_f dest, int color)
 {
-	if (fabs(p2.y - p1.y) < fabs(p2.x - p1.x))
+	if (fabs(dest.y - from.y) < fabs(dest.x - from.x))
 	{
-		if (p1.x > p2.x)
-			draw_x(global, p2, p1, color);
+		if (from.x > dest.x)
+			draw_x(global, dest, from, color);
 		else
-			draw_x(global, p1, p2, color);
+			draw_x(global, from, dest, color);
 	}
 	else
 	{
-		if (p1.y > p2.y)
-			draw_y(global, p2, p1, color);
+		if (from.y > dest.y)
+			draw_y(global, dest, from, color);
 		else
-			draw_y(global, p1, p2, color);
+			draw_y(global, from, dest, color);
 	}
 }

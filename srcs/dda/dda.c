@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/07 16:13:09 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:32:52 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ int	dda(t_global *global, t_ray *ray, float angle)
 		{
 			if (ray->side_dir == 'v')
 			{
-				ray->wallX = global->player.pos.y + ray->ray_length * ray->direction.y;
+				ray->wallX = fmod(global->player.pos.y + ray->ray_length * ray->direction.y, 8);
+				printf("WallX V: %f\n", ray->wallX);
 				ray->ray_length = (ray->side_dist.x - ray->delta_dist.x) * cos(angle - global->player.initial_angle);
 			}
 			else
 			{
-				// ray->wallX = global->player.pos.x + ray->ray_length * ray->direction.x;
+				ray->wallX = fmod(global->player.pos.x + ray->ray_length * ray->direction.x, 8);
+				printf("WallX H: %f\n", ray->wallX);
 				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
 			}
 

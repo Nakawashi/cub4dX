@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 11:58:25 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:36:35 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 	if (x < 0 || y < 0 || x > img->img_width || y > img->img_height)
 		return ;
 	img->addr[y * img->line_length + x] = color;
+}
+
+void	get_put_pixel(t_img *img, int x, int y)
+{
+	if (x < 0 || y < 0 || x > img->img_width || y > img->img_height)
+		return ;
+	return (img->addr[y * img->line_length + x]);
+
 }
 
 void	init_img_struct(t_img *img)

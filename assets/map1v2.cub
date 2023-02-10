@@ -1,7 +1,7 @@
-NO ./assets/brick.xpm
-SO ./assets/debug.xpm
-WE ./assets/furnace.xpm
-EA ./assets/tnt.xpm
+NO ./assets/BRICK_3A.xpm
+SO ./assets/BRICK_4A.xpm
+WE ./assets/VENT_1A.xpm
+EA ./assets/WARN_1.xpm
 
 F 255,206,109
 C 129,213,255
