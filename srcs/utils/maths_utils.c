@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/10 16:22:01 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:26:45 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,8 @@ float	get_delta_distance(float direction)
 // {
 // 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 // }
-float	map(long pos)
+float	map(long pos, long in_max, long out_min)
 {
-	return ((pos - 0.0) * (0.0 - 60.0) / (1024.0 - 0.0) + 60.0);
+	return ((pos - 0.0) * (0.0 - out_min) / (in_max - 0.0) + out_min);
 }
 
-// float	map_textures(long pos)
-// {
-// 	return ((pos - 0.0) * (0.0 - 60.0) / (1024.0 - 0.0) + 60.0);
-// }

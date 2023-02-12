@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/10 16:36:35 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:26:18 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 	img->addr[y * img->line_length + x] = color;
 }
 
-void	get_put_pixel(t_img *img, int x, int y)
+/*
+	pick a pixel in the texture (in our case)
+*/
+int	get_pixel_color(t_img *img, int x, int y)
 {
 	if (x < 0 || y < 0 || x > img->img_width || y > img->img_height)
-		return ;
+		return (PLUM);
 	return (img->addr[y * img->line_length + x]);
 
 }
@@ -66,8 +69,7 @@ void	create_image(t_img *img, t_window *mlx_id, int width, int height)
 	img->line_length /= 4;
 }
 
-
-int		open_image(t_img *img, t_window *mlx_id, char *filename)
+int	open_image(t_img *img, t_window *mlx_id, char *filename)
 {
 	init_img_struct(img);
 	img->img = mlx_xpm_file_to_image(mlx_id, filename, &img->img_width, &img->img_height);
@@ -85,4 +87,3 @@ int		open_image(t_img *img, t_window *mlx_id, char *filename)
 	img->line_length /= 4;
 	return (0);
 }
-

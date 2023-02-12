@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/10 18:17:55 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:40:26 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 	// if (global->ray.wallX < 0.4) // V
 	// if (i - wall_start < taille_baton * 0.4) // H
-	get_pixel:
+	get_pixel_color:
 	image dans laquelle on vient prendre le pixel
 	map:
 	colonne du mur ou on veut dessiner
@@ -37,7 +37,7 @@ void	draw_column(t_global *global, int *x)
 
 	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x, WIN_WIDTH, 60.0) - 30));
 	taille_baton = (4000/global->ray.ray_length);
-	wall_start = WIN_HEIGTH / 2 - taille_baton / 2;
+	wall_start = WIN_HEIGTH / 2 - (taille_baton / 2);
 	i = 0;
 	while (i < WIN_HEIGTH)
 	{
@@ -47,23 +47,23 @@ void	draw_column(t_global *global, int *x)
 			texture = global->window.color_floor_int;
 		else
 		{
+			if (global->ray.wallX > 6)
+				printf("	%f\n", global->ray.wallX);
 			if (global->ray.side_hit == 'n')
-			{
-				texture = get_pixel(&global->no, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
-			}
+				texture = get_pixel_color(&global->no, (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 's')
-				texture = get_pixel(&global->so, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
+				texture = get_pixel_color(&global->so, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 'e')
-				texture = get_pixel(&global->ea, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
+				texture = get_pixel_color(&global->ea, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 'w')
-				texture = get_pixel(&global->we, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
+				texture = get_pixel_color(&global->we, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 		}
 		his_mlx_pixel_put(&global->render_img, *x, i, texture);
 		++i;
 	}
 }
 
-
+//texture = get_pixel_color(&global->no, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 /*
 	column is ---->
 */

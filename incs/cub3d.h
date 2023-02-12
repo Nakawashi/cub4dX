@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/10 16:19:50 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:10:10 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define MINI_WIDTH 8
 # define MINI_HEIGHT 8
 
+# define TEXTURE_SIZE 32
+
 //colors
 # define BLEU 0x0081D5FF
 # define JAUNE 0x00FFCE6D
@@ -50,6 +52,7 @@
 # define PLUM 0x00DDA0DD
 # define WHITE 0x00FFFFFF
 # define PINK 0x00EE5983
+# define RED 0x00FF0000
 # define TRANSP 0xFF000000
 
 // "evenements du clavier mais en fait non"
@@ -193,6 +196,7 @@ int			clean(t_global *global);
 //------------------------------//
 
 void		his_mlx_pixel_put(t_img *img, int x, int y, int color);
+int			get_pixel_color(t_img *img, int x, int y);
 void		init_img_struct(t_img *img);
 void		create_image(t_img *img, t_window *mlx_id, int width, int height);
 int			open_image(t_img *img, t_window *mlx_id, char *filename);
@@ -203,18 +207,18 @@ int			open_image(t_img *img, t_window *mlx_id, char *filename);
 //								//
 //------------------------------//
 
-int		read_file(t_global *global, char *path_to_file);
-int		read_args(t_global *global, int fd);
-int		read_map(t_global *global, int fd);
+int			read_file(t_global *global, char *path_to_file);
+int			read_args(t_global *global, int fd);
+int			read_map(t_global *global, int fd);
 
-int		check_map(t_map *mapinfo, t_player *pl);
-int		check_player(t_map *mapinfo, t_player *pl);
-int		check_illegal_chars(t_map *mapinfo);
-int		check_cases(t_map *mapinfo);
-int		square_map(t_map *mapinfo);
+int			check_map(t_map *mapinfo, t_player *pl);
+int			check_player(t_map *mapinfo, t_player *pl);
+int			check_illegal_chars(t_map *mapinfo);
+int			check_cases(t_map *mapinfo);
+int			square_map(t_map *mapinfo);
 
-int		parse_colors(t_global *global);
-int		ft_tab_length(char **tab);
+int			parse_colors(t_global *global);
+int			ft_tab_length(char **tab);
 
 
 //------------------------------//
@@ -243,7 +247,6 @@ void		handle_events(t_global *global);
 //								//
 //------------------------------//
 
-// int			coordinate_to_pixels(int n);
 float		coordinate_to_pixels(int n);
 void		init_player(t_global *global, t_vector2_f pos, int color);
 void		get_player_coordinates(char **map, t_vector2_f position);
@@ -258,8 +261,7 @@ float		degree_to_radians(float degree);
 float		radians_to_degrees(float radian);
 float		get_delta_distance(float direction);
 void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
-float		map(long pos);
-float		map_textures(long pos);
+float		map(long pos, long in_max, long out_min);
 
 //------------------------------//
 //								//
