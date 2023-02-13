@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:05:57 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/12 15:26:18 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:22:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,48 +32,38 @@ void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 	img->addr[y * img->line_length + x] = color;
 }
 
-int	my_min(int x, int y)
-{
-	if (x < y || x == y)
-		return (x);
-	else
-		return (y);
-}
+// int	my_min(int x, int y)
+// {
+// 	if (x < y || x == y)
+// 		return (x);
+// 	else
+// 		return (y);
+// }
 
-int	my_max(int x, int y)
-{
-	if (x < y || x == y)
-		return (y);
-	else
-		return (x);
-}
+// int	my_max(int x, int y)
+// {
+// 	if (x < y || x == y)
+// 		return (y);
+// 	else
+// 		return (x);
+// }
 
 /*
 	pick a pixel in the texture (in our case)
 */
 int	get_pixel_color(t_img *img, int x, int y)
 {
-	//printf("bug %d %d %d %d\n", x, y, img->img_width, img->img_height);
 	if (x < 0 || y < 0 || x > img->img_width || y > img->img_height)
 		return (PLUM);
 	else if (x == img->img_width)
 	{
-		// x = my_max(my_min(x, img->img_width), x);
 		x -= 1;
 	}
 	else if (y == img->img_height)
 	{
-		// y = my_max(my_min(y, img->img_height), y);
 		y -= 1;
 	}
-
-
-
-	
-
-
 	return (img->addr[y * img->line_length + x]);
-
 }
 
 void	init_img_struct(t_img *img)
@@ -95,28 +85,32 @@ void	create_image(t_img *img, t_window *mlx_id, int width, int height)
 	img->img_width = width;
 	img->img_height = height;
 	img->addr = (int *)mlx_get_data_addr(
-		img->img,
-		&img->bits_per_pixel,
-		&img->line_length,
-		&img->endian);
+			img->img,
+			&img->bits_per_pixel,
+			&img->line_length,
+			&img->endian);
 	img->line_length /= 4;
 }
 
 int	open_image(t_img *img, t_window *mlx_id, char *filename)
 {
 	init_img_struct(img);
-	img->img = mlx_xpm_file_to_image(mlx_id, filename, &img->img_width, &img->img_height);
-
+	img->img = mlx_xpm_file_to_image(
+			mlx_id,
+			filename,
+			&img->img_width,
+			&img->img_height
+			);
 	if (img->img == NULL)
 	{
 		printf("ERROR\n Error file %s cannot be opened\n", filename);
 		return (-1);
 	}
 	img->addr = (int *)mlx_get_data_addr(
-		img->img,
-		&img->bits_per_pixel,
-		&img->line_length,
-		&img->endian);
+			img->img,
+			&img->bits_per_pixel,
+			&img->line_length,
+			&img->endian);
 	img->line_length /= 4;
 	return (0);
 }

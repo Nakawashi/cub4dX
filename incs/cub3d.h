@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 20:27:04 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:17:54 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,13 +150,13 @@ typedef struct s_player
 */
 typedef struct s_ray
 {
-	t_vector2_f	direction;
+	t_vector2_f	dir;
 	t_vector2_f	i_cell;
 	t_vector2_f	side_dist;
 	t_vector2_f step;
 	t_vector2_f	delta_dist;
 	t_player	player;
-	float		ray_length;
+	float		ray_len;
 	float		wallX;
 	float		stick_size;
 	char		side_hit;
@@ -281,6 +281,6 @@ void		draw_rainbow(t_global *global);
 //								//
 //------------------------------//
 
-int			dda(t_global *global, t_ray *ray, float angle);
+int			dda(t_global *g, t_ray *ray, float angle);
 
 #endif

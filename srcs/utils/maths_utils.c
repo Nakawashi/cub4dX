@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 12:25:58 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/02/13 21:22:59 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,3 @@ float	map(long pos, long in_max, long out_min)
 {
 	return ((pos - 0.0) * (0.0 - out_min) / (in_max - 0.0) + out_min);
 }
-

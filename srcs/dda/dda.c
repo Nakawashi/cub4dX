@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:06:48 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:18:15 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,29 @@ static void	perform_dda(t_ray *ray);
 	2. infinite loop until we find a wall
 */
 
-int	dda(t_global *global, t_ray *ray, float angle)
+int	dda(t_global *g, t_ray *ray, float angle)
 {
-	t_vector2_d cell;
+	t_vector2_d	cell;
 
-	init_ray_struct(global, ray, angle);
+	init_ray_struct(g, ray, angle);
 	while (1)
 	{
 		perform_dda(ray);
 		cell.x = ray->i_cell.x / MINI_WIDTH;
 		cell.y = ray->i_cell.y / MINI_WIDTH;
-		if (global->map_datas.map[cell.y][cell.x] == '1')
+		if (g->map_datas.map[cell.y][cell.x] == '1')
 		{
 			if (ray->side_dir == 'v')
 			{
-				ray->wallX = fmod(global->player.pos.y + ray->ray_length * ray->direction.y, 8);
-				ray->ray_length = (ray->side_dist.x - ray->delta_dist.x) * cos(angle - global->player.initial_angle);
+				ray->wallX = fmod(g->player.pos.y + ray->ray_len * ray->dir.y, 8);
+				ray->ray_len = (ray->side_dist.x - ray->delta_dist.x) * cos(angle - g->player.initial_angle);
 			}
 			else
 			{
-				ray->wallX = fmod(global->player.pos.x + ray->ray_length * ray->direction.x, 8);
-				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
+				ray->wallX = fmod(g->player.pos.x + ray->ray_len * ray->dir.x, 8);
+				ray->ray_len = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - g->player.initial_angle);
 			}
-			bresenham(global, global->player.pos, ray->i_cell, PLUM);
+			bresenham(g, g->player.pos, ray->i_cell, PLUM);
 			return (0);
 		}
 	}
@@ -58,10 +58,10 @@ void	init_ray_struct(t_global *global, t_ray *ray, float angle)
 {
 	ray->player = global->player;
 	ray->i_cell = global->player.pos;
-	ray->direction.x = cos(angle);
-	ray->direction.y = sin(angle);
-	ray->delta_dist.x = get_delta_distance(ray->direction.x);
-	ray->delta_dist.y = get_delta_distance(ray->direction.y);
+	ray->dir.x = cos(angle);
+	ray->dir.y = sin(angle);
+	ray->delta_dist.x = get_delta_distance(ray->dir.x);
+	ray->delta_dist.y = get_delta_distance(ray->dir.y);
 	init_side_dist(ray);
 }
 
