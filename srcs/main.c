@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:41:33 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/07 15:06:04 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:24:15 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 	270 : y negatif
 */
 
-/*
-	Fix player movements (coordinates now)
-	Put some textures
-	Can't pass through the walls
-*/
-
 int	main(int argc, char **argv)
 {
 	t_global	global;
@@ -34,12 +28,10 @@ int	main(int argc, char **argv)
 	else
 		init_interface(&global, "assets/map1v2.cub");
 	global.player.speed = 0.5;
-	init_rainbow(&global); // comme ca la minimap s'affiche tt de suite
+	init_rainbow(&global);
 	init_minimap(&global);
-	init_player(&global, global.player.pos, PINK); // position initiale du player
+	init_player(&global, global.player.pos, PINK);
 	handle_events(&global);
 	mlx_loop(&global.window.mlx_id);
-
-
 	return (0);
 }
