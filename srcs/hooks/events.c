@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 20:59:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:06:04 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ static void	move_forward(t_global *global)
 	t_vector2_f futur;
 
 	futur = global->player.pos;
-	printf("\nactual X: %f\n", global->player.pos.x);
-	printf("actual Y: %f\n\n", global->player.pos.y);
+	// printf("\nactual X: %f\n", global->player.pos.x);
+	// printf("actual Y: %f\n\n", global->player.pos.y);
 
 	futur.x += cos(global->player.initial_angle) * global->player.speed;
 	futur.y += sin(global->player.initial_angle) * global->player.speed;
-	printf("futur X: %f\n", futur.x);
-	printf("futur Y: %f\n\n", futur.y);
+	// printf("futur X: %f\n", futur.x);
+	// printf("futur Y: %f\n\n", futur.y);
 
-	printf("actual coordonnee X: %d\n", pixels_to_coordinate(global->player.pos.x));
-	printf("actual coordonnee Y: %d\n", pixels_to_coordinate(global->player.pos.y));
-	printf("futur coordonnee X: %d\n", pixels_to_coordinate(futur.x));
-	printf("futur coordonnee Y: %d\n\n", pixels_to_coordinate(futur.y));
+	// printf("actual coordonnee X: %d\n", pixels_to_coordinate(global->player.pos.x));
+	// printf("actual coordonnee Y: %d\n", pixels_to_coordinate(global->player.pos.y));
+	// printf("futur coordonnee X: %d\n", pixels_to_coordinate(futur.x));
+	// printf("futur coordonnee Y: %d\n\n", pixels_to_coordinate(futur.y));
 
 
-	printf("futur X : %d\n", global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)]);
-	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] != 49)
+	// printf("futur X : %d\n", global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)]);
+	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] == '0')
 	{
 		global->player.pos.x += cos(global->player.initial_angle) * global->player.speed;
 		global->player.pos.y += sin(global->player.initial_angle) * global->player.speed;
@@ -48,7 +48,7 @@ static void	move_backward(t_global *global)
 	futur = global->player.pos;
 	futur.x -= cos(global->player.initial_angle) * global->player.speed;
 	futur.y -= sin(global->player.initial_angle) * global->player.speed;
-	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] != 49)
+	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] == '0')
 	{
 		global->player.pos.x -= cos(global->player.initial_angle) * global->player.speed;
 		global->player.pos.y -= sin(global->player.initial_angle) * global->player.speed;
@@ -61,7 +61,7 @@ static void	move_right(t_global *global)
 	futur = global->player.pos;
 	futur.x += cos(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
 	futur.y += sin(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
-	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] != 49)
+	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] == '0')
 	{
 		global->player.pos.x += cos(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
 		global->player.pos.y += sin(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
@@ -74,7 +74,7 @@ static void	move_left(t_global *global)
 	futur = global->player.pos;
 	futur.x += cos(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
 	futur.y += sin(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
-	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] != 49)
+	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] == '0')
 	{
 		global->player.pos.y += sin(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
 		global->player.pos.x += cos(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
@@ -84,31 +84,20 @@ static void	move_left(t_global *global)
 int	key_hook(int keycode, t_global *global)
 {
 	static int map = 0;
-	printf("global->player.pos.x : %f\n", global->player.pos.x);
-	printf("global->player.pos.y : %f\n", global->player.pos.y);
-	printf("global->map_datas.map_width  : %d\n", global->map_datas.map_width);
-	printf("global->map_datas.map_height  : %d\n", global->map_datas.map_height);
-	// if ((global->player.pos.x > MINI_WIDTH && global->player.pos.x < global->map_datas.map_width * MINI_WIDTH - MINI_WIDTH) 
-	// 	&& (global->player.pos.y > MINI_WIDTH && global->player.pos.y < global->map_datas.map_height * MINI_WIDTH - MINI_WIDTH))
-	if (1)
-	{
-		if (keycode == KEY_ESC)
-			clean(global);
-		if (keycode == KEY_W)
-			move_forward(global);
-		if (keycode == KEY_A)
-			move_left(global);
-		if (keycode == KEY_S)
-			move_backward(global);
-		if (keycode == KEY_D)
-			move_right(global);
-		if (keycode == ARROW_LEFT)
-			global->player.initial_angle -= 0.08;
-		if (keycode == ARROW_RIGHT)
-			global->player.initial_angle += 0.08;
-	}
-			
-
+	if (keycode == KEY_ESC)
+		clean(global);
+	if (keycode == KEY_W)
+		move_forward(global);
+	if (keycode == KEY_A)
+		move_left(global);
+	if (keycode == KEY_S)
+		move_backward(global);
+	if (keycode == KEY_D)
+		move_right(global);
+	if (keycode == ARROW_LEFT)
+		global->player.initial_angle -= 0.08;
+	if (keycode == ARROW_RIGHT)
+		global->player.initial_angle += 0.08;
 	if (keycode == 46) // KEY_M
 		map = !map;
 

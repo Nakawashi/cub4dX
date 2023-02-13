@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 20:54:57 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:09:59 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	pixels_to_coordinate(float n)
 {
 	int	res;
 
-	res = n / 8;
+	res = n / MINI_HEIGHT;
 	return (res);
 }
 
