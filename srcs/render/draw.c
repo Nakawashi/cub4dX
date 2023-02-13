@@ -48,13 +48,13 @@ void	draw_column(t_global *global, int *x)
 		else
 		{
 			if (global->ray.side_hit == 'n')
-				texture = get_pixel_color(&global->no, (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(i - wall_start, taille_baton, TEXTURE_SIZE));
+				texture = get_pixel_color(&global->no, TEXTURE_SIZE - (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 's')
-				texture = get_pixel_color(&global->so, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
+				texture = get_pixel_color(&global->so, (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 'e')
-				texture = get_pixel_color(&global->ea, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
+				texture = get_pixel_color(&global->ea, TEXTURE_SIZE - (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 'w')
-				texture = get_pixel_color(&global->we, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
+				texture = get_pixel_color(&global->we, (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
 		}
 		his_mlx_pixel_put(&global->render_img, *x, i, texture);
 		++i;

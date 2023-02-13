@@ -27,9 +27,25 @@
 */
 void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	if (x < 0 || y < 0 || x > img->img_width || y > img->img_height)
+	if (x < 0 || y < 0 || x >= img->img_width || y >= img->img_height)
 		return ;
 	img->addr[y * img->line_length + x] = color;
+}
+
+int	my_min(int x, int y)
+{
+	if (x < y || x == y)
+		return (x);
+	else
+		return (y);
+}
+
+int	my_max(int x, int y)
+{
+	if (x < y || x == y)
+		return (y);
+	else
+		return (x);
 }
 
 /*
@@ -37,8 +53,25 @@ void	his_mlx_pixel_put(t_img *img, int x, int y, int color)
 */
 int	get_pixel_color(t_img *img, int x, int y)
 {
+	//printf("bug %d %d %d %d\n", x, y, img->img_width, img->img_height);
 	if (x < 0 || y < 0 || x > img->img_width || y > img->img_height)
 		return (PLUM);
+	else if (x == img->img_width)
+	{
+		// x = my_max(my_min(x, img->img_width), x);
+		x -= 1;
+	}
+	else if (y == img->img_height)
+	{
+		// y = my_max(my_min(y, img->img_height), y);
+		y -= 1;
+	}
+
+
+
+	
+
+
 	return (img->addr[y * img->line_length + x]);
 
 }

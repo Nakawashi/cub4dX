@@ -1,7 +1,7 @@
-NO ./assets/test.xpm
-SO ./assets/test.xpm
-WE ./assets/test.xpm
-EA ./assets/test.xpm
+NO ./assets/VENT_1A.xpm
+SO ./assets/WARN_1.xpm
+WE ./assets/tnt_side.xpm
+EA ./assets/tnt_side.xpm
 
 F 255,206,109
 C 129,213,255
