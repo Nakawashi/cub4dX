@@ -1,11 +1,16 @@
 NO ./assets/VENT_1A.xpm
 SO ./assets/WARN_1.xpm
-WE ./assets/tnt_side.xpm
+WE ./assets/test.xpm
 EA ./assets/tnt_side.xpm
 
 F 255,206,109
 C 129,213,255
 
-111
-1N1
-111
+11111111111
+10000000001
+10000000001
+10000N00001
+10000000001
+10000000001
+10000000001
+11111111111

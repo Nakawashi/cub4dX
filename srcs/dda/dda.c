@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 19:55:31 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:00:48 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	dda(t_global *global, t_ray *ray, float angle)
 		perform_dda(ray);
 		cell.x = ray->i_cell.x / MINI_WIDTH;
 		cell.y = ray->i_cell.y / MINI_WIDTH;
+		printf("%d %d\n", cell.x, cell.y);
 		if (global->map_datas.map[cell.y][cell.x] == '1')
 		{
 			if (ray->side_dir == 'v')
