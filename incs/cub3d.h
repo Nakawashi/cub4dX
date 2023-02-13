@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 12:45:42 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/02/13 20:27:04 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ typedef struct s_global
 	t_img		ea;
 	t_player	player;
 	t_ray		ray;
+	int			is_wall;
 }	t_global;
 
 //------------------------------//
@@ -249,6 +250,7 @@ void		handle_events(t_global *global);
 //------------------------------//
 
 float		coordinate_to_pixels(int n);
+int			pixels_to_coordinate(float n);
 void		init_player(t_global *global, t_vector2_f pos, int color);
 void		get_player_coordinates(char **map, t_vector2_f position);
 

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 17:10:02 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 19:55:31 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,6 @@ static void	perform_dda(t_ray *ray);
 	1. set in wich direction we are going to follow, with step value
 	2. infinite loop until we find a wall
 */
-// int	dda(t_global *global, t_ray *ray, float angle)
-// {
-// 	t_vector2_d cell;
-
-// 	init_ray_struct(global, ray, angle);
-// 	while (1)
-// 	{
-// 		perform_dda(ray);
-// 		cell.x = ray->i_cell.x / MINI_WIDTH;
-// 		cell.y = ray->i_cell.y / MINI_WIDTH;
-// 		if (global->map_datas.map[cell.y][cell.x] == '1')
-// 		{
-
-// 			if (ray->side_hit == 'n')
-// 			{
-// 				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
-// 				ray->wallX = 8 - fmod(global->player.pos.x + ray->ray_length * cos(angle), 8);
-// 			}
-// 			else if (ray->side_hit == 's')
-// 			{
-// 				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
-// 				ray->wallX = fmod(global->player.pos.x + ray->ray_length * cos(angle), 8);
-// 			}
-// 			else if (ray->side_hit == 'e')
-// 			{
-// 				ray->ray_length = (ray->side_dist.x - ray->delta_dist.x) * cos(angle - global->player.initial_angle);
-// 				ray->wallX =  8 - fmod(global->player.pos.y + ray->ray_length * sin(angle), 8);
-// 			}
-// 			else if (ray->side_hit == 'w')
-// 			{
-// 				ray->ray_length = (ray->side_dist.x - ray->delta_dist.x) * cos(angle - global->player.initial_angle);
-// 				ray->wallX = fmod(global->player.pos.y + ray->ray_length * sin(angle), 8);
-// 			}
-// 			bresenham(global, global->player.pos, ray->i_cell, PLUM);
-// 			return (0);
-// 		}
-// 	}
-// }
-
 
 int	dda(t_global *global, t_ray *ray, float angle)
 {
@@ -86,7 +47,6 @@ int	dda(t_global *global, t_ray *ray, float angle)
 				ray->wallX = fmod(global->player.pos.x + ray->ray_length * ray->direction.x, 8);
 				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
 			}
-			printf("wall x : %f\n", ray->wallX);
 			bresenham(global, global->player.pos, ray->i_cell, PLUM);
 			return (0);
 		}

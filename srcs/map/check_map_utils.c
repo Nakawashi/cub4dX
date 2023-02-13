@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:49:40 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/07 15:11:05 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 20:32:19 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,6 @@ static int	save_player(t_map *mapinfo, t_player *pl, int x, int y)
 	{
 		pl->pos.x = coordinate_to_pixels(x);
 		pl->pos.y = coordinate_to_pixels(y);
-		printf("\ncheck map utils:\n");
-		printf("x : %d\n", x);
-		printf("y : %d\n", y);
 		if (mapinfo->map[y][x] == 'N')
 			pl->initial_angle = degree_to_radians(-90);
 		else if (mapinfo->map[y][x] == 'S')

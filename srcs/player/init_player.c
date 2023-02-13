@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/07 15:54:13 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 20:54:57 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,14 @@ float	coordinate_to_pixels(int n)
 	float	res;
 
 	res = (float)n * MINI_WIDTH + (MINI_WIDTH / 2) - 2;
-	printf("\ninit_player:\n");
-	printf("floating position from integer coordinates : [%f]\n", res);
+	return (res);
+}
+
+int	pixels_to_coordinate(float n)
+{
+	int	res;
+
+	res = n / 8;
 	return (res);
 }
 
