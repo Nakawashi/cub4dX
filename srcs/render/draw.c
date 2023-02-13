@@ -6,11 +6,39 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:15:15 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:39:45 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	get_textures(t_global *g, int *i, int *wall_start)
+{
+	if (g->ray.side_hit == 'n')
+		g->texture = get_pixel_color(&g->no,
+				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
+	else if (g->ray.side_hit == 's')
+		g->texture = get_pixel_color(&g->so,
+				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
+	else if (g->ray.side_hit == 'e')
+				g->texture = get_pixel_color(&g->ea,
+				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
+	else if (g->ray.side_hit == 'w')
+		g->texture = get_pixel_color(&g->we,
+				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
+}
 
 /*
 	map():
@@ -28,40 +56,30 @@
 	largeur max du mur
 	largeur max de la texture
 */
-void	draw_column(t_global *global, int *x)
+static void	draw_column(t_global *g, int *x)
 {
 	int		i;
-	float	taille_baton;
-	int		texture;
 	int		wall_start;
 
-	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x, WIN_WIDTH, 60.0) - 30));
-	taille_baton = (4000.0/global->ray.ray_len);
-	wall_start = WIN_HEIGTH / 2 - (taille_baton / 2);
+	dda(g,
+		&g->ray,
+		g->player.initial_angle - deg_to_rad(map(*x, WIN_WIDTH, 60.0) - 30));
+	g->ray.stick_size = (4000.0 / g->ray.ray_len);
+	wall_start = WIN_HEIGTH / 2 - (g->ray.stick_size / 2);
 	i = 0;
 	while (i < WIN_HEIGTH)
 	{
-		if (i <= WIN_HEIGTH / 2 - taille_baton / 2)
-			texture = global->window.color_ceiling_int;
-		else if (i > WIN_HEIGTH / 2 + taille_baton / 2)
-			texture = global->window.color_floor_int;
+		if (i <= WIN_HEIGTH / 2 - g->ray.stick_size / 2)
+			g->texture = g->window.color_ceiling_int;
+		else if (i > WIN_HEIGTH / 2 + g->ray.stick_size / 2)
+			g->texture = g->window.color_floor_int;
 		else
-		{
-			if (global->ray.side_hit == 'n')
-				texture = get_pixel_color(&global->no, TEXTURE_SIZE - (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
-			else if (global->ray.side_hit == 's')
-				texture = get_pixel_color(&global->so, (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
-			else if (global->ray.side_hit == 'e')
-				texture = get_pixel_color(&global->ea, TEXTURE_SIZE - (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
-			else if (global->ray.side_hit == 'w')
-				texture = get_pixel_color(&global->we, (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(taille_baton - (i - wall_start), taille_baton, TEXTURE_SIZE));
-		}
-		his_mlx_pixel_put(&global->render_img, *x, i, texture);
+			get_textures(g, &i, &wall_start);
+		his_mlx_pixel_put(&g->render_img, *x, i, g->texture);
 		++i;
 	}
 }
 
-//texture = get_pixel_color(&global->no, map(global->ray.wallX, MINI_WIDTH, TEXTURE_SIZE), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 /*
 	column is ---->
 */
@@ -79,7 +97,12 @@ void	draw_rainbow(t_global *global)
 
 void	init_rainbow(t_global *global)
 {
-	create_image(&global->render_img, global->window.mlx_id, WIN_WIDTH, WIN_HEIGTH);
+	create_image(&global->render_img,
+		global->window.mlx_id,
+		WIN_WIDTH,
+		WIN_HEIGTH);
 	draw_rainbow(global);
-	mlx_put_image_to_window(global->window.mlx_id, global->window.win_id, global->render_img.img, 0, 0);
+	mlx_put_image_to_window(global->window.mlx_id,
+		global->window.win_id,
+		global->render_img.img, 0, 0);
 }
