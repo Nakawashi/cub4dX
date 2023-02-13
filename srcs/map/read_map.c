@@ -54,7 +54,8 @@ static int	read_map_line(t_global *global, char **saved, char **line)
 	{
 		global->map_datas.map_width = ft_strlen(*line) - 1;
 	}
-	else if ((int)ft_strlen(*line) > global->map_datas.map_width)
+	else if (ft_strchr(*line, '\n') == NULL
+		&& (int)ft_strlen(*line) > global->map_datas.map_width)
 	{
 		global->map_datas.map_width = ft_strlen(*line);
 	}
