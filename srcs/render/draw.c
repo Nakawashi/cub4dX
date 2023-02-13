@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 12:44:52 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/02/13 17:11:57 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 */
 void	draw_column(t_global *global, int *x)
 {
-	int	i;
+	int		i;
 	float	taille_baton;
-	int	texture;
-	int	wall_start;
+	int		texture;
+	int		wall_start;
 
 	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x, WIN_WIDTH, 60.0) - 30));
 	taille_baton = (4000.0/global->ray.ray_length);

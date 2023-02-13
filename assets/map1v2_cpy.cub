@@ -1,7 +1,7 @@
-NO ./assets/BRICK_4A.xpm
-SO ./assets/BRICK_4A.xpm
-WE ./assets/BRICK_4A.xpm
-EA ./assets/BRICK_4A.xpm
+NO ./assets/test.xpm
+SO ./assets/test.xpm
+WE ./assets/test.xpm
+EA ./assets/test.xpm
 
 F 255,206,109
 C 129,213,255
