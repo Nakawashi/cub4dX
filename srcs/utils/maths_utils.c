@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/10 17:26:45 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:25:58 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ float	degree_to_radians(float degree)
 float	radians_to_degrees(float radian)
 {
 	return (radian / (M_PI / 180.0));
-}
-
-t_vector2_d	ftoi(t_vector2_f positions)
-{
-	t_vector2_d	destination;
-
-	destination.x = (int)positions.x;
-	destination.y = (int)positions.y;
-	return (destination);
 }
 
 float	get_delta_distance(float direction)

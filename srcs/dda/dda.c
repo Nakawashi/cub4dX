@@ -6,7 +6,7 @@
 /*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 12:16:21 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/02/13 14:17:56 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	dda(t_global *global, t_ray *ray, float angle)
 				ray->wallX = fmod(global->player.pos.x + ray->ray_length * ray->direction.x, 8);
 				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
 			}
+			printf("wall x : %f\n", ray->wallX);
 			bresenham(global, global->player.pos, ray->i_cell, PLUM);
 			return (0);
 		}
@@ -64,6 +65,10 @@ void	init_ray_struct(t_global *global, t_ray *ray, float angle)
 	init_side_dist(ray);
 }
 
+/*
+	ray->direction.x < 0 : look at the east (v)
+	ray->direction.y < 0 : look at the south (h)
+*/
 void	init_side_dist(t_ray *ray)
 {
 	if (ray->direction.x < 0)

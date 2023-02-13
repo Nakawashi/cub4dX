@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/12 15:40:26 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:44:52 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@
 void	draw_column(t_global *global, int *x)
 {
 	int	i;
-	int	taille_baton;
+	float	taille_baton;
 	int	texture;
 	int	wall_start;
 
 	dda(global, &global->ray, global->player.initial_angle - degree_to_radians(map(*x, WIN_WIDTH, 60.0) - 30));
-	taille_baton = (4000/global->ray.ray_length);
+	taille_baton = (4000.0/global->ray.ray_length);
 	wall_start = WIN_HEIGTH / 2 - (taille_baton / 2);
 	i = 0;
 	while (i < WIN_HEIGTH)
@@ -47,8 +47,6 @@ void	draw_column(t_global *global, int *x)
 			texture = global->window.color_floor_int;
 		else
 		{
-			if (global->ray.wallX > 6)
-				printf("	%f\n", global->ray.wallX);
 			if (global->ray.side_hit == 'n')
 				texture = get_pixel_color(&global->no, (global->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH), map(i - wall_start, taille_baton, TEXTURE_SIZE));
 			else if (global->ray.side_hit == 's')
