@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:35:01 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/07 16:43:24 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:12:55 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ typedef struct s_bresenham
 	int	y;
 }	t_bresenham;
 
+static void	init_datas_x(t_bresenham *datas)
+{
+	datas->xi = -1;
+	datas->dx = -datas->dx;
+}
+
 /*
 	plot line high (y)
 */
@@ -37,10 +43,7 @@ static void
 	datas.dy = dest.y - p1.y;
 	datas.xi = 1;
 	if (datas.dx < 0)
-	{
-		datas.xi = -1;
-		datas.dx = -datas.dx;
-	}
+		init_datas_x(&datas);
 	datas.d = 2 * datas.dx - datas.dy;
 	datas.x = p1.x;
 	datas.cst1 = 2 * (datas.dx - datas.dy);
@@ -60,6 +63,12 @@ static void
 	}
 }
 
+static void	init_datas_y(t_bresenham *datas)
+{
+	datas->yi = -1;
+	datas->dy = -datas->dy;
+}
+
 static void
 	draw_x(t_global *global, t_vector2_f p1, t_vector2_f dest, int color)
 {
@@ -69,10 +78,7 @@ static void
 	datas.dy = dest.y - p1.y;
 	datas.yi = 1;
 	if (datas.dy < 0)
-	{
-		datas.yi = -1;
-		datas.dy = -datas.dy;
-	}
+		init_datas_y(&datas);
 	datas.d = 2 * datas.dy - datas.dx;
 	datas.y = p1.y;
 	datas.cst1 = 2 * (datas.dy - datas.dx);

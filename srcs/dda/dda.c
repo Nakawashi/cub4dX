@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/10 16:50:59 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:16:21 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	dda(t_global *global, t_ray *ray, float angle)
 				ray->wallX = fmod(global->player.pos.x + ray->ray_length * ray->direction.x, 8);
 				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
 			}
-
 			bresenham(global, global->player.pos, ray->i_cell, PLUM);
 			return (0);
 		}
