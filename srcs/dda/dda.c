@@ -74,6 +74,7 @@ int	dda(t_global *global, t_ray *ray, float angle)
 		perform_dda(ray);
 		cell.x = ray->i_cell.x / MINI_WIDTH;
 		cell.y = ray->i_cell.y / MINI_WIDTH;
+		printf("%d %d\n", cell.x, cell.y);
 		if (global->map_datas.map[cell.y][cell.x] == '1')
 		{
 			if (ray->side_dir == 'v')
@@ -86,7 +87,7 @@ int	dda(t_global *global, t_ray *ray, float angle)
 				ray->wallX = fmod(global->player.pos.x + ray->ray_length * ray->direction.x, 8);
 				ray->ray_length = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - global->player.initial_angle);
 			}
-			printf("wall x : %f\n", ray->wallX);
+			// printf("wall x : %f\n", ray->wallX);
 			bresenham(global, global->player.pos, ray->i_cell, PLUM);
 			return (0);
 		}

@@ -38,20 +38,30 @@ static void	move_left(t_global *global)
 int	key_hook(int keycode, t_global *global)
 {
 	static int map = 0;
-	if (keycode == KEY_ESC)
-		clean(global);
-	if (keycode == KEY_W)
-		move_forward(global);
-	if (keycode == KEY_A)
-		move_left(global);
-	if (keycode == KEY_S)
-		move_backward(global);
-	if (keycode == KEY_D)
-		move_right(global);
-	if (keycode == ARROW_LEFT)
-		global->player.initial_angle -= 0.08;
-	if (keycode == ARROW_RIGHT)
-		global->player.initial_angle += 0.08;
+	printf("global->player.pos.x : %f\n", global->player.pos.x);
+	printf("global->player.pos.y : %f\n", global->player.pos.y);
+	printf("global->map_datas.map_width  : %d\n", global->map_datas.map_width);
+	printf("global->map_datas.map_height  : %d\n", global->map_datas.map_height);
+	// if ((global->player.pos.x > MINI_WIDTH && global->player.pos.x < global->map_datas.map_width * MINI_WIDTH - MINI_WIDTH) 
+	// 	&& (global->player.pos.y > MINI_WIDTH && global->player.pos.y < global->map_datas.map_height * MINI_WIDTH - MINI_WIDTH))
+	if (1)
+	{
+		if (keycode == KEY_ESC)
+			clean(global);
+		if (keycode == KEY_W)
+			move_forward(global);
+		if (keycode == KEY_A)
+			move_left(global);
+		if (keycode == KEY_S)
+			move_backward(global);
+		if (keycode == KEY_D)
+			move_right(global);
+		if (keycode == ARROW_LEFT)
+			global->player.initial_angle -= 0.08;
+		if (keycode == ARROW_RIGHT)
+			global->player.initial_angle += 0.08;
+	}
+			
 
 	if (keycode == 46) // KEY_M
 		map = !map;
