@@ -6,13 +6,13 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:19:45 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:22:59 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:08:32 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	degree_to_radians(float degree)
+float	deg_to_rad(float degree)
 {
 	return (degree * M_PI / 180.0);
 }

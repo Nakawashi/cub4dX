@@ -6,12 +6,28 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:39:45 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:10:15 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	map():
+	prend la position de la colonne entre 0 et 1024 et rend une valeur
+	entre -30 et 30, ce qui correspond a l'angle
+	taille_baton:
+	inverser, plus c'est loin plus c'est petit mais plus le rayon est long
+
+	// if (global->ray.wallX < 0.4) // V
+	// if (i - wall_start < taille_baton * 0.4) // H
+	get_pixel_color:
+	image dans laquelle on vient prendre le pixel
+	map:
+	colonne du mur ou on veut dessiner
+	largeur max du mur
+	largeur max de la texture
+*/
 static void	get_textures(t_global *g, int *i, int *wall_start)
 {
 	if (g->ray.side_hit == 'n')
@@ -40,22 +56,6 @@ static void	get_textures(t_global *g, int *i, int *wall_start)
 					TEXTURE_SIZE));
 }
 
-/*
-	map():
-	prend la position de la colonne entre 0 et 1024 et rend une valeur
-	entre -30 et 30, ce qui correspond a l'angle
-	taille_baton:
-	inverser, plus c'est loin plus c'est petit mais plus le rayon est long
-
-	// if (global->ray.wallX < 0.4) // V
-	// if (i - wall_start < taille_baton * 0.4) // H
-	get_pixel_color:
-	image dans laquelle on vient prendre le pixel
-	map:
-	colonne du mur ou on veut dessiner
-	largeur max du mur
-	largeur max de la texture
-*/
 static void	draw_column(t_global *g, int *x)
 {
 	int		i;

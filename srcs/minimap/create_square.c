@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 13:08:37 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/01/13 19:51:49 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:11:39 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	my_mlx_put_square(t_img *img, t_vector2_d pos, int size, int color)
 	int	j;
 
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		j = 0;
 		while (j < size)

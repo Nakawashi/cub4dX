@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:09:59 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:11:23 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_player(t_global *global, t_vector2_f pos, int color)
 
 	create_image(&global->player.img, global->window.mlx_id, 4, 4);
 	i = 0;
-	while(i < 4)
+	while (i < 4)
 	{
 		j = 0;
 		while (j < 4)

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:18:15 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:06:08 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	init_ray_struct(t_global *global, t_ray *ray, float angle)
 */
 void	init_side_dist(t_ray *ray)
 {
-	if (ray->direction.x < 0)
+	if (ray->dir.x < 0)
 	{
 		ray->step.x = -1;
 		ray->side_dist.x
@@ -83,7 +83,7 @@ void	init_side_dist(t_ray *ray)
 		ray->side_dist.x
 			= (ray->i_cell.x + 1.0f - ray->player.pos.x) * ray->delta_dist.x;
 	}
-	if (ray->direction.y < 0)
+	if (ray->dir.y < 0)
 	{
 		ray->step.y = -1;
 		ray->side_dist.y

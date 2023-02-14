@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:06:04 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:08:32 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ static void	move_right(t_global *global)
 	t_vector2_f futur;
 
 	futur = global->player.pos;
-	futur.x += cos(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
-	futur.y += sin(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
+	futur.x += cos(global->player.initial_angle + deg_to_rad(90)) * global->player.speed;
+	futur.y += sin(global->player.initial_angle + deg_to_rad(90)) * global->player.speed;
 	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] == '0')
 	{
-		global->player.pos.x += cos(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
-		global->player.pos.y += sin(global->player.initial_angle + degree_to_radians(90)) * global->player.speed;
+		global->player.pos.x += cos(global->player.initial_angle + deg_to_rad(90)) * global->player.speed;
+		global->player.pos.y += sin(global->player.initial_angle + deg_to_rad(90)) * global->player.speed;
 	}
 }
 static void	move_left(t_global *global)
@@ -72,12 +72,12 @@ static void	move_left(t_global *global)
 	t_vector2_f futur;
 
 	futur = global->player.pos;
-	futur.x += cos(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
-	futur.y += sin(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
+	futur.x += cos(global->player.initial_angle + deg_to_rad(-90)) * global->player.speed;
+	futur.y += sin(global->player.initial_angle + deg_to_rad(-90)) * global->player.speed;
 	if (global->map_datas.map[pixels_to_coordinate(futur.y)][pixels_to_coordinate(futur.x)] == '0')
 	{
-		global->player.pos.y += sin(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
-		global->player.pos.x += cos(global->player.initial_angle + degree_to_radians(-90)) * global->player.speed;
+		global->player.pos.y += sin(global->player.initial_angle + deg_to_rad(-90)) * global->player.speed;
+		global->player.pos.x += cos(global->player.initial_angle + deg_to_rad(-90)) * global->player.speed;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:49:40 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 20:32:19 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:08:17 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ static int	save_player(t_map *mapinfo, t_player *pl, int x, int y)
 		pl->pos.x = coordinate_to_pixels(x);
 		pl->pos.y = coordinate_to_pixels(y);
 		if (mapinfo->map[y][x] == 'N')
-			pl->initial_angle = degree_to_radians(-90);
+			pl->initial_angle = deg_to_rad(-90);
 		else if (mapinfo->map[y][x] == 'S')
-			pl->initial_angle = degree_to_radians(90);
+			pl->initial_angle = deg_to_rad(90);
 		else if (mapinfo->map[y][x] == 'W')
-			pl->initial_angle = degree_to_radians(180);
+			pl->initial_angle = deg_to_rad(180);
 		else if (mapinfo->map[y][x] == 'E')
-			pl->initial_angle = degree_to_radians(0);
+			pl->initial_angle = deg_to_rad(0);
 		mapinfo->map[y][x] = '0';
 	}
 	else if (ft_strchr("NSWE", mapinfo->map[y][x]) != NULL)

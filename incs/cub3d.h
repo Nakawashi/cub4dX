@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 21:17:54 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:08:06 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ typedef struct s_ray
 	float		stick_size;
 	char		side_hit;
 	char		side_dir;
-	int			texX;
 }	t_ray;
 
 typedef struct s_global
@@ -177,7 +176,7 @@ typedef struct s_global
 	t_img		ea;
 	t_player	player;
 	t_ray		ray;
-	int			is_wall;
+	int			texture;
 }	t_global;
 
 //------------------------------//
@@ -260,7 +259,7 @@ void		get_player_coordinates(char **map, t_vector2_f position);
 //								//
 //------------------------------//
 
-float		degree_to_radians(float degree);
+float		deg_to_rad(float degree);
 float		radians_to_degrees(float radian);
 float		get_delta_distance(float direction);
 void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);

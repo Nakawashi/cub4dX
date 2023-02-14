@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 19:59:03 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/06 15:21:17 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:11:48 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ enum e_minimap
 
 void	draw_minimap(t_global *global)
 {
-	t_vector2_d pos;
+	t_vector2_d	pos;
 
 	pos.y = -1;
 	while (global->map_datas.map[++pos.y])

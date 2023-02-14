@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/13 18:42:09 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:07:43 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	init_parsing(t_global *global)
 	global->map_datas.map_width = 0;
 	global->map_datas.map_height = 0;
 	global->player.pos.x = -1;
-	global->is_wall = 0;
+	global->texture = 0;
 
 	global->window.color_ceiling_hexa = NULL;
 	global->window.color_floor_hexa = NULL;
