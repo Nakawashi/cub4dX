@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 13:45:46 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:59:13 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	init_ray_struct(t_global *global, t_ray *ray, float angle);
 static void	init_side_dist(t_ray *ray);
 static void	perform_dda(t_ray *ray);
+static void	init_datas(t_global *g, t_ray *r, float *angle);
 
 /*
 	Digital Differential Analysis is a fast algorithm
@@ -24,30 +25,20 @@ static void	perform_dda(t_ray *ray);
 	1. set in wich direction we are going to follow, with step value
 	2. infinite loop until we find a wall
 */
-
-int	dda(t_global *g, t_ray *ray, float angle)
+int	dda(t_global *g, t_ray *r, float angle)
 {
 	t_vector2_d	cell;
 
-	init_ray_struct(g, ray, angle);
+	init_ray_struct(g, r, angle);
 	while (1)
 	{
-		perform_dda(ray);
-		cell.x = ray->i_cell.x / MINI_WIDTH;
-		cell.y = ray->i_cell.y / MINI_WIDTH;
+		perform_dda(r);
+		cell.x = r->icell.x / MINI_WIDTH;
+		cell.y = r->icell.y / MINI_WIDTH;
 		if (g->map_datas.map[cell.y][cell.x] == '1')
 		{
-			if (ray->side_dir == 'v')
-			{
-				ray->wallX = fmod(g->player.pos.y + ray->ray_len * ray->dir.y, 8);
-				ray->ray_len = (ray->side_dist.x - ray->delta_dist.x) * cos(angle - g->player.initial_angle);
-			}
-			else
-			{
-				ray->wallX = fmod(g->player.pos.x + ray->ray_len * ray->dir.x, 8);
-				ray->ray_len = (ray->side_dist.y - ray->delta_dist.y) * cos(angle - g->player.initial_angle);
-			}
-			bresenham(g, g->player.pos, ray->i_cell, PLUM);
+			init_datas(g, r, &angle);
+			bresenham(g, g->player.pos, r->icell, PLUM);
 			return (0);
 		}
 	}
@@ -57,7 +48,7 @@ int	dda(t_global *g, t_ray *ray, float angle)
 void	init_ray_struct(t_global *global, t_ray *ray, float angle)
 {
 	ray->player = global->player;
-	ray->i_cell = global->player.pos;
+	ray->icell = global->player.pos;
 	ray->dir.x = cos(angle);
 	ray->dir.y = sin(angle);
 	ray->delta_dist.x = get_delta_distance(ray->dir.x);
@@ -65,44 +56,12 @@ void	init_ray_struct(t_global *global, t_ray *ray, float angle)
 	init_side_dist(ray);
 }
 
-/*
-	ray->direction.x < 0 : look at the east (v)
-	ray->direction.y < 0 : look at the south (h)
-*/
-void	init_side_dist(t_ray *ray)
-{
-	if (ray->dir.x < 0)
-	{
-		ray->step.x = -1;
-		ray->side_dist.x
-			= (ray->player.pos.x - (int)ray->i_cell.x) * ray->delta_dist.x;
-	}
-	else
-	{
-		ray->step.x = 1;
-		ray->side_dist.x
-			= ((int)ray->i_cell.x + 1.0f - ray->player.pos.x) * ray->delta_dist.x;
-	}
-	if (ray->dir.y < 0)
-	{
-		ray->step.y = -1;
-		ray->side_dist.y
-			= (ray->player.pos.y - (int)ray->i_cell.y) * ray->delta_dist.y;
-	}
-	else
-	{
-		ray->step.y = 1;
-		ray->side_dist.y
-			= ((int)ray->i_cell.y + 1.0f - ray->player.pos.y) * ray->delta_dist.y;
-	}
-}
-
 static void	perform_dda(t_ray *ray)
 {
 	if (ray->side_dist.x < ray->side_dist.y)
 	{
 		ray->side_dist.x += ray->delta_dist.x;
-		ray->i_cell.x += ray->step.x;
+		ray->icell.x += ray->step.x;
 		ray->side_dir = 'v';
 		if (ray->step.x == -1)
 			ray->side_hit = 'e';
@@ -112,11 +71,59 @@ static void	perform_dda(t_ray *ray)
 	else
 	{
 		ray->side_dist.y += ray->delta_dist.y;
-		ray->i_cell.y += ray->step.y;
+		ray->icell.y += ray->step.y;
 		ray->side_dir = 'h';
 		if (ray->step.y == -1)
 			ray->side_hit = 's';
 		else
 			ray->side_hit = 'n';
+	}
+}
+
+static void	init_datas(t_global *g, t_ray *r, float *angle)
+{
+	if (r->side_dir == 'v')
+	{
+		r->wallX = fmod(g->player.pos.y + r->ray_len * r->dir.y, 8);
+		r->ray_len = (r->side_dist.x - r->delta_dist.x)
+			* cos(*angle - g->player.initial_angle);
+	}
+	else
+	{
+		r->wallX = fmod(g->player.pos.x + r->ray_len * r->dir.x, 8);
+		r->ray_len = (r->side_dist.y - r->delta_dist.y)
+			* cos(*angle - g->player.initial_angle);
+	}
+}
+
+/*
+	ray->direction.x < 0 : look at the east (v)
+	ray->direction.y < 0 : look at the south (h)
+*/
+void	init_side_dist(t_ray *r)
+{
+	if (r->dir.x < 0)
+	{
+		r->step.x = -1;
+		r->side_dist.x
+			= (r->player.pos.x - (int)r->icell.x) * r->delta_dist.x;
+	}
+	else
+	{
+		r->step.x = 1;
+		r->side_dist.x
+			= ((int)r->icell.x + 1.0f - r->player.pos.x) * r->delta_dist.x;
+	}
+	if (r->dir.y < 0)
+	{
+		r->step.y = -1;
+		r->side_dist.y
+			= (r->player.pos.y - (int)r->icell.y) * r->delta_dist.y;
+	}
+	else
+	{
+		r->step.y = 1;
+		r->side_dist.y
+			= ((int)r->icell.y + 1.0f - r->player.pos.y) * r->delta_dist.y;
 	}
 }
