@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 12:14:51 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:45:46 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	dda(t_global *g, t_ray *ray, float angle)
 	t_vector2_d	cell;
 
 	init_ray_struct(g, ray, angle);
-	printf("i_cell x avant perform: %f\n", ray->i_cell.x);
-	printf("i_cell y avant perform: %f\n", ray->i_cell.y);
 	while (1)
 	{
 		perform_dda(ray);
@@ -77,25 +75,25 @@ void	init_side_dist(t_ray *ray)
 	{
 		ray->step.x = -1;
 		ray->side_dist.x
-			= (ray->player.pos.x - ray->i_cell.x) * ray->delta_dist.x;
+			= (ray->player.pos.x - (int)ray->i_cell.x) * ray->delta_dist.x;
 	}
 	else
 	{
 		ray->step.x = 1;
 		ray->side_dist.x
-			= (ray->i_cell.x + 1.0f - ray->player.pos.x) * ray->delta_dist.x;
+			= ((int)ray->i_cell.x + 1.0f - ray->player.pos.x) * ray->delta_dist.x;
 	}
 	if (ray->dir.y < 0)
 	{
 		ray->step.y = -1;
 		ray->side_dist.y
-			= (ray->player.pos.y - ray->i_cell.y) * ray->delta_dist.y;
+			= (ray->player.pos.y - (int)ray->i_cell.y) * ray->delta_dist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
 		ray->side_dist.y
-			= (ray->i_cell.y + 1.0f - ray->player.pos.y) * ray->delta_dist.y;
+			= ((int)ray->i_cell.y + 1.0f - ray->player.pos.y) * ray->delta_dist.y;
 	}
 }
 
