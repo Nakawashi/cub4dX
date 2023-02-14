@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 15:16:50 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:34:04 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,18 @@ static void	init_datas(t_global *g, t_ray *r, float *angle)
 	if (r->side_dir == 'v')
 	{
 		r->wallX = fmod(g->player.pos.y + r->ray_len * r->dir.y, 8);
+		// r->wallX = fmod(r->icell.y, MINI_WIDTH);
 		r->ray_len = (r->side_dist.x - r->delta_dist.x)
 			* cos(*angle - g->player.initial_angle);
 	}
 	else
 	{
 		r->wallX = fmod(g->player.pos.x + r->ray_len * r->dir.x, 8);
+		// r->wallX = fmod(r->icell.x, MINI_WIDTH);
 		r->ray_len = (r->side_dist.y - r->delta_dist.y)
 			* cos(*angle - g->player.initial_angle);
 	}
+	printf("wallx: %f\n", r->wallX);
 }
 
 void	init_ray_struct(t_global *global, t_ray *ray, float angle)
