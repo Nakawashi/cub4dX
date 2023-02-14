@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 11:08:06 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:52:14 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,9 +238,14 @@ void		draw_minimap(t_global *global);
 //								//
 //------------------------------//
 
-//int		render_next_frame(void);
 int			key_hook(int keycode, t_global *global);
 void		handle_events(t_global *global);
+void		move_forward(t_global *g);
+void		move_backward(t_global *g);
+void		move_right(t_global *g);
+void		move_left(t_global *g);
+
+
 
 //------------------------------//
 //								//
@@ -249,7 +254,7 @@ void		handle_events(t_global *global);
 //------------------------------//
 
 float		coordinate_to_pixels(int n);
-int			pixels_to_coordinate(float n);
+int			pxl_to_coord(float n);
 void		init_player(t_global *global, t_vector2_f pos, int color);
 void		get_player_coordinates(char **map, t_vector2_f position);
 

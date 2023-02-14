@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:50:56 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 11:52:54 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:23:31 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ void	move_forward(t_global *g)
 	futur.y += sin(g->player.initial_angle) * g->player.speed;
 	if (g->map_datas.map[pxl_to_coord(futur.y)][pxl_to_coord(futur.x)] == '0')
 	{
-		g->player.pos.x += cos(g->player.initial_angle) * g->player.speed;
-		g->player.pos.y += sin(g->player.initial_angle) * g->player.speed;
+		g->player.pos.x = futur.x;
+		g->player.pos.y = futur.y;
 	}
+	printf("\forwrd:\n");
+	printf("P pos X:	%f\n", cos(g->player.initial_angle) * g->player.speed);
+	printf("P pos Y:	%f\n", sin(g->player.initial_angle) * g->player.speed);
 }
 
 void	move_backward(t_global *g)
@@ -35,9 +38,12 @@ void	move_backward(t_global *g)
 	futur.y -= sin(g->player.initial_angle) * g->player.speed;
 	if (g->map_datas.map[pxl_to_coord(futur.y)][pxl_to_coord(futur.x)] == '0')
 	{
-		g->player.pos.x -= cos(g->player.initial_angle) * g->player.speed;
-		g->player.pos.y -= sin(g->player.initial_angle) * g->player.speed;
+		g->player.pos.x = futur.x;
+		g->player.pos.y = futur.y;
 	}
+	printf("\bckwrd:\n");
+	printf("P pos X:	%f\n", cos(g->player.initial_angle) * g->player.speed);
+	printf("P pos Y:	%f\n", sin(g->player.initial_angle) * g->player.speed);
 }
 
 void	move_right(t_global *g)
@@ -49,10 +55,8 @@ void	move_right(t_global *g)
 	futur.y += sin(g->player.initial_angle + deg_to_rad(90)) * g->player.speed;
 	if (g->map_datas.map[pxl_to_coord(futur.y)][pxl_to_coord(futur.x)] == '0')
 	{
-		g->player.pos.x
-			+= cos(g->player.initial_angle + deg_to_rad(90)) * g->player.speed;
-		g->player.pos.y
-			+= sin(g->player.initial_angle + deg_to_rad(90)) * g->player.speed;
+		g->player.pos.x = futur.x;
+		g->player.pos.y = futur.y;
 	}
 }
 
@@ -65,10 +69,8 @@ void	move_left(t_global *g)
 	futur.y += sin(g->player.initial_angle + deg_to_rad(-90)) * g->player.speed;
 	if (g->map_datas.map[pxl_to_coord(futur.y)][pxl_to_coord(futur.x)] == '0')
 	{
-		g->player.pos.y
-			+= sin(g->player.initial_angle + deg_to_rad(-90)) * g->player.speed;
-		g->player.pos.x
-			+= cos(g->player.initial_angle + deg_to_rad(-90)) * g->player.speed;
+		g->player.pos.y = futur.x;
+		g->player.pos.x = futur.y;
 	}
 }
 

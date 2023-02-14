@@ -6,7 +6,7 @@
 #    By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:24:51 by lgenevey          #+#    #+#              #
-#    Updated: 2023/02/06 19:20:20 by lgenevey         ###   ########.fr        #
+#    Updated: 2023/02/14 12:20:56 by lgenevey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS_FILES	=	srcs/main.c \
 				srcs/minimap/create_square.c \
 				srcs/minimap/init_minimap.c \
 				srcs/hooks/events.c \
+				srcs/hooks/events_utils.c \
 				srcs/player/init_player.c \
 				srcs/render/draw.c \
 				srcs/dda/dda.c \
@@ -59,6 +60,7 @@ CC			= gcc
 rm			= rm -rf
 OBJS		= $(SRCS_FILES:.c=.o)
 CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		+= -Ofast -w #truc de jeremy pour compiler plus vite
 
 ifeq ($(DEBUG), 1)
 	CFLAGS += -fsanitize=address -g3

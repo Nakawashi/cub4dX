@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 18:30:12 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 11:11:23 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:22:47 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ float	coordinate_to_pixels(int n)
 	return (res);
 }
 
-int	pixels_to_coordinate(float n)
+int	pxl_to_coord(float n)
 {
 	int	res;
 
@@ -51,7 +51,6 @@ int	pixels_to_coordinate(float n)
 	get player's coordinates
 	Creation of the player's image
 	Print it on the screen at those coordinates
-	get player's watching direction (initial_angle)
 */
 void	init_player(t_global *global, t_vector2_f pos, int color)
 {

@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 11:06:08 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:14:51 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	dda(t_global *g, t_ray *ray, float angle)
 	t_vector2_d	cell;
 
 	init_ray_struct(g, ray, angle);
+	printf("i_cell x avant perform: %f\n", ray->i_cell.x);
+	printf("i_cell y avant perform: %f\n", ray->i_cell.y);
 	while (1)
 	{
 		perform_dda(ray);
