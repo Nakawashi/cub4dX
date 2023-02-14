@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 17:17:03 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:18:31 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	taille_baton:
 	inverser, plus c'est loin plus c'est petit mais plus le rayon est long
 
-	// if (global->ray.wallX < 0.4) // V
+	// if (global->ray.wallx < 0.4) // V
 	// if (i - wall_start < taille_baton * 0.4) // H
 	get_pixel_color:
 	image dans laquelle on vient prendre le pixel
@@ -32,25 +32,25 @@ static void	get_textures(t_global *g, int *i, int *wall_start)
 {
 	if (g->ray.side_hit == 'n')
 		g->texture = get_pixel_color(&g->no,
-				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				TEXTURE_SIZE - (g->ray.wallx) * (TEXTURE_SIZE / MINI_WIDTH),
 				map(g->ray.stick_size - (*i - *wall_start),
 					g->ray.stick_size,
 					TEXTURE_SIZE));
 	else if (g->ray.side_hit == 's')
 		g->texture = get_pixel_color(&g->so,
-				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				(g->ray.wallx) * (TEXTURE_SIZE / MINI_WIDTH),
 				map(g->ray.stick_size - (*i - *wall_start),
 					g->ray.stick_size,
 					TEXTURE_SIZE));
 	else if (g->ray.side_hit == 'e')
 				g->texture = get_pixel_color(&g->ea,
-				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				TEXTURE_SIZE - (g->ray.wallx) * (TEXTURE_SIZE / MINI_WIDTH),
 				map(g->ray.stick_size - (*i - *wall_start),
 					g->ray.stick_size,
 					TEXTURE_SIZE));
 	else if (g->ray.side_hit == 'w')
 		g->texture = get_pixel_color(&g->we,
-				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				(g->ray.wallx) * (TEXTURE_SIZE / MINI_WIDTH),
 				map(g->ray.stick_size - (*i - *wall_start),
 					g->ray.stick_size,
 					TEXTURE_SIZE));

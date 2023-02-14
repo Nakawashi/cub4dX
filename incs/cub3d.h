@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 13:47:52 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:19:20 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@
 
 # define FOV 60
 # define CUB_SIZE 128
-
 
 // events a ne pas confondre avec les "evenements du clavier"
 enum e_events
@@ -145,7 +144,7 @@ typedef struct s_player
 	icell (impact_cell): dest's coordinates, where our ray touches the wall
 	side_hit : wich side of the wall is hit (nsew)
 	side_dir : vertical or horizontal
-	wallX : point touché sur le mur (0 - 8)
+	wallx : point touché sur le mur (0 - 8)
 	coordonnée y si side_hit == v, coordonnée x si side_hit == h
 */
 typedef struct s_ray
@@ -153,11 +152,11 @@ typedef struct s_ray
 	t_vector2_f	dir;
 	t_vector2_f	icell;
 	t_vector2_f	side_dist;
-	t_vector2_f step;
+	t_vector2_f	step;
 	t_vector2_f	delta_dist;
 	t_player	player;
 	float		ray_len;
-	float		wallX;
+	float		wallx;
 	float		stick_size;
 	char		side_hit;
 	char		side_dir;
@@ -211,6 +210,7 @@ int			open_image(t_img *img, t_window *mlx_id, char *filename);
 int			read_file(t_global *global, char *path_to_file);
 int			read_args(t_global *global, int fd);
 int			read_map(t_global *global, int fd);
+int			check_filename(const char *path);
 
 int			check_map(t_map *mapinfo, t_player *pl);
 int			check_player(t_map *mapinfo, t_player *pl);
@@ -220,7 +220,6 @@ int			square_map(t_map *mapinfo);
 
 int			parse_colors(t_global *global);
 int			ft_tab_length(char **tab);
-
 
 //------------------------------//
 //								//
@@ -245,8 +244,6 @@ void		move_backward(t_global *g);
 void		move_right(t_global *g);
 void		move_left(t_global *g);
 
-
-
 //------------------------------//
 //								//
 //			PLAYER				//
@@ -267,7 +264,8 @@ void		get_player_coordinates(char **map, t_vector2_f position);
 float		deg_to_rad(float degree);
 float		radians_to_degrees(float radian);
 float		get_delta_distance(float direction);
-void		bresenham(t_global *global, t_vector2_f p1, t_vector2_f p2, int color);
+void		bresenham(t_global *global, t_vector2_f p1,
+				t_vector2_f p2, int color);
 float		map(long pos, long in_max, long out_min);
 
 //------------------------------//
