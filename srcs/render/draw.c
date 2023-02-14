@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 17:18:31 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:30:04 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	draw_column(t_global *g, int *x)
 	dda(g,
 		&g->ray,
 		g->player.initial_angle - deg_to_rad(map(*x, WIN_WIDTH, 60.0) - 30));
-	g->ray.stick_size = (3000.0 / g->ray.ray_len);
+	g->ray.stick_size = (4000.0 / g->ray.ray_len);
 	wall_start = WIN_HEIGTH / 2 - (g->ray.stick_size / 2);
 	i = 0;
 	while (i < WIN_HEIGTH)

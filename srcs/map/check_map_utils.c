@@ -113,7 +113,7 @@ static int	save_player(t_map *mapinfo, t_player *pl, int x, int y)
 
 static int	check_case_borders(t_map *mapinfo, int x, int y)
 {
-	if (x <= 0 || y <= 0 || y >= mapinfo->map_height
+	if (x <= 0 || y <= 0 || y >= mapinfo->map_height - 1
 		|| x >= (int)ft_strlen(mapinfo->map[y]) - 1)
 		return (-1);
 	else if (x >= (int)ft_strlen(mapinfo->map[y - 1])

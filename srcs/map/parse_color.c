@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_color.c                                      :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 17:10:06 by lgenevey         ###   ########.fr       */
+/*   Updated: 2022/12/31 13:35:38 by nakawashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int	store_color(int *dest, char **splited)
 		printf("ERROR\n Malloc error\n");
 		return (-1);
 	}
-	if (ft_tab_length(splited) != 3)
+	if (ft_tab_length(splited) != 3 || ft_strlen(splited[0]) == 0
+		|| ft_strlen(splited[1]) == 0 || ft_strlen(splited[2]) == 0)
 	{
 		printf("ERROR\n Error color length\n");
 		return (-1);

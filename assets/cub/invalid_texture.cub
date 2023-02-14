@@ -1,9 +1,9 @@
-NO ./assets/xpm/BRICK.xpm
+NO ./assets/xpm/pouet.xpm
 SO ./assets/xpm/HEDGE.xpm
 WE ./assets/xpm/BRICK_G.xpm
 EA ./assets/xpm/BRICK_GS.xpm
 
-F 110
+F 110,153,15
 C 129,213,255
 
 111111111111111111111111111111111111111111111111111111111111
