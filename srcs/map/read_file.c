@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 13:35:38 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/02/14 17:13:53 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	check_filename(const char *path);
 static int	after_parse(t_global *global);
 
 /*
@@ -22,11 +21,6 @@ int	read_file(t_global *global, char *path_to_file)
 {
 	int		fd;
 
-	if (check_filename(path_to_file) != 0)
-	{
-		printf("ERROR\n Error file not .cub\n");
-		return (-1);
-	}
 	fd = open(path_to_file, O_RDONLY);
 	if (fd == -1)
 	{
@@ -50,22 +44,22 @@ int	read_file(t_global *global, char *path_to_file)
 	return (0);
 }
 
-static int	after_parse(t_global *global)
+static int	after_parse(t_global *g)
 {
-	if (open_image(&global->no, global->window.mlx_id, global->no.texture_path) < 0)
+	if (open_image(&g->no, g->window.mlx_id, g->no.texture_path) < 0)
 		return (-2);
-	if (open_image(&global->so, global->window.mlx_id, global->so.texture_path) < 0)
+	if (open_image(&g->so, g->window.mlx_id, g->so.texture_path) < 0)
 		return (-2);
-	if (open_image(&global->we, global->window.mlx_id, global->we.texture_path) < 0)
+	if (open_image(&g->we, g->window.mlx_id, g->we.texture_path) < 0)
 		return (-2);
-	if (open_image(&global->ea, global->window.mlx_id, global->ea.texture_path) < 0)
+	if (open_image(&g->ea, g->window.mlx_id, g->ea.texture_path) < 0)
 		return (-2);
-	if (parse_colors(global) < 0)
+	if (parse_colors(g) < 0)
 		return (-2);
 	return (0);
 }
 
-static int	check_filename(const char *path)
+int	check_filename(const char *path)
 {
 	if (ft_strlen(path) >= ft_strlen(".cub"))
 	{

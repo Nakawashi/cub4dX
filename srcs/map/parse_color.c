@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nakawashi <nakawashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:15:07 by lgenevey          #+#    #+#             */
-/*   Updated: 2022/12/31 13:35:38 by nakawashi        ###   ########.fr       */
+/*   Updated: 2023/02/14 17:10:06 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	store_color(int *dest, char **splited);
-static int 	process_color(int *dest, char *r, char *g, char *b);
-static size_t count_chars(char *line, char search);
+static int		store_color(int *dest, char **splited);
+static int		process_color(int *dest, char *r, char *g, char *b);
+static size_t	count_chars(char *line, char search);
 
-int parse_colors(t_global *global)
+int	parse_colors(t_global *global)
 {
-	char **splited;
+	char	**splited;
 
 	if (count_chars(global->window.color_ceiling_hexa, ',') != 2)
 	{
@@ -61,7 +61,7 @@ static int	store_color(int *dest, char **splited)
 	return (0);
 }
 
-static int 	process_color(int *dest, char *r, char *g, char *b)
+static int	process_color(int *dest, char *r, char *g, char *b)
 {
 	int	tmp;
 
@@ -87,7 +87,7 @@ static int 	process_color(int *dest, char *r, char *g, char *b)
 	return (0);
 }
 
-static size_t count_chars(char *line, char search)
+static size_t	count_chars(char *line, char search)
 {
 	size_t	i;
 	size_t	count;
