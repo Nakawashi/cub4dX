@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 13:59:13 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:16:50 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,6 @@ int	dda(t_global *g, t_ray *r, float angle)
 	return (1);
 }
 
-void	init_ray_struct(t_global *global, t_ray *ray, float angle)
-{
-	ray->player = global->player;
-	ray->icell = global->player.pos;
-	ray->dir.x = cos(angle);
-	ray->dir.y = sin(angle);
-	ray->delta_dist.x = get_delta_distance(ray->dir.x);
-	ray->delta_dist.y = get_delta_distance(ray->dir.y);
-	init_side_dist(ray);
-}
-
 static void	perform_dda(t_ray *ray)
 {
 	if (ray->side_dist.x < ray->side_dist.y)
@@ -80,6 +69,30 @@ static void	perform_dda(t_ray *ray)
 	}
 }
 
+// static void	init_datas(t_global *global, t_ray *ray, float *angle)
+// {
+// 	if (ray->side_hit == 'n')
+// 	{
+// 		ray->ray_len = (ray->side_dist.y - ray->delta_dist.y) * cos(*angle - global->player.initial_angle);
+// 		ray->wallX = 8 - fmod(global->player.pos.x + ray->ray_len * cos(*angle), 8);
+// 	}
+// 	else if (ray->side_hit == 's')
+// 	{
+// 		ray->ray_len = (ray->side_dist.y - ray->delta_dist.y) * cos(*angle - global->player.initial_angle);
+// 		ray->wallX = fmod(global->player.pos.x + ray->ray_len * cos(*angle), 8);
+// 	}
+// 	else if (ray->side_hit == 'e')
+// 	{
+// 		ray->ray_len = (ray->side_dist.x - ray->delta_dist.x) * cos(*angle - global->player.initial_angle);
+// 		ray->wallX =  8 - fmod(global->player.pos.y + ray->ray_len * sin(*angle), 8);
+// 	}
+// 	else if (ray->side_hit == 'w')
+// 	{
+// 		ray->ray_len = (ray->side_dist.x - ray->delta_dist.x) * cos(*angle - global->player.initial_angle);
+// 		ray->wallX = fmod(global->player.pos.y + ray->ray_len * sin(*angle), 8);
+// 	}
+// }
+
 static void	init_datas(t_global *g, t_ray *r, float *angle)
 {
 	if (r->side_dir == 'v')
@@ -94,6 +107,17 @@ static void	init_datas(t_global *g, t_ray *r, float *angle)
 		r->ray_len = (r->side_dist.y - r->delta_dist.y)
 			* cos(*angle - g->player.initial_angle);
 	}
+}
+
+void	init_ray_struct(t_global *global, t_ray *ray, float angle)
+{
+	ray->player = global->player;
+	ray->icell = global->player.pos;
+	ray->dir.x = cos(angle);
+	ray->dir.y = sin(angle);
+	ray->delta_dist.x = get_delta_distance(ray->dir.x);
+	ray->delta_dist.y = get_delta_distance(ray->dir.y);
+	init_side_dist(ray);
 }
 
 /*

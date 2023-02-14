@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:50:56 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 12:33:43 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:41:14 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ void	move_forward(t_global *g)
 		g->player.pos.x = futur.x;
 		g->player.pos.y = futur.y;
 	}
-	printf("\\forwrd:\n");
-	printf("P pos X:	%f\n", cos(g->player.initial_angle) * g->player.speed);
-	printf("P pos Y:	%f\n", sin(g->player.initial_angle) * g->player.speed);
 }
 
 void	move_backward(t_global *g)
