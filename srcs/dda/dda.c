@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 23:57:00 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 16:34:04 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:04:15 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,43 +69,17 @@ static void	perform_dda(t_ray *ray)
 	}
 }
 
-// static void	init_datas(t_global *global, t_ray *ray, float *angle)
-// {
-// 	if (ray->side_hit == 'n')
-// 	{
-// 		ray->ray_len = (ray->side_dist.y - ray->delta_dist.y) * cos(*angle - global->player.initial_angle);
-// 		ray->wallX = 8 - fmod(global->player.pos.x + ray->ray_len * cos(*angle), 8);
-// 	}
-// 	else if (ray->side_hit == 's')
-// 	{
-// 		ray->ray_len = (ray->side_dist.y - ray->delta_dist.y) * cos(*angle - global->player.initial_angle);
-// 		ray->wallX = fmod(global->player.pos.x + ray->ray_len * cos(*angle), 8);
-// 	}
-// 	else if (ray->side_hit == 'e')
-// 	{
-// 		ray->ray_len = (ray->side_dist.x - ray->delta_dist.x) * cos(*angle - global->player.initial_angle);
-// 		ray->wallX =  8 - fmod(global->player.pos.y + ray->ray_len * sin(*angle), 8);
-// 	}
-// 	else if (ray->side_hit == 'w')
-// 	{
-// 		ray->ray_len = (ray->side_dist.x - ray->delta_dist.x) * cos(*angle - global->player.initial_angle);
-// 		ray->wallX = fmod(global->player.pos.y + ray->ray_len * sin(*angle), 8);
-// 	}
-// }
-
 static void	init_datas(t_global *g, t_ray *r, float *angle)
 {
 	if (r->side_dir == 'v')
 	{
 		r->wallX = fmod(g->player.pos.y + r->ray_len * r->dir.y, 8);
-		// r->wallX = fmod(r->icell.y, MINI_WIDTH);
 		r->ray_len = (r->side_dist.x - r->delta_dist.x)
 			* cos(*angle - g->player.initial_angle);
 	}
 	else
 	{
 		r->wallX = fmod(g->player.pos.x + r->ray_len * r->dir.x, 8);
-		// r->wallX = fmod(r->icell.x, MINI_WIDTH);
 		r->ray_len = (r->side_dist.y - r->delta_dist.y)
 			* cos(*angle - g->player.initial_angle);
 	}

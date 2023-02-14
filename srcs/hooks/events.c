@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:43:13 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 15:31:38 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:57:28 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	key_hook(int keycode, t_global *global)
 	if (keycode == KEY_D)
 		move_right(global);
 	if (keycode == ARROW_LEFT)
-		global->player.initial_angle -= deg_to_rad(1.5);
+		global->player.initial_angle -= deg_to_rad(5);
 	if (keycode == ARROW_RIGHT)
-		global->player.initial_angle += deg_to_rad(1.5);
+		global->player.initial_angle += deg_to_rad(5);
 	if (keycode == 46)
 		map = !map;
 	draw_minimap(global);
