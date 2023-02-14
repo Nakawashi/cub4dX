@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:05:42 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 17:07:48 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:13:04 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	init_interface(t_global *global, char *map)
 	init_window(&global->window);
 	init_background(global, 0, 0);
 	init_parsing(global);
+	if (check_filename(map) != 0)
+	{
+		printf("ERROR\n Error file not .cub\n");
+		exit (1);
+	}
 	if (read_file(global, map) < 0)
 		exit(1);
 }
