@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 12:55:15 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 16:20:51 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:17:03 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,44 +28,32 @@
 	largeur max du mur
 	largeur max de la texture
 */
-// static void	get_textures(t_global *g, int *i, int *wall_start)
-// {
-// 	if (g->ray.side_hit == 'n')
-// 		g->texture = get_pixel_color(&g->no,
-// 				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
-// 				map(g->ray.stick_size - (*i - *wall_start),
-// 					g->ray.stick_size,
-// 					TEXTURE_SIZE));
-// 	else if (g->ray.side_hit == 's')
-// 		g->texture = get_pixel_color(&g->so,
-// 				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
-// 				map(g->ray.stick_size - (*i - *wall_start),
-// 					g->ray.stick_size,
-// 					TEXTURE_SIZE));
-// 	else if (g->ray.side_hit == 'e')
-// 				g->texture = get_pixel_color(&g->ea,
-// 				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
-// 				map(g->ray.stick_size - (*i - *wall_start),
-// 					g->ray.stick_size,
-// 					TEXTURE_SIZE));
-// 	else if (g->ray.side_hit == 'w')
-// 		g->texture = get_pixel_color(&g->we,
-// 				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
-// 				map(g->ray.stick_size - (*i - *wall_start),
-// 					g->ray.stick_size,
-// 					TEXTURE_SIZE));
-// }
-
 static void	get_textures(t_global *g, int *i, int *wall_start)
 {
 	if (g->ray.side_hit == 'n')
-		g->texture = get_pixel_color(&g->no, TEXTURE_SIZE - g->ray.wallX * (TEXTURE_SIZE / MINI_WIDTH), map(g->ray.stick_size - (*i - *wall_start), g->ray.stick_size, TEXTURE_SIZE));
+		g->texture = get_pixel_color(&g->no,
+				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
 	else if (g->ray.side_hit == 's')
-		g->texture = get_pixel_color(&g->so, g->ray.wallX * (TEXTURE_SIZE / MINI_WIDTH), map(g->ray.stick_size - (*i - *wall_start), g->ray.stick_size, TEXTURE_SIZE));
+		g->texture = get_pixel_color(&g->so,
+				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
 	else if (g->ray.side_hit == 'e')
-		g->texture = get_pixel_color(&g->ea, TEXTURE_SIZE - g->ray.wallX * (TEXTURE_SIZE / MINI_WIDTH), map(g->ray.stick_size - (*i - *wall_start), g->ray.stick_size, TEXTURE_SIZE));
+				g->texture = get_pixel_color(&g->ea,
+				TEXTURE_SIZE - (g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
 	else if (g->ray.side_hit == 'w')
-		g->texture = get_pixel_color(&g->we, g->ray.wallX * (TEXTURE_SIZE / MINI_WIDTH), map(g->ray.stick_size - (*i - *wall_start), g->ray.stick_size, TEXTURE_SIZE));
+		g->texture = get_pixel_color(&g->we,
+				(g->ray.wallX) * (TEXTURE_SIZE / MINI_WIDTH),
+				map(g->ray.stick_size - (*i - *wall_start),
+					g->ray.stick_size,
+					TEXTURE_SIZE));
 }
 
 static void	draw_column(t_global *g, int *x)
