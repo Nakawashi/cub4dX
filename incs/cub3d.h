@@ -6,7 +6,7 @@
 /*   By: lgenevey <lgenevey@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:24:23 by lgenevey          #+#    #+#             */
-/*   Updated: 2023/02/14 13:45:09 by lgenevey         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:47:52 by lgenevey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ typedef struct s_player
 	https://b-bischoff.github.io/web/cube3d.html
 
 	direction : plot right or left side
-	i_cell (impact_cell): dest's coordinates, where our ray touches the wall
+	icell (impact_cell): dest's coordinates, where our ray touches the wall
 	side_hit : wich side of the wall is hit (nsew)
 	side_dir : vertical or horizontal
 	wallX : point touché sur le mur (0 - 8)
@@ -151,7 +151,7 @@ typedef struct s_player
 typedef struct s_ray
 {
 	t_vector2_f	dir;
-	t_vector2_f	i_cell;
+	t_vector2_f	icell;
 	t_vector2_f	side_dist;
 	t_vector2_f step;
 	t_vector2_f	delta_dist;
